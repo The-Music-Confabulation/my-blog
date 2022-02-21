@@ -14,8 +14,15 @@ const app = express();
 var posts = [];
 
 var pass = process.env.MONGOPASS
-mongoose.connect("mongodb+srv://ttran293:" + pass + "@cluster0.1wmqh.mongodb.net/blog_content?retryWrites=true&w=majority", {useNewUrlParser: true});
+mongoose.connect("mongodb+srv://ttran293:" + 
+                                      pass + 
+                "@cluster0.1wmqh.mongodb.net/blog_content?retryWrites=true&w=majority", 
+                {useNewUrlParser: true})
+                .catch(error => handleError(error));
 
+mongoose.connection.on('error', err => {
+  logError(err);
+});
 const page = {
   // id: "number",
   // key: "number",
