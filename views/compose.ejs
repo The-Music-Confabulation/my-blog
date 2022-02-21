@@ -1,0 +1,27 @@
+<%- include('partials/header'); -%>
+
+<div class="container">
+  <div class="py-3 mb-3">
+    <h2 class="pb-2 border-bottom">Compose your song, artist, or playlist post here</h2>
+    <form class="" action="/compose" method="post">
+      <div class="py-3 mb-3">
+        <div class="form-group">
+          <label class="form-label">Title</label>
+          <input class="form-control" type="text" name="postTitle">
+
+          <label class="form-label">SoundCloud URL</label>
+          <input class="form-control" type="text" name="postURL">
+
+          <label class="form-label">Content</label>
+          <textarea class="form-control" rows="5" cols="30" name="postBody"></textarea>
+
+        </div>
+      </div>
+      <div class="">
+        <button class="btn btn-primary" type="submit" name="button">Publish</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<%- include('partials/footer'); -%>
