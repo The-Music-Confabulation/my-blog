@@ -13,7 +13,7 @@ const app = express();
 
 var posts = [];
 
-var pass = process.env.mongopass
+var pass = process.env.MONGOPASS
 mongoose.connect("mongodb+srv://ttran293:" + pass + "@cluster0.1wmqh.mongodb.net/blog_content?retryWrites=true&w=majority", {useNewUrlParser: true});
 
 const page = {
@@ -101,13 +101,11 @@ const topic_title = _.lowerCase(req.params.topic)
 })
 
 
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
 
-
-
-
-
-
-
-app.listen(3000, function() {
-  console.log("Server started on port 3000");
+app.listen(port, function() {
+  console.log("Server started");
 });
