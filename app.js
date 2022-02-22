@@ -15,7 +15,6 @@ var posts = [];
 
 var pass = process.env.MONGOPASS;
 
-
 mongoose.connect("mongodb+srv://ttran293:" + 
                                       pass + 
                 "@cluster0.1wmqh.mongodb.net/blog_content?retryWrites=true&w=majority", 
@@ -49,12 +48,30 @@ app.use(express.static("public"));
 
 
 //use nodemon app.js
-app.get("/",function(req, res){
+app.get("/",async function(req, res){
+
+  var perPage = 3; //limit how many songs per page
+  var total = await Post.count();
+  //console.log(total);
+
+  var pages = Math.ceil(total/perPage);//calculate how many pages needed
+  //console.log(pages)
+  var pageNumber = (req.query.page == null) ? 1 : req.query.page;
+
+  var startFrom = (pageNumber - 1) * perPage;
+  //console.log(startFrom)
+  var songs = await Post.find({}).skip(startFrom).limit(perPage);
+  
+  //console.log(songs.length)
   Post.find({}, function(err, foundItems){
       res.render("home",{
-        newListItems: foundItems
+        newListItems: foundItems,
+        pages:pages,
+        songs:songs
       });
   });
+
+
 });
 
 app.get("/help",function(req, res){

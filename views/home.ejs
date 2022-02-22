@@ -93,23 +93,37 @@
           </article>
 
 
-          <% newListItems.forEach(element => { %>
+          <% for  (var a = 0; a < songs.length; a++) { %>
           <article class="blog-post">
-            <h2 class="blog-post-title"><%=element.title %></h2>
+            <h2 class="blog-post-title"><%=songs[a].title %></h2>
             <p class="blog-post-meta">Today by <a href="#">Mango Sago</a></p>
-            <p><%=element.content %></p>
+            <p><%=songs[a].content %></p>
             <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay"
-              src="https://w.soundcloud.com/player/?url=<%= element.url %>&amp;auto_play=false&amp;color=%23000000&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true"
+              src="https://w.soundcloud.com/player/?url=<%= songs[a].url %>&amp;auto_play=false&amp;color=%23000000&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true"
               loading="lazy">
             </iframe>
             <hr>
           </article>
-          <% }) %>
+          <% } %>
+          <nav aria-label="Page navigation example">
+            <ul class="pagination">
+              <li class="page-item">
+                <a class="page-link" href="?page=1" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+              <% for  (var a = 1; a <= pages; a++) { %>
+              <li class="page-item"><a class="page-link" href="?page=<%=a; %>"><%= a; %></a></li>
+              <% } %>
 
-          <nav class="blog-pagination" aria-label="Pagination">
-            <a class="btn btn-outline-primary" href="#">Older</a>
-            <a class="btn btn-outline-secondary disabled" href="#" tabindex="-1" aria-disabled="true">Newer</a>
+              <li class="page-item">
+                <a class="page-link" href="?page=<%=pages%>" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            </ul>
           </nav>
+
 
         </div>
 

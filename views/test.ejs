@@ -1,0 +1,27 @@
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Content</th>
+    </tr>
+    <tbody>
+        <% for  (var a = 0; a < songs.length; a++) { %>
+        <tr>
+            <td>
+                <%= songs[a].title %>
+            </td>
+            <td>
+                <%= songs[a].content %>
+            </td>
+        </tr>
+        <% } %>
+    </tbody>
+</table>
+
+
+<ul>
+    <% for  (var a = 1; a <= pages; a++) { %>
+    <li>
+        <a href="?page=<%=a; %>"><%= a; %></a>
+    </li>
+    <% } %>
+</ul>
