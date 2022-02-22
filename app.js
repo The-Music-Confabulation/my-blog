@@ -109,23 +109,29 @@ app.post('/compose', (req, res) => {
 
 })
 
-app.get("/posts/:topic", (req, res) =>{
+app.get("/posts/:postId", (req, res) =>{
 
 
-const topic_title = _.lowerCase(req.params.topic)
-  posts.forEach(element => {
-    const post_header = _.lowerCase( element.title )
-    const post_url = _.kebabCase(element.title)
-    //console.log(pageURL)
-      if ( post_header === topic_title){
-          //console.log("found");
-          res.render("post", {
-            pageTitle : element.title,
-            pageContent : element.content
-          })
+  const topic_title = _.lowerCase(req.params.postId)
+  
+  // posts.forEach(element => {
+  //   const post_header = _.lowerCase( element.title )
+  //   const post_url = _.kebabCase(element.title)
+  //     if ( post_header === topic_title){
+  //         console.log("found");
+  //         res.render("post", {
+  //           pageTitle : element.title,
+  //           pageContent : element.content
+  //         })
+  //     }
+  // });
 
-      }
-
+  const requestedPostId = req.params.postId;
+  Post.findOne({_id: requestedPostId}, function(err, post){
+    res.render("post", {
+      title: post.title,
+      content: post.content
+    });
   });
 
 })
