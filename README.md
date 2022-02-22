@@ -6,7 +6,7 @@
  
 
 ## **Deployment**
-> **The website is now deployed and live at** [Insert Website Here](https://agile-falls-45947.herokuapp.com/)  !
+> **The website is now deployed and live** [here](https://agile-falls-45947.herokuapp.com/)  !
 
 
    

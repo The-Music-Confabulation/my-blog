@@ -14,15 +14,17 @@ const app = express();
 var posts = [];
 
 var pass = process.env.MONGOPASS
+
+
 mongoose.connect("mongodb+srv://ttran293:" + 
                                       pass + 
                 "@cluster0.1wmqh.mongodb.net/blog_content?retryWrites=true&w=majority", 
-                {useNewUrlParser: true})
-                .catch(error => handleError(error));
+                {useNewUrlParser: true});
 
-mongoose.connection.on('error', err => {
-  logError(err);
-});
+
+// mongoose.connect("mongodb://localhost:27017/blog_content",{useNewUrlParser:true});
+
+
 const page = {
   // id: "number",
   // key: "number",
@@ -55,8 +57,8 @@ app.get("/",function(req, res){
   });
 });
 
-app.get("/about",function(req, res){
-  res.render("about", {aboutContent });
+app.get("/help",function(req, res){
+  res.render("help");
 });
 
 app.get("/contact",function(req, res){
@@ -107,6 +109,11 @@ const topic_title = _.lowerCase(req.params.topic)
 
 })
 
+
+//for debug local
+// app.listen(3000, function() {
+//   console.log("Server started");
+// });
 
 let port = process.env.PORT;
 if (port == null || port == "") {
