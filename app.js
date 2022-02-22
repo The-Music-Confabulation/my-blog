@@ -13,7 +13,7 @@ const app = express();
 
 var posts = [];
 
-var pass = process.env.MONGOPASS
+var pass = process.env.MONGOPASS;
 
 
 mongoose.connect("mongodb+srv://ttran293:" + 
@@ -61,8 +61,12 @@ app.get("/help",function(req, res){
   res.render("help");
 });
 
-app.get("/contact",function(req, res){
-  res.render("contact", {contactContent });
+app.get("/signup",function(req, res){
+  res.render("signup");
+});
+
+app.get("/login",function(req, res){
+  res.render("login");
 });
 
 app.get("/compose",function(req, res){
