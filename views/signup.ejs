@@ -13,40 +13,39 @@
                                 <div class="card-body p-5">
                                     <h2 class="text-uppercase text-center mb-5">Create an account</h2>
 
-                                    <form>
+                                    <form action="/signup" method="post">
 
                                         <div class="form-outline mb-4">
-                                            <input type="text" id="form3Example1cg"
+                                            <input type="text" id="form3Example1cg" name="userName"
                                                 class="form-control form-control-lg" />
-                                            <label class="form-label" for="form3Example1cg">Your Name</label>
+                                            <label class="form-label" for="form3Example1cg">Username</label>
                                         </div>
 
-                                        <div class="form-outline mb-4">
-                                            <input type="email" id="form3Example3cg"
+                                        <!-- <div class="form-outline mb-4">
+                                            <input type="email" id="form3Example3cg" name="userName"
                                                 class="form-control form-control-lg" />
-                                            <label class="form-label" for="form3Example3cg">Your Email</label>
-                                        </div>
+                                            <label class="form-label" for="form3Example3cg">Your name</label>
+                                        </div> -->
 
                                         <div class="form-outline mb-4">
-                                            <input type="password" id="form3Example4cg"
+                                            <input type="password" id="form3Example4cg" name="userPassword"
                                                 class="form-control form-control-lg" />
                                             <label class="form-label" for="form3Example4cg">Password</label>
                                         </div>
 
                                         <div class="form-outline mb-4">
-                                            <input type="password" id="form3Example4cdg"
+                                            <input type="email" id="form3Example3cg" name="userEmail"
                                                 class="form-control form-control-lg" />
-                                            <label class="form-label" for="form3Example4cdg">Repeat your
-                                                password</label>
+                                            <label class="form-label" for="form3Example3cg">Your Email (Optional)</label>
                                         </div>
 
                                         <div class="d-flex justify-content-center">
-                                            <button type="button"
+                                            <button type="submit"
                                                 class="btn btn-block btn-lg btn-primary" >Register</button>
                                         </div>
 
                                         <p class="text-center text-muted mt-5 mb-0">Have already an account? <a
-                                                href="#!" class="fw-bold text-body"><u>Login here</u></a></p>
+                                                href="login" class="fw-bold text-body"><u>Login here</u></a></p>
 
                                     </form>
 

@@ -36,9 +36,24 @@ const page = {
   url : "string"
 };
 
+
+
 const Post = mongoose.model(
   "Post", page
 );
+
+
+const user = {
+  user_name :"string",
+  // name : "string",
+  password : "string",
+  email : "string"
+}
+
+const User = mongoose.model(
+  "User", user 
+);
+
 
 
 app.set('view engine', 'ejs');
@@ -52,7 +67,7 @@ app.get("/",async function(req, res){
 
   var perPage = 3; //limit how many songs per page
   var total = await Post.count();
-  //console.log(total);
+  console.log(total);
 
   var pages = Math.ceil(total/perPage);//calculate how many pages needed
   //console.log(pages)
@@ -61,7 +76,7 @@ app.get("/",async function(req, res){
   var startFrom = (pageNumber - 1) * perPage;
   //console.log(startFrom)
   var songs = await Post.find({}).skip(startFrom).limit(perPage);
-  
+
   //console.log(songs.length)
   Post.find({}, function(err, foundItems){
       res.render("home",{
@@ -72,15 +87,33 @@ app.get("/",async function(req, res){
   });
 
 
+
 });
 
 app.get("/help",function(req, res){
   res.render("help");
 });
 
+
 app.get("/signup",function(req, res){
   res.render("signup");
 });
+
+
+app.post('/signup', (req, res) => {
+
+  const client = new User ({
+    user_name: req.body.userName,
+    password: req.body.userPassword,
+    email: req.body.userEmail
+  });
+
+  client.save(function(err){
+    if (!err){
+      res.redirect("/");
+    }
+  })
+})
 
 app.get("/login",function(req, res){
   res.render("login");
@@ -108,6 +141,7 @@ app.post('/compose', (req, res) => {
 
 
 })
+
 
 app.get("/posts/:postId", (req, res) =>{
 
