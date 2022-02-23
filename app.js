@@ -1,19 +1,21 @@
 //jshint esversion:6
-
+require('dotenv').config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 
 // Load the full build.
 const _ = require('lodash');
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
+
+const encrypt = require("mongoose-encryption");
 
 
 const app = express();
 
 var posts = [];
 
-var pass = process.env.MONGOPASS;
+var pass = process.env.MONGOPW;
 
 mongoose.connect("mongodb+srv://ttran293:" + 
                                       pass + 
@@ -43,15 +45,19 @@ const Post = mongoose.model(
 );
 
 
-const user = {
+const userSchema = new mongoose.Schema({
   user_name :"string",
   // name : "string",
   password : "string",
   email : "string"
-}
+});
 
-const User = mongoose.model(
-  "User", user 
+const secret = "LONG STRING"
+userSchema.plugin(encrypt, {secret: process.env.SECRET , encryptedFields: ["password"] } );
+
+
+const User = new mongoose.model(
+  "User", userSchema 
 );
 
 
@@ -67,7 +73,7 @@ app.get("/",async function(req, res){
 
   var perPage = 3; //limit how many songs per page
   var total = await Post.count();
-  console.log(total);
+  // console.log(total);
 
   var pages = Math.ceil(total/perPage);//calculate how many pages needed
   //console.log(pages)
@@ -112,11 +118,40 @@ app.post('/signup', (req, res) => {
     if (!err){
       res.redirect("/");
     }
+    else {
+      console.log(err);
+    }
   })
 })
 
-app.get("/login",function(req, res){
+app.get('/login', (req, res) => {
   res.render("login");
+})
+
+
+app.post("/login",function(req, res){
+  const login_username = req.body.username;
+  const login_password = req.body.password;
+
+  User.findOne({user_name : login_username}, function(err, foundUser){
+    if (err){
+      console.log(err);
+    }
+    else {
+      if (foundUser) {
+        console.log("user found");
+        if(foundUser.password === login_password){
+          console.log("password matched");
+          res.render("compose");
+        }
+        else{
+          console.log("password not match");
+        }
+
+      }
+    }
+  })
+  
 });
 
 app.get("/compose",function(req, res){
@@ -172,15 +207,15 @@ app.get("/posts/:postId", (req, res) =>{
 
 
 //for debug local
-// app.listen(3000, function() {
-//   console.log("Server started");
-// });
-
-let port = process.env.PORT;
-if (port == null || port == "") {
-  port = 3000;
-}
-
-app.listen(port, function() {
+app.listen(3000, function() {
   console.log("Server started");
 });
+
+// let port = process.env.PORT;
+// if (port == null || port == "") {
+//   port = 3000;
+// }
+
+// app.listen(port, function() {
+//   console.log("Server started");
+// });
