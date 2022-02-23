@@ -52,7 +52,7 @@ const userSchema = new mongoose.Schema({
   email : "string"
 });
 
-const secret = "LONG STRING"
+
 userSchema.plugin(encrypt, {secret: process.env.SECRET , encryptedFields: ["password"] } );
 
 
