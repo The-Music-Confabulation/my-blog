@@ -40,11 +40,16 @@
           <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
             <input type="search" class="form-control" placeholder="Search..." aria-label="Search" disabled>
           </form>
+          <!-- if user is not logged in, dont show logout button  -->
+          <% if (!isLoggedIn) { %>
           <a class="btn  btn-outline-secondary mx-1" href="/signup">Sign up</a>
-
           <a class="btn  btn-outline-secondary  mx-1" href="/login">Log In</a>
+          <%} else { %>
+          <a class="btn  btn-outline-secondary  mx-1" href="/logout">Log Out</a>
+          <% } %>
 
 
+          <!-- else show log out button -->
 
         </div>
         <!-- <div class="dropdown text-end">
