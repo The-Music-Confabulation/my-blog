@@ -107,7 +107,6 @@ let isLoggedIn = false;
 
 //use nodemon app.js
 app.get("/", async function (req, res) {
-
   var perPage = 3; //limit how many songs per page
   var total = await Post.count();
   // console.log(total);
@@ -118,7 +117,7 @@ app.get("/", async function (req, res) {
 
   var startFrom = (pageNumber - 1) * perPage;
   //console.log(startFrom)
-  var songs = await Post.find({}).skip(startFrom).limit(perPage);
+  var songs = await Post.find({}).skip(startFrom).limit(perPage).sort({_id:-1});
 
   //console.log(songs.length)
   Post.find({}, function (err, foundItems) {
