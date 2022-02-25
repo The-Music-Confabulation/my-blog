@@ -45,10 +45,10 @@ app.use(passport.session());
 
 
 
-var pass = process.env.MONGOPW;
-mongoose.connect("mongodb+srv://ttran293:" + pass + "@cluster0.1wmqh.mongodb.net/blog_content?retryWrites=true&w=majority", {
-  useNewUrlParser: true
-});
+const pass = process.env.MONGOPW;
+const server = process.env.SERVER;
+const server_option = process.env.SERVER_OPTION 
+mongoose.connect(server + pass + server_option, {useNewUrlParser: true});
 
 
 var posts = [];
