@@ -63,7 +63,11 @@ const page = {
   title: "string",
   content: "string",
   // author : "string",
-  url: "string"
+  url: "string",
+  comments : {
+              comment_name: "string",
+              comment_content: "string"
+             }
 };
 
 
@@ -262,7 +266,8 @@ app.get("/posts/:postId", (req, res) => {
   }, function (err, post) {
     res.render("post", {
       title: post.title,
-      content: post.content
+      content: post.content,
+      isLoggedIn: isLoggedIn
     });
   });
 
