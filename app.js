@@ -32,7 +32,7 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-
+//Set up sesson for passport - it's important that this step is exec here before connecting to db
 app.use(session({
   secret: process.env.SECRET,
   resave: false,
@@ -44,7 +44,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-
+//connect to database MONGODB 
 const pass = process.env.MONGOPW;
 const server = process.env.SERVER;
 const server_option = process.env.SERVER_OPTION 
@@ -54,27 +54,30 @@ mongoose.connect(server + pass + server_option, {useNewUrlParser: true});
 var posts = [];
 
 
-const page = {
-  // id: "number",
-  // key: "number",
-  // day: "number",
-  // month: "number",
-  // year: "number",
+const postSchema = new mongoose.Schema({
+
   title: "string",
   content: "string",
-  // author : "string",
   url: "string",
-  comments : {
-              comment_name: "string",
-              comment_content: "string"
-             }
-};
-
+  comments : [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref : 'Comment'
+  }]
+});
 
 
 const Post = mongoose.model(
-  "Post", page
+  "Post", postSchema
 );
+
+const commentSchema = new mongoose.Schema({
+    comment_user: "string",
+    comment_content: "string"
+});
+const Comment = mongoose.model(
+  "Comment", commentSchema
+);
+
 
 
 const userSchema = new mongoose.Schema({
@@ -212,7 +215,7 @@ app.get("/compose", function (req, res) {
   if (req.isAuthenticated()) {
     res.render("compose", {isLoggedIn: isLoggedIn});
   } else {
-    res.redirect("/login");
+    res.render("/login");
   }
 });
 
@@ -225,14 +228,13 @@ app.post('/compose', (req, res) => {
     url: req.body.postURL
   });
 
+  
   post.save(function (err) {
     if (!err) {
       res.redirect("/");
     }
   })
-  // posts.push(post);
-
-
+ 
 })
 
 app.get('/logout', (req, res) => {
@@ -260,18 +262,73 @@ app.get("/posts/:postId", (req, res) => {
   //     }
   // });
 
-  const requestedPostId = req.params.postId;
-  Post.findOne({
-    _id: requestedPostId
-  }, function (err, post) {
-    res.render("post", {
-      title: post.title,
-      content: post.content,
-      isLoggedIn: isLoggedIn
+
+
+
+    Post.findById(req.params.postId).populate("comments").exec(function (err, post){
+        if (err){
+          console.log(err);
+        }
+        else {
+          res.render('post', {
+            title: post.title,
+            postID: post._id,
+            post_comments: post.comments,
+            content: post.content,
+            isLoggedIn: isLoggedIn
+          })
+        }
     });
+
+});
+
+
+app.post("/posts/:postId", (req, res) => {
+
+  // find out which post are being commented on 
+  const post_id = req.params.postId;
+  const comment_user= req.body.commentUsername;
+  const comment_content=  req.body.commentContent;
+
+  const comment = new Comment({
+    comment_user :req.body.commentUsername,
+    comment_content:  req.body.commentContent
   });
 
-})
+  comment.save((err, result) => {
+    if (err){
+      console.log(err);
+    }
+    else {
+      Post.findById(post_id, (err, ret) =>{
+          if (err){
+            console.log(err);
+          } else {
+            ret.comments.push(result);
+            ret.save();
+            res.redirect('/posts/' + post_id)
+          }
+      });
+    }
+  })
+  
+  // console.log(comment_user);
+  // console.log(comment_content);
+  // console.log(post_id);
+
+  // post.save(function (err) {
+  //   if (!err) {
+  //     res.redirect("/");
+  //   }
+  // })
+  // posts.push(post);
+  // Comment.save(function (err) {
+  //   if (!err) {
+  //     res.redirect("/");
+  //   }
+  // })
+  
+});
 
 app.get('/test', (req, res) => {
   res.render('test');
