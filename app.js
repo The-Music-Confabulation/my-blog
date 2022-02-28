@@ -47,8 +47,10 @@ app.use(passport.session());
 //connect to database MONGODB 
 const pass = process.env.MONGOPW;
 const server = process.env.SERVER;
-const server_option = process.env.SERVER_OPTION 
-mongoose.connect(server + pass + server_option, {useNewUrlParser: true});
+const server_option = process.env.SERVER_OPTION
+mongoose.connect(server + pass + server_option, {
+  useNewUrlParser: true
+});
 
 
 var posts = [];
@@ -59,9 +61,9 @@ const postSchema = new mongoose.Schema({
   title: "string",
   content: "string",
   url: "string",
-  comments : [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref : 'Comment'
+  comments: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Comment'
   }]
 });
 
@@ -71,8 +73,8 @@ const Post = mongoose.model(
 );
 
 const commentSchema = new mongoose.Schema({
-    comment_user: "string",
-    comment_content: "string"
+  comment_user: "string",
+  comment_content: "string"
 });
 const Comment = mongoose.model(
   "Comment", commentSchema
@@ -101,7 +103,13 @@ passport.deserializeUser(User.deserializeUser());
 
 
 
-
+// function isLoggedIn(req, res, next) {
+//   if (req.isAuthenticated()) {
+//     next();
+//   } else {
+//     res.redirect('/login')
+//   }
+// }
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({
@@ -124,7 +132,9 @@ app.get("/", async function (req, res) {
 
   var startFrom = (pageNumber - 1) * perPage;
   //console.log(startFrom)
-  var songs = await Post.find({}).skip(startFrom).limit(perPage).sort({_id:-1});
+  var songs = await Post.find({}).skip(startFrom).limit(perPage).sort({
+    _id: -1
+  });
 
   //console.log(songs.length)
   Post.find({}, function (err, foundItems) {
@@ -138,12 +148,16 @@ app.get("/", async function (req, res) {
 });
 
 app.get("/help", function (req, res) {
-  res.render("help", {isLoggedIn: isLoggedIn});
+  res.render("help", {
+    isLoggedIn: isLoggedIn
+  });
 });
 
 
 app.get("/signup", function (req, res) {
-  res.render("signup", {isLoggedIn: isLoggedIn});
+  res.render("signup", {
+    isLoggedIn: isLoggedIn
+  });
 });
 
 
@@ -154,68 +168,61 @@ app.get("/signup", function (req, res) {
 app.post("/signup", function (req, res, next) {
   // console.log(req.body.username);
   // console.log(req.body.userpassword);
-    var newUser = new User({
-        username: req.body.username
-    });
+  var newUser = new User({
+    username: req.body.username
+  });
 
-    //need to check if user already exists here
+  //need to check if user already exists here
 
 
-    
-    User.register(newUser, req.body.userpassword, function (err, user) {
-        if (err) {
-            console.log(err);
-            return res.redirect('/signup');
-        }
-        // go to the next middleware
-        next();
-    });
-}, passport.authenticate('local', { 
-    successRedirect: '/compose',
-    failureRedirect: '/login' 
-}
-)
-);
+
+  User.register(newUser, req.body.userpassword, function (err, user) {
+    if (err) {
+      console.log(err);
+      return res.redirect('/signup');
+    }
+    // go to the next middleware
+    next();
+  });
+  }, passport.authenticate('local', {
+  successRedirect: '/compose',
+  failureRedirect: '/login'
+}));
 
 app.get('/login', (req, res) => {
-  res.render("login", {isLoggedIn: isLoggedIn});
+  res.render("login", {
+    isLoggedIn: isLoggedIn
+  });
 })
 
 
-app.post('/login',function(req, res){
-
-  // passport.authenticate('local', { failureRedirect: '/login' }),
-  // function(req, res) {
-  //   res.redirect('/compose');
-
+app.post('/login', function (req, res) {
 
   const user = new User({
     username: req.body.username,
     password: req.body.password
   });
 
-  req.login(user, function(err){
+  req.login(user, function (err) {
     if (err) {
       console.log(err);
     } else {
-      passport.authenticate("local")(req, res, function(){
+      passport.authenticate("local")(req, res, function () {
         isLoggedIn = true;
         res.redirect("/compose");
       });
-      // passport.authenticate("local", {failureRedirect: '/login'}),
-      // function(req, res){
-      //   isLoggedIn = true;
-      //   res.redirect("/compose");
-      // }
     }
   });
 });
 
 app.get("/compose", function (req, res) {
+
   if (req.isAuthenticated()) {
-    res.render("compose", {isLoggedIn: isLoggedIn});
+    res.render("compose", {
+      isLoggedIn: isLoggedIn
+    });
   } else {
-    res.render("/login");
+    res.redirect("/login");
   }
 });
 
@@ -228,13 +235,13 @@ app.post('/compose', (req, res) => {
     url: req.body.postURL
   });
 
-  
+
   post.save(function (err) {
     if (!err) {
       res.redirect("/");
     }
   })
- 
+
 })
 
 app.get('/logout', (req, res) => {
@@ -247,38 +254,19 @@ app.get('/logout', (req, res) => {
 
 app.get("/posts/:postId", (req, res) => {
 
-
-  const topic_title = _.lowerCase(req.params.postId)
-
-  // posts.forEach(element => {
-  //   const post_header = _.lowerCase( element.title )
-  //   const post_url = _.kebabCase(element.title)
-  //     if ( post_header === topic_title){
-  //         console.log("found");
-  //         res.render("post", {
-  //           pageTitle : element.title,
-  //           pageContent : element.content
-  //         })y
-  //     }
-  // });
-
-
-
-
-    Post.findById(req.params.postId).populate("comments").exec(function (err, post){
-        if (err){
-          console.log(err);
-        }
-        else {
-          res.render('post', {
-            title: post.title,
-            postID: post._id,
-            post_comments: post.comments,
-            content: post.content,
-            isLoggedIn: isLoggedIn
-          })
-        }
-    });
+  Post.findById(req.params.postId).populate("comments").exec(function (err, post) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render('post', {
+        title: post.title,
+        postID: post._id,
+        post_comments: post.comments,
+        content: post.content,
+        isLoggedIn: isLoggedIn
+      })
+    }
+  });
 
 });
 
@@ -287,47 +275,31 @@ app.post("/posts/:postId", (req, res) => {
 
   // find out which post are being commented on 
   const post_id = req.params.postId;
-  const comment_user= req.body.commentUsername;
-  const comment_content=  req.body.commentContent;
+  const comment_user = req.body.commentUsername;
+  const comment_content = req.body.commentContent;
 
   const comment = new Comment({
-    comment_user :req.body.commentUsername,
-    comment_content:  req.body.commentContent
+    comment_user: req.body.commentUsername,
+    comment_content: req.body.commentContent
   });
 
   comment.save((err, result) => {
-    if (err){
+    if (err) {
       console.log(err);
-    }
-    else {
-      Post.findById(post_id, (err, ret) =>{
-          if (err){
-            console.log(err);
-          } else {
-            ret.comments.push(result);
-            ret.save();
-            res.redirect('/posts/' + post_id)
-          }
+    } else {
+      Post.findById(post_id, (err, ret) => {
+        if (err) {
+          console.log(err);
+        } else {
+          ret.comments.push(result);
+          ret.save();
+          res.redirect('/posts/' + post_id)
+        }
       });
     }
   })
-  
-  // console.log(comment_user);
-  // console.log(comment_content);
-  // console.log(post_id);
 
-  // post.save(function (err) {
-  //   if (!err) {
-  //     res.redirect("/");
-  //   }
-  // })
-  // posts.push(post);
-  // Comment.save(function (err) {
-  //   if (!err) {
-  //     res.redirect("/");
-  //   }
-  // })
-  
+
 });
 
 app.get('/test', (req, res) => {
