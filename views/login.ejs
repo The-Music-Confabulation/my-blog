@@ -6,6 +6,7 @@
             <div class="col-12 col-md-9 col-lg-7 col-xl-6">
                 <div class="card" style="border-radius: 15px;">
                     <div class="card-body p-5">
+                        <%- include('messages.ejs') %>
                         <h2 class="text-uppercase text-center mb-5">Log in</h2>
                         <form action="/login" method="post">
                             <!-- <img class="mb-4" src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
@@ -30,8 +31,12 @@
                             <button class="w-100 btn btn-lg btn-primary my-3" type="submit">Sign in</button>
                             
                            
-                            <p class="mt-5 mb-3 text-muted">© 2022</p>
+                            <small class="mt-4">
+                                No Account? <a href="/signup">Sign Up</a>
+                            <small>
                         </form>
+
+
                     </div>
                 </div>
 
