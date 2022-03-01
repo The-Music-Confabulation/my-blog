@@ -17,41 +17,31 @@
 </head>
 
 
+
 <header>
+
   <div class="container">
 
-    <div class="py-3 mb-3 border-bottom">
+    <div class="py-3">
 
-      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <!-- <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-              <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
-            </a> -->
+      <div class="d-flex flex-column flex-md-row align-items-end">
+        <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+        <span class="fs-4">music confabulation</span>
+        </a>
+        <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+          <!-- <a href="/" class="nav-link px-2 link-secondary">home</a> -->
+          <a href="/compose" class="nav-link mx-2 link-secondary">post</a>
+          <a href="/help" class="nav-link mx-2 link-secondary ">help</a>
 
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="/" class="nav-link px-2 link-dark">Home</a></li>
+            <% if (!isLoggedIn) { %>
+            <a href="/signup" class="nav-link mx-2 link-secondary ">sign up</a>
+            <a href="/login" class="nav-link mx-2 link-secondary ">log In</a>
 
-          <!-- <li><a href="/contact" class="nav-link px-2 link-secondary">Contact</a></li> -->
-          <li><a href="/compose" class="nav-link px-2 link-secondary">Post</a></li>
-          <li><a href="/help" class="nav-link px-2 link-secondary ">Help</a></li>
-        </ul>
+            <%} else { %>
+            <a href="/logout" class="nav-link mx-2 link-secondary ">log Out</a>
+            <% } %>
+        </nav>
 
-
-        <div class="col-4 d-flex justify-content-end align-items-center">
-          <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-            <input type="search" class="form-control" placeholder="Search..." aria-label="Search" disabled>
-          </form>
-          <!-- if user is not logged in, dont show logout button  -->
-          <% if (!isLoggedIn) { %>
-          <a class="btn  btn-outline-secondary mx-1" href="/signup">Sign up</a>
-          <a class="btn  btn-outline-secondary  mx-1" href="/login">Log In</a>
-          <%} else { %>
-          <a class="btn  btn-outline-secondary  mx-1" href="/logout">Log Out</a>
-          <% } %>
-
-
-          <!-- else show log out button -->
-
-        </div>
         <!-- <div class="dropdown text-end">
               <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                 <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">

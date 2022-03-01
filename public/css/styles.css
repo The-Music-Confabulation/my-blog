@@ -31,13 +31,8 @@
   border-bottom: 1px solid #e5e5e5;
 }
 
-#feature-artist {
-  background-image: url('https://images.unsplash.com/photo-1612251557267-4d2ef64bccb5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1500&q=80');
-
-
-}
 .blog-header-logo {
-  font-family: "Playfair Display", Georgia, "Times New Roman", serif/*rtl:Amiri, Georgia, "Times New Roman", serif*/;
+
   font-size: 2.25rem;
 }
 
@@ -46,7 +41,7 @@
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Playfair Display", Georgia, "Times New Roman", serif/*rtl:Amiri, Georgia, "Times New Roman", serif*/;
+  
 }
 
 .display-4 {
@@ -82,11 +77,6 @@ h1, h2, h3, h4, h5, h6 {
   font-size: .875rem;
 }
 
-.card-img-right {
-  height: 100%;
-  border-radius: 0 3px 3px 0;
-}
-
 .flex-auto {
   flex: 0 0 auto;
 }
@@ -110,10 +100,7 @@ h1, h2, h3, h4, h5, h6 {
 .blog-post {
   margin-bottom: 4rem;
 }
-.blog-post-title {
-  margin-bottom: .25rem;
-  font-size: 2.5rem;
-}
+
 .blog-post-meta {
   margin-bottom: 1.25rem;
   color: #727272;
