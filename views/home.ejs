@@ -2,27 +2,26 @@
 
 <body>
   <div class="container">
-    <div class="p-3 mb-3 border border-3 rounded">
+    <div class="mb-3 ">
       <div class="row g-5">
-        <div class="col-md-8">
+        <div class="col-md-10 ">
           <!-- <h2 class="pb-4 mb-4 fst-italic">
             Artists
           </h2> -->
 
           <% for  (var a = 0; a < songs.length; a++) { %>
-          <article class="blog-post">
+          <article class="blog-post border border-2 rounded p-3 mb-3 ">
 
-            
             <p class="h2 blog-post-title text-lowercase"><%=songs[a].title %></p>
-            <p class="blog-post-meta">Today by <a href="#">Mango Sago</a></p>
+            
+            <small class="font-weight-light">Today by <a href="#">Mango Sago</a></small>
             <p><%=songs[a].content.substring(0,200) + "..." %>
               <a href="/posts/<%= songs[a]._id %>">Read more</a>
             </p>
-            <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay"
-              src="https://w.soundcloud.com/player/?url=<%= songs[a].url %>&amp;auto_play=false&amp;color=%23000000&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true"
+            <iframe width="100%" height="166" scrolling="no" frameborder="yes" allow="autoplay"
+              src="https://w.soundcloud.com/player/?url=<%= songs[a].url %>&amp;auto_play=false&amp;color=#000000&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true"
               loading="lazy">
             </iframe>
-            <hr>
           </article>
           <% } %>
 
@@ -44,11 +43,9 @@
               </li>
             </ul>
           </nav>
-
-
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-2">
           <div class="position-sticky" style="top: 2rem;">
             <div class="p-4 mb-3 rounded">
               <h4 class="fst-italic">About</h4>

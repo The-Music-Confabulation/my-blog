@@ -10,7 +10,9 @@
   <base href="/">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tenali+Ramakrishna&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="/css/styles.css">
 
@@ -35,10 +37,10 @@
 
             <% if (!isLoggedIn) { %>
             <a href="/signup" class="nav-link mx-2 link-secondary ">sign up</a>
-            <a href="/login" class="nav-link mx-2 link-secondary ">log In</a>
+            <a href="/login" class="nav-link mx-2 link-secondary ">log in</a>
 
             <%} else { %>
-            <a href="/logout" class="nav-link mx-2 link-secondary ">log Out</a>
+            <a href="/logout" class="nav-link mx-2 link-secondary ">log out</a>
             <% } %>
         </nav>
 

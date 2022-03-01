@@ -217,7 +217,7 @@ app.post("/signup", function (req, res, next) {
     User.findOne({username: new_username}).then(user =>{
       if(user){
           errors.push({msg: 'A user with this username already exists'})
-          res.render('signup', {  errors,  new_username, new_password,isLoggedIn })
+          res.render('signup', {errors,  new_username, new_password, isLoggedIn})
       }else{
   
           //hash the password and register the user

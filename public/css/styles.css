@@ -1,3 +1,16 @@
+:root {
+  --primary-color:  hsl(40, 100%, 99%);
+  --secondary-color:  hsl(220, 59%, 65%);
+  --third-color: hsl(0, 0%, 0%);
+}
+
+body {
+  background-color:  var(--primary-color);
+  color: var(--secondary-color);
+  font-family: 'Tenali Ramakrishna', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+}
 /* stylelint-disable selector-list-comma-newline-after */
 .form-signin {
   width: 100%;
@@ -98,12 +111,11 @@ h1, h2, h3, h4, h5, h6 {
  * Blog posts
  */
 .blog-post {
-  margin-bottom: 4rem;
+  
 }
 
 .blog-post-meta {
-  margin-bottom: 1.25rem;
-  color: #727272;
+  
 }
 
 /*
