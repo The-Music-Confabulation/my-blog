@@ -331,6 +331,7 @@ app.get("/posts/:postId", (req, res) => {
       res.render('post', {
         title: post.title,
         postID: post._id,
+        url:post.url,
         post_comments: post.comments,
         content: post.content,
         isLoggedIn: isLoggedIn

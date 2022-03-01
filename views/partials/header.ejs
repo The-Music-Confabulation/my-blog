@@ -28,19 +28,19 @@
 
       <div class="d-flex flex-column flex-md-row align-items-end">
         <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
-        <span class="fs-4">music confabulation</span>
+        <span class="h3 fw-bold">Music Confabulation</span>
         </a>
         <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
           <!-- <a href="/" class="nav-link px-2 link-secondary">home</a> -->
-          <a href="/compose" class="nav-link mx-2 link-secondary">post</a>
-          <a href="/help" class="nav-link mx-2 link-secondary ">help</a>
+          <a href="/compose" class="nav-link mx-2 link-secondary fs-3">post</a>
+          <a href="/help" class="nav-link mx-2 link-secondary fs-3">help</a>
 
             <% if (!isLoggedIn) { %>
-            <a href="/signup" class="nav-link mx-2 link-secondary ">sign up</a>
-            <a href="/login" class="nav-link mx-2 link-secondary ">log in</a>
+              <a href="/login" class="nav-link mx-2 link-secondary fs-3">log in</a>
+              <a href="/signup" class="nav-link mx-2 link-secondary fs-3">sign up</a>
 
             <%} else { %>
-            <a href="/logout" class="nav-link mx-2 link-secondary ">log out</a>
+            <a href="/logout" class="nav-link mx-2 link-secondary fs-3">log out</a>
             <% } %>
         </nav>
 
