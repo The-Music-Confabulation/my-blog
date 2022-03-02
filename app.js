@@ -13,6 +13,8 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local')
 const passportLocalMongoose = require("passport-local-mongoose");
 
+//for time calculation 
+const dayjs = require('dayjs');
 
 //connect flash for client notifications 
 const flash = require('connect-flash');
@@ -91,7 +93,8 @@ const Post = mongoose.model(
 
 const commentSchema = new mongoose.Schema({
   comment_user: "string",
-  comment_content: "string"
+  comment_content: "string",
+  comment_date: "string"
 });
 const Comment = mongoose.model(
   "Comment", commentSchema
@@ -191,29 +194,29 @@ app.get('/login', (req, res) => {
 app.post("/signup", function (req, res, next) {
   new_username = req.body.username;
   new_password = req.body.userpassword;
-
+  new_password2 = req.body.userpassword_2;
   let errors =  []
-  //need to check if user already exists here
+  
   if (!new_username || !new_password ) {
     errors.push({ msg: 'All the fields must be filled to proceed' });
   }
 
-// if (password != password2) {
-//     errors.push({ message: 'The two passwords must match to proceed' });
-//   }
+  if (new_password != new_password2) {
+    errors.push({ msg: 'The two passwords must match to proceed' });
+  }
 
   if (new_password.length < 5) {
     errors.push({ msg: 'Sorry the password must be at least 5 characters long' });
   }
 
   if (errors.length > 0) {
-    res.render('signup', {errors,  new_username, new_password, isLoggedIn});
+    res.render('signup', {errors, isLoggedIn});
   }else{
     //Check if the user exists
     User.findOne({username: new_username}).then(user =>{
       if(user){
           errors.push({msg: 'A user with this username already exists'})
-          res.render('signup', {errors,  new_username, new_password, isLoggedIn})
+          res.render('signup', {errors, isLoggedIn})
       }else{
   
           //hash the password and register the user
@@ -291,22 +294,25 @@ app.get("/compose", function (req, res) {
 });
 
 
+// function getCurrenDate(){
+//   var today = new Date();
+//   var dd = String(today.getDate()).padStart(2, '0');
+//   var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+//   var yyyy = today.getFullYear();
+
+//   return today = mm + '/' + dd + '/' + yyyy;
+// }
 app.post('/compose', (req, res) => {
 
-  var today = new Date();
-  var dd = String(today.getDate()).padStart(2, '0');
-  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-  var yyyy = today.getFullYear();
-
-  today = mm + '/' + dd + '/' + yyyy;
-
+  let now = dayjs();
+  
   const post = new Post({
     title: req.body.postTitle,
     content: req.body.postBody,
     author: req.user.username,
     url: req.body.postURL,
     like: 0,
-    date: today
+    date: now.format("dddd, MMMM D YYYY")
   });
 
   console.log(post);
@@ -357,9 +363,12 @@ app.post("/posts/:postId", (req, res) => {
   const comment_user = req.body.commentUsername;
   const comment_content = req.body.commentContent;
 
+  let now = dayjs();
+  
   const comment = new Comment({
     comment_user: req.body.commentUsername,
-    comment_content: req.body.commentContent
+    comment_content: req.body.commentContent,
+    comment_date: now.format("dddd, MMMM D YYYY")
   });
 
   

@@ -4,8 +4,8 @@
     <div class="py-3 mb-3">
         <article class="blog-post">
             <h1 class="fw-bold"><%=title %></h1>
-            <p class="blog-post-meta"><%=date %> by <a href="#"><%=author %></a></p>
-            <p class="fs-3"><%=content %></p>
+            <p class="blog-post-meta fs-5"><%=date %> by <a href="#" class="link-secondary fs-5"><%=author %></a></p>
+            <p class="fs-4"><%=content %></p>
             <iframe width="100%" height="166" scrolling="no" frameborder="yes" allow="autoplay"
                 src="https://w.soundcloud.com/player/?url=<%= url %>&amp;auto_play=false&amp;color=#000000&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true"
                 loading="lazy">
@@ -23,45 +23,29 @@
                             <!-- Display comment here -->
                             <% post_comments.forEach(element => { %>
                             <div class="card-body">
-                                <div class="d-flex flex-start align-items-center">
-                                    <svg class=" rounded-circle shadow-1-strong me-3" width="60" height="60"
-                                        viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M16 9C16 11.2091 14.2091 13 12 13C9.79086 13 8 11.2091 8 9C8 6.79086 9.79086 5 12 5C14.2091 5 16 6.79086 16 9ZM14 9C14 10.1046 13.1046 11 12 11C10.8954 11 10 10.1046 10 9C10 7.89543 10.8954 7 12 7C13.1046 7 14 7.89543 14 9Z"
-                                            fill="currentColor" />
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M12 1C5.92487 1 1 5.92487 1 12C1 18.0751 5.92487 23 12 23C18.0751 23 23 18.0751 23 12C23 5.92487 18.0751 1 12 1ZM3 12C3 14.0902 3.71255 16.014 4.90798 17.5417C6.55245 15.3889 9.14627 14 12.0645 14C14.9448 14 17.5092 15.3531 19.1565 17.4583C20.313 15.9443 21 14.0524 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12ZM12 21C9.84977 21 7.87565 20.2459 6.32767 18.9878C7.59352 17.1812 9.69106 16 12.0645 16C14.4084 16 16.4833 17.1521 17.7538 18.9209C16.1939 20.2191 14.1881 21 12 21Z"
-                                            fill="currentColor" />
-                                    </svg>
-                                    <div>
-                                        <h6 class="fw-bold text-primary mb-1"> <%=  element.comment_user %></h6>
-                                        <!-- <p class="text-muted small mb-0">
-                                            Shared publicly - Jan 2020
-                                        </p> -->
+                                <div class="d-flex flex-start align-items-center ">
+                                    <div class="">
+                                        <svg class=" rounded-circle shadow-1-strong me-3" width="60" height="60"
+                                            viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M16 9C16 11.2091 14.2091 13 12 13C9.79086 13 8 11.2091 8 9C8 6.79086 9.79086 5 12 5C14.2091 5 16 6.79086 16 9ZM14 9C14 10.1046 13.1046 11 12 11C10.8954 11 10 10.1046 10 9C10 7.89543 10.8954 7 12 7C13.1046 7 14 7.89543 14 9Z"
+                                                fill="currentColor" />
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M12 1C5.92487 1 1 5.92487 1 12C1 18.0751 5.92487 23 12 23C18.0751 23 23 18.0751 23 12C23 5.92487 18.0751 1 12 1ZM3 12C3 14.0902 3.71255 16.014 4.90798 17.5417C6.55245 15.3889 9.14627 14 12.0645 14C14.9448 14 17.5092 15.3531 19.1565 17.4583C20.313 15.9443 21 14.0524 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12ZM12 21C9.84977 21 7.87565 20.2459 6.32767 18.9878C7.59352 17.1812 9.69106 16 12.0645 16C14.4084 16 16.4833 17.1521 17.7538 18.9209C16.1939 20.2191 14.1881 21 12 21Z"
+                                                fill="currentColor" />
+                                        </svg>
+
                                     </div>
 
-
+                                    <div class="row d-flex justify-content-center col-9">
+                                        <p class="fw-bold text-primary mb-1"> <%=  element.comment_user %></p>
+                                        <p class="m-0"> <%=  element.comment_content %> </p>
+                            
+                                    </div>
+                                    <div class="col-2 text-end px-5" >
+                                        <small class=" text-right"><%=  element.comment_date %></small>
+                                    </div>
                                 </div>
-
-                                <p class="mt-3">
-                                    <%=  element.comment_content %>
-                                </p>
-
-                                <!-- <div class="small d-flex justify-content-start">
-                                    <a href="#!" class="d-flex align-items-center me-3">
-                                        <i class="far fa-thumbs-up me-2"></i>
-                                        <p class="mb-0">Like</p>
-                                    </a>
-                                    <a href="#!" class="d-flex align-items-center me-3">
-                                        <i class="far fa-comment-dots me-2"></i>
-                                        <p class="mb-0">Comment</p>
-                                    </a>
-                                    <a href="#!" class="d-flex align-items-center me-3">
-                                        <i class="fas fa-share me-2"></i>
-                                        <p class="mb-0">Share</p>
-                                    </a>
-                                </div> -->
-
                             </div>
                             <hr>
                             <% }) %>
@@ -86,7 +70,8 @@
                                             style="background: #fff;" name="commentContent"></textarea>
                                         <label class="form-label" for="textAreaExample">Message</label>
 
-                                        <input class="form-control" type="text" name="commentUsername" value="Anonymous">
+                                        <input class="form-control" type="text" name="commentUsername"
+                                            value="Anonymous">
                                         <label class="form-label">Name</label>
                                     </div>
 
