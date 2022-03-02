@@ -14,11 +14,6 @@ const LocalStrategy = require('passport-local')
 const passportLocalMongoose = require("passport-local-mongoose");
 
 
-//password auth
-const encrypt = require("mongoose-encryption");
-const bcrypt = require("bcrypt");
-const saltRounds = 10;
-
 //connect flash for client notifications 
 const flash = require('connect-flash');
 
@@ -72,14 +67,21 @@ var posts = [];
 
 
 const postSchema = new mongoose.Schema({
-  title: "string",
-  content: "string",
-  url: "string",
-  // date: {type: Date, default: Date.now },
+  title: {type: String, require: true},
+  content: {type: String, require: true},
+  author:{type: String},
+  url: {type: String},
+  date: {type: String},
+  like: {type: Number},
   comments: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Comment'
   }]
+
+  // likes: [{
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: 'Like'
+  // }]
 });
 
 
@@ -95,13 +97,18 @@ const Comment = mongoose.model(
   "Comment", commentSchema
 );
 
+//  let Pusher = require('pusher');
+//     let pusher = new Pusher({
+//       appId: process.env.PUSHER_APP_ID,
+//       key: process.env.PUSHER_APP_KEY,
+//       secret: process.env.PUSHER_APP_SECRET,
+//       cluster: process.env.PUSHER_APP_CLUSTER
+// });
 
 
 const userSchema = new mongoose.Schema({
   username: {type: String, require: true},
-  // name : "string",
   password: {type: String, require: true},
-
   email: {type: String, require: false},
 });
 
@@ -125,14 +132,6 @@ passport.deserializeUser(function(id, done) {
 });
 
 
-
-// function isLoggedIn(req, res, next) {
-//   if (req.isAuthenticated()) {
-//     next();
-//   } else {
-//     res.redirect('/login')
-//   }
-// }
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({
@@ -143,31 +142,26 @@ app.use(express.static("public"));
 
 let isLoggedIn = false;
 
+
 //use nodemon app.js
 app.get("/", async function (req, res) {
-  var perPage = 3; //limit how many songs per page
+
+  //--Pagination && Load songs in homepage--//
+  var perPage = 5; //limit how many songs per page
   var total = await Post.count();
-  // console.log(total);
-
   var pages = Math.ceil(total / perPage); //calculate how many pages needed
-  //console.log(pages)
   var pageNumber = (req.query.page == null) ? 1 : req.query.page;
-
   var startFrom = (pageNumber - 1) * perPage;
-  //console.log(startFrom)
   var songs = await Post.find({}).skip(startFrom).limit(perPage).sort({
     _id: -1
   });
 
-  //console.log(songs.length)
-  Post.find({}, function (err, foundItems) {
-    res.render("home", {
-      newListItems: foundItems,
+  //--Pagination--//
+  res.render("home", {
       pages: pages,
       songs: songs,
       isLoggedIn: isLoggedIn
     });
-  });
 });
 
 app.get("/help", function (req, res) {
@@ -188,6 +182,8 @@ app.get('/login', (req, res) => {
     isLoggedIn: isLoggedIn
   });
 });
+
+
 
 //https://stackoverflow.com/questions/48096378/bad-request-when-registering-with-passport
 //passport.authenticate is a middleware, which means that you have to call it with 3 parameters (req, res, next)
@@ -284,8 +280,6 @@ app.post("/login", function(req, res){
 
 
 app.get("/compose", function (req, res) {
-
-  
   if (req.isAuthenticated()) {
     res.render("compose", {
       isLoggedIn: isLoggedIn, 
@@ -299,12 +293,23 @@ app.get("/compose", function (req, res) {
 
 app.post('/compose', (req, res) => {
 
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  var yyyy = today.getFullYear();
+
+  today = mm + '/' + dd + '/' + yyyy;
+
   const post = new Post({
     title: req.body.postTitle,
     content: req.body.postBody,
-    url: req.body.postURL
+    author: req.user.username,
+    url: req.body.postURL,
+    like: 0,
+    date: today
   });
 
+  console.log(post);
 
   post.save(function (err) {
     if (!err) {
@@ -320,7 +325,7 @@ app.get('/logout', (req, res) => {
   res.redirect("/");
 })
 
-
+  
 
 app.get("/posts/:postId", (req, res) => {
 
@@ -333,6 +338,9 @@ app.get("/posts/:postId", (req, res) => {
         postID: post._id,
         url:post.url,
         post_comments: post.comments,
+        author:post.author,
+        date:post.date,
+        like:post.like,
         content: post.content,
         isLoggedIn: isLoggedIn
       })
@@ -354,6 +362,7 @@ app.post("/posts/:postId", (req, res) => {
     comment_content: req.body.commentContent
   });
 
+  
   comment.save((err, result) => {
     if (err) {
       console.log(err);
@@ -369,9 +378,23 @@ app.post("/posts/:postId", (req, res) => {
       });
     }
   })
+});
 
+app.post('/:id/like', (req, res, next) => {
+  
+  const post_id =  mongoose.Types.ObjectId(req.params.id);
+  
+  Post.updateOne({ _id : post_id}, {$inc:{like:1}}, function(err, result){
+        if (err){
+          console.log(err);
+        }
+        else {
+            console.log("Like updated");
+            res.redirect('/');
+        }});
 
 });
+
 
 app.get('/test', (req, res) => {
   res.render('test');

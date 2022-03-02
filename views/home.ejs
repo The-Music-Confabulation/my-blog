@@ -1,8 +1,8 @@
 <%- include('partials/header'); -%>
 
 <body>
-  <div class="container-lg">
-    <div class="mb-3 ">
+  <div class="container-fluid w-75">
+    <div class="mb-5">
       <div class="row">
         <div class="col-md-10">
           <!-- <h2 class="pb-4 mb-4 fst-italic">
@@ -10,31 +10,46 @@
           </h2> -->
 
           <% for  (var a = 0; a < songs.length; a++) { %>
-          <article class="blog-post border border-2 border-secondary rounded p-3 mb-3 ">
+          <article class="blog-post border border-1 border-secondary rounded p-3 mb-3 ">
 
-            <h1 class="blog-post-title"><%=songs[a].title %></h1>
-            
-            <small class="font-weight-light">Today by <a href="#">Mango Sago</a></small>
-            <p><%=songs[a].content.substring(0,200) + "..." %>
-              <a href="/posts/<%= songs[a]._id %>">Read more</a>
+            <h2 class="blog-post-title "><%=songs[a].title %></h2>
+
+            <small class="font-weight-light"><%=songs[a].date %> by
+              <a href="#" class="link-secondary"><%= songs[a].author %></a>
+            </small>
+            <p class="fs-4"><%=songs[a].content.substring(0,500) + "..." %>
+              <a class="link-secondary" href="/posts/<%= songs[a]._id %>">Read more</a>
             </p>
+
+
+            <form action="/<%= songs[a]._id %>/like" method="post">
+              <span> <%= songs[a].like %> </span>
+              <button type="submit" class="like-button">
+                <img src="https://img.icons8.com/material-outlined/24/000000/filled-like.png" />
+              </button>
+              <span class="fw-bold"><%=songs[a].comments.length %> <a href="/posts/<%= songs[a]._id %>"><img
+                  src="https://img.icons8.com/material-outlined/24/000000/comments--v1.png" /></a></span>
+            </form>
+
+  
+
 
           </article>
           <% } %>
 
-          <nav aria-label="Page navigation example">
+          <nav aria-label="Page navigation example ">
             <ul class="pagination">
               <li class="page-item">
-                <a class="page-link" href="?page=1" aria-label="Previous">
+                <a class="page-link link-secondary" href="?page=1" aria-label="Previous">
                   <span aria-hidden="true">&laquo;</span>
                 </a>
               </li>
               <% for  (var a = 1; a <= pages; a++) { %>
-              <li class="page-item"><a class="page-link" href="?page=<%=a; %>"><%= a; %></a></li>
+              <li class="page-item "><a class="page-link link-secondary" href="?page=<%=a; %>"><%= a; %></a></li>
               <% } %>
 
               <li class="page-item">
-                <a class="page-link" href="?page=<%=pages%>" aria-label="Next">
+                <a class="page-link link-secondary" href="?page=<%=pages%>" aria-label="Next">
                   <span aria-hidden="true">&raquo;</span>
                 </a>
               </li>
@@ -45,7 +60,7 @@
         <div class="col-md-2">
           <div class="position-sticky" style="top: 2rem;">
             <div class="p-4 mb-3 rounded">
-              <h2 class="fst-italic">About</h2>
+              <h3 class="">about</h3>
               <p class="mb-0">Introduce others about your favorite artists.</p>
             </div>
 
@@ -59,10 +74,11 @@
             </div> -->
 
             <div class="p-4">
-              <h2 class="fst-italic">Social media</h2>
+              <h3 class="">social media</h3>
               <ol class="list-unstyled">
-                <li><a href="https://github.com/ttran293/my-blog">GitHub</a></li>
-                <li><a href="https://www.youtube.com/channel/UCnMd6b1tXn4DT8aNgo5wLSA/playlists">Youtube</a></li>
+                <li><a class="link-secondary" href="https://github.com/ttran293/my-blog">github</a></li>
+                <li><a class="link-secondary"
+                    href="https://www.youtube.com/channel/UCnMd6b1tXn4DT8aNgo5wLSA/playlists">youtube</a></li>
               </ol>
             </div>
           </div>
@@ -75,5 +91,14 @@
 
 
 
+  <script>
+    function updateLikes() {
+      id = $('.likeicon').attr('userId');
+      $.post('/index/' + id, function (response) {
+        $('fa-thumbs-o-up').text(response.likeCount); //your counter on a page
+        //and update likes counter with response
+      })
+    }
+  </script>
 </body>
 <%- include('partials/footer'); -%>
