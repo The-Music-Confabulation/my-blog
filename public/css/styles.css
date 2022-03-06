@@ -14,7 +14,9 @@
 }
 
 body {
-  color: #151515;
+  color: black;
+  /* background-color: coral; */
+  /* background-color: mediumslateblue; */
   font-family: 'Barlow Condensed', sans-serif;
 }
 
@@ -88,6 +90,11 @@ body {
   border-top-right-radius: 0;
 }
 
+/* article{
+    box-shadow:0 0 0 3px #ebebeb inset, 0 0 0 3px rgba(255,255,255,0.15) inset, 0 8px 0 0 #adadad, 0 8px 0 1px rgba(0,0,0,0.4), 0 10px 10px 3px rgba(0,0,0,0.5);
+    background-color:#fff;
+
+} */
 .blog-header {
   line-height: 1;
   border-bottom: 1px solid #e5e5e5;
@@ -284,10 +291,11 @@ Comment section
 
   }
 
-  .about-main,
+  .about-main{
+    display: none;
+  }
   .some-main {
-    flex: 0 0 auto;
-    width: 50%;
+    display: none;
   }
 
   .comment_profile {
@@ -300,6 +308,6 @@ Comment section
   }
 
   .comment_date {
-width: 100%;
+  width: 100%;
   }
 }

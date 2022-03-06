@@ -4,22 +4,56 @@
   <div class="container-fluid body-block">
     <div class="article-blog">
       <div class="row">
+        <div class="col-md-2">
+          <div class="position-sticky row" style="top: 2rem;">
+            <div class=" mb-3 rounded about-main">
+              <h3 class="">about</h3>
+              <p class="mb-0">Introduce others about your favorite artists.</p>
+            </div>
+
+
+            <div class=" some-main">
+              <h3 class="">social media</h3>
+              <ol class="list-unstyled">
+                <li><a class="text-decoration-none text-dark" href="">instagram</a></li>
+                <li><a class="text-decoration-none text-dark"
+                    href="https://www.youtube.com/channel/UCnMd6b1tXn4DT8aNgo5wLSA/playlists">youtube</a></li>
+                <li><a class="text-decoration-none text-dark" href="https://github.com/ttran293/my-blog">github</a></li>
+
+              </ol>
+            </div>
+
+            <div class=" some-main">
+              <h3 class="">color theme setting</h3>
+              <ol class="list-unstyled">
+                <li><a class="text-decoration-none text-dark" href="">color 1</a></li>
+                <li><a class="text-decoration-none text-dark"
+                    href="https://www.youtube.com/channel/UCnMd6b1tXn4DT8aNgo5wLSA/playlists">color 2</a></li>
+                <li><a class="text-decoration-none text-dark" href="https://github.com/ttran293/my-blog">color 3</a></li>
+
+              </ol>
+            </div>
+
+          </div>
+        </div>
         <div class="col-md-10">
 
           <% for  (var a = 0; a < songs.length; a++) { %>
-          <article class="blog-post border border-1 border-secondary rounded p-3 mb-3 ">
+          <article class="blog-post border border-2 border-dark rounded-3 p-3 mb-3 ">
 
             <h2 class="blog-post-title ">
               <a class="text-decoration-none text-dark" href="/posts/<%= songs[a]._id %>"><%=songs[a].title %></a>
             </h2>
 
-            <small class="font-weight-light"><%=songs[a].date %> by
-              <a href="#" class="link-secondary"><%= songs[a].author %></a>
-            </small>
-            <%- songs[a].content.substring(0,500) + "..." %>
-             
-           
-            
+            <p class="font-weight-light"><%=songs[a].date %> by
+              <a href="#" class="text-decoration-none text-dark"><%= songs[a].author %></a>
+            </p>
+            <p class="fs-4"><%- songs[a].content.substring(0,500) + "..." %></p>
+
+            <hr style="visibility: hidden;">
+
+
+
 
             <form action="/<%= songs[a]._id %>/like" method="post">
               <span> <%= songs[a].like %> </span>
@@ -39,16 +73,17 @@
           <nav aria-label="Page navigation example ">
             <ul class="pagination">
               <li class="page-item">
-                <a class="page-link link-secondary" href="?page=1" aria-label="Previous">
+                <a class="page-link text-decoration-none text-dark fw-bold" href="?page=1" aria-label="Previous">
                   <span aria-hidden="true">&laquo;</span>
                 </a>
               </li>
               <% for  (var a = 1; a <= pages; a++) { %>
-              <li class="page-item "><a class="page-link link-secondary" href="?page=<%=a; %>"><%= a; %></a></li>
+              <li class="page-item "><a class="page-link text-decoration-none text-dark  fw-bold"
+                  href="?page=<%=a; %>"><%= a; %></a></li>
               <% } %>
 
               <li class="page-item">
-                <a class="page-link link-secondary" href="?page=<%=pages%>" aria-label="Next">
+                <a class="page-link text-decoration-none text-dark fw-bold" href="?page=<%=pages%>" aria-label="Next">
                   <span aria-hidden="true">&raquo;</span>
                 </a>
               </li>
@@ -56,24 +91,7 @@
           </nav>
         </div>
 
-        <div class="col-md-2">
-          <div class="position-sticky row" style="top: 2rem;">
-            <div class="p-4 mb-3 rounded about-main">
-              <h3 class="">about</h3>
-              <p class="mb-0">Introduce others about your favorite artists.</p>
-            </div>
 
-
-            <div class="p-4 some-main">
-              <h3 class="">social media</h3>
-              <ol class="list-unstyled">
-                <li><a class="link-secondary" href="https://github.com/ttran293/my-blog">github</a></li>
-                <li><a class="link-secondary"
-                    href="https://www.youtube.com/channel/UCnMd6b1tXn4DT8aNgo5wLSA/playlists">youtube</a></li>
-              </ol>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
 

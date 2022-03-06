@@ -24,8 +24,6 @@
 
   <link rel="stylesheet" href="/css/styles.css">
   <script src="/scripts/scripts.js"></script>
-  <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
-
 
 </head>
 
@@ -49,15 +47,15 @@
         <nav class=" mt-2 mt-md-0 ms-md-auto pb-1">
           <!-- <a href="/" class="nav-link px-2 link-secondary">home</a> -->
           
-          <a href="/compose" class="nav-link mx-2 link-secondary  nav-a badge">post</a>
-          <a href="/help" class="nav-link mx-2 link-secondary nav-a badge  ">help</a>
+          <a href="/compose" class="nav-link mx-2 text-decoration-none text-dark  nav-a badge">post</a>
+          <a href="/help" class="nav-link mx-2 text-decoration-none text-dark nav-a badge  ">help</a>
 
           <% if (!isLoggedIn) { %>
-          <a href="/login" class="nav-link mx-2 link-secondary  nav-a badge ">log in</a>
-          <a href="/signup" class="nav-link mx-2 link-secondary  nav-a badge ">sign up</a>
+          <a href="/login" class="nav-link mx-2 text-decoration-none text-dark  nav-a badge ">log in</a>
+          <a href="/signup" class="nav-link mx-2 text-decoration-none text-dark  nav-a badge ">sign up</a>
 
           <%} else { %>
-          <a href="/logout" class="nav-link mx-2 link-secondary  nav-a badge ">log out</a>
+          <a href="/logout" class="nav-link mx-2 text-decoration-none text-dark  nav-a badge ">log out</a>
           <% } %>
         </nav>
       </div>
