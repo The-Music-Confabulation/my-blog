@@ -1,0 +1,15 @@
+
+body {
+    background-color: grey;
+    color: black;
+}
+
+header {
+  background-color: grey;
+}
+
+.page-link{
+  background-color: grey;
+  border-color: black;
+}
+

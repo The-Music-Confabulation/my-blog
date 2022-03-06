@@ -1,0 +1,14 @@
+
+body {
+    background-color: white;
+    color: black;
+}
+
+header {
+  background-color: white;
+}
+
+.page-link{
+  background-color: white;
+  border-color: black;
+}
