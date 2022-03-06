@@ -23,6 +23,10 @@ const flash = require('connect-flash');
 const mongoose = require("mongoose");
 
 
+//filter input from users to prevent XSS attacks
+const xss = require("xss");
+
+
 //lodash for url processing
 const _ = require('lodash');
 
@@ -75,15 +79,12 @@ const postSchema = new mongoose.Schema({
   url: {type: String},
   date: {type: String},
   like: {type: Number},
+  tag: {type: String},
+  approved: {type: Boolean},
   comments: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Comment'
   }]
-
-  // likes: [{
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: 'Like'
-  // }]
 });
 
 
@@ -99,15 +100,6 @@ const commentSchema = new mongoose.Schema({
 const Comment = mongoose.model(
   "Comment", commentSchema
 );
-
-//  let Pusher = require('pusher');
-//     let pusher = new Pusher({
-//       appId: process.env.PUSHER_APP_ID,
-//       key: process.env.PUSHER_APP_KEY,
-//       secret: process.env.PUSHER_APP_SECRET,
-//       cluster: process.env.PUSHER_APP_CLUSTER
-// });
-
 
 const userSchema = new mongoose.Schema({
   username: {type: String, require: true},
@@ -155,7 +147,7 @@ app.get("/", async function (req, res) {
   var pages = Math.ceil(total / perPage); //calculate how many pages needed
   var pageNumber = (req.query.page == null) ? 1 : req.query.page;
   var startFrom = (pageNumber - 1) * perPage;
-  var songs = await Post.find({}).skip(startFrom).limit(perPage).sort({
+  var songs = await Post.find({approved: {$eq: true} }).skip(startFrom).limit(perPage).sort({
     _id: -1
   });
 
@@ -305,13 +297,17 @@ app.get("/compose", function (req, res) {
 app.post('/compose', (req, res) => {
 
   let now = dayjs();
-  
+  console.log(req.body.postBody);
+  const content_clean = xss(req.body.postBody)
+  console.log(content_clean);
   const post = new Post({
     title: req.body.postTitle,
-    content: req.body.postBody,
+    content: content_clean,
     author: req.user.username,
     url: req.body.postURL,
     like: 0,
+    tag: req.body.postTag,
+    approved: false,
     date: now.format("dddd, MMMM D YYYY")
   });
 

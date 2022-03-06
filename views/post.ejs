@@ -5,7 +5,7 @@
         <article class="blog-post">
             <h1 class="fw-bold"><%=title %></h1>
             <p class="blog-post-meta fs-5"><%=date %> by <a href="#" class="link-secondary fs-5"><%=author %></a></p>
-            <p class="fs-4"><%=content %></p>
+            <%-content %>
             <iframe width="100%" height="166" scrolling="no" frameborder="yes" allow="autoplay"
                 src="https://w.soundcloud.com/player/?url=<%= url %>&amp;auto_play=false&amp;color=#000000&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true"
                 loading="lazy">
@@ -73,7 +73,7 @@
 
                                     <div class="col-9">
                                         <textarea class="form-control" id="textAreaExample" rows="4"
-                                            style="background: #fff;" name="commentContent"></textarea>
+                                             name="commentContent"></textarea>
                                         <label class="form-label" for="textAreaExample">Message</label>
 
                                         <input class="form-control text-muted" type="text" name="commentUsername">

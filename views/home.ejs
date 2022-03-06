@@ -9,15 +9,17 @@
           <% for  (var a = 0; a < songs.length; a++) { %>
           <article class="blog-post border border-1 border-secondary rounded p-3 mb-3 ">
 
-            <h2 class="blog-post-title "><%=songs[a].title %></h2>
+            <h2 class="blog-post-title ">
+              <a class="text-decoration-none text-dark" href="/posts/<%= songs[a]._id %>"><%=songs[a].title %></a>
+            </h2>
 
             <small class="font-weight-light"><%=songs[a].date %> by
               <a href="#" class="link-secondary"><%= songs[a].author %></a>
             </small>
-            <p class="fs-4"><%=songs[a].content.substring(0,500) + "..." %>
-              <a class="link-secondary" href="/posts/<%= songs[a]._id %>">Read more</a>
-            </p>
-
+            <%- songs[a].content.substring(0,500) + "..." %>
+             
+           
+            
 
             <form action="/<%= songs[a]._id %>/like" method="post">
               <span> <%= songs[a].like %> </span>
