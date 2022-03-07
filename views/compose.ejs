@@ -1,52 +1,56 @@
 <%- include('partials/header'); -%>
 
-<div class="container-fluid body-block">
-  <div class="py-3 mb-3">
+<body>
+  <div class="container-fluid body-block">
+    <div class="py-3 mb-3">
 
-    <h2 class="pb-2 border-bottom">Compose your song, artist, or playlist post here</h2>
-    <form class="" action="/compose" method="post">
-      <div class="py-3 mb-3 ">
-        <div class="form-group row m-0">
-          <label class="form-label p-0">Title</label>
-          <input class="form-control " type="text" name="postTitle" required>
+      <h2 class="pb-2 border-bottom border-2 border-dark ">write up your post here</h2>
+      <form class="" action="/compose" method="post">
+        <div class="py-3 mb-3 ">
+          <div class="form-group row m-0">
+            <label class="form-label p-0 fs-4 fw-bold">title</label>
+            <input class="form-control border border-2 border-dark rounded-3" type="text" name="postTitle" required>
 
-          <div class="col-md-7 ps-0  mt-3">
-            <label class="form-label">SoundCloud URL</label>
-            <input class="form-control" type="text" name="postURL">
-            <!-- <div class="invalid-feedback">
+            <div class="col-md-7 ps-0  mt-3 fs-4 fw-bold">
+              <label class="form-label">youtube url</label>
+              <input class="form-control border border-2 border-dark rounded-3" type="text" name="postURL">
+              <!-- <div class="invalid-feedback">
               Please select a valid country.
             </div> -->
-          </div>
+            </div>
 
 
-          <div class="col-md-5 px-0 mt-3">
+            <div class="col-md-5 px-0 mt-3 fs-4 fw-bold">
 
-            <label for="tag" class="form-label">tag</label>
-            <div class="input-group has-validation">
-                <span class="input-group-text">#</span>
-                <input type="text" class="form-control" name="postTag" placeholder="Genre" required>
-              <div class="invalid-feedback">
+              <label for="tag" class="form-label">tag</label>
+              <div class="input-group has-validation">
+                <!-- <span class="input-group-text">#</span> -->
+                <input type="text" class="form-control border border-2 border-dark rounded-3" name="postTag"  required>
+                <div class="invalid-feedback">
                   Your username is required.
                 </div>
+              </div>
             </div>
-          </div>
 
-          <label class="form-label p-0 mt-3">Content</label>
-          <textarea class="form-control" rows="5" cols="30" name="postBody">Use https://getbootstrap.com/docs/5.0/content/typography/#headings to customize your text
-          </textarea>
+            <label class="form-label p-0 mt-3 fs-4 fw-bold">content</label>
+            <textarea class="form-control border border-2 border-dark rounded-3" rows="5" cols="30" name="postBody" >Use https://getbootstrap.com/docs/5.0/content/typography/#headings to customize your text</textarea>
+
+
+          </div>
 
 
         </div>
+        <div class="">
+          <button class="btn btn-dark" type="submit" name="button">publish</button>
+        </div>
+      </form>
 
-
-      </div>
-      <div class="">
-        <button class="btn btn-dark" type="submit" name="button">Publish</button>
-      </div>
-    </form>
+    </div>
 
   </div>
 
-</div>
+  <script src="/scripts/scripts.js"></script>
+</body>
+
 
 <%- include('partials/footer'); -%>

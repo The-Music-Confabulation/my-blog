@@ -16,3 +16,7 @@ header {
 article{
   background-color:rgb(241, 210, 124);
 }
+
+.card, .card-footer, .form-control{
+  background-color:rgb(241, 210, 124);
+}

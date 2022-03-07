@@ -19,3 +19,7 @@ header {
 article{
   background-color: #52d1ffe0;
 }
+.card, .card-footer, .form-control{
+  background-color:#52d1ffe0;
+}
+

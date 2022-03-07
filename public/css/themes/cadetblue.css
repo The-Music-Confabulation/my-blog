@@ -18,3 +18,7 @@ header {
 article{
   background-color: #c06360;
 }
+
+.card, .card-footer, .form-control{
+  background-color:#c06360;
+}
