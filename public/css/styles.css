@@ -263,7 +263,7 @@ Comment section
 }
 
 #switch-4 {
-  background-color: grey;
+  background-color: #b7b7a4;
 }
 
 .theme-button{
@@ -344,13 +344,13 @@ Comment section
   }
 
   .comment_date {
-  width: 100%;
+    width: 100%;
   }
   .page-nav{
     display: block;
      margin: auto;
-  width: 50%;
-  padding: 10px;
+    width: 50%;
+    padding: 10px;
   }
   .theme-button{
     display: flex;
