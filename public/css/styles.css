@@ -266,7 +266,9 @@ Comment section
   background-color: grey;
 }
 
-
+.theme-button{
+  display:none;
+}
 
 @media (max-width: 575.98px) {
 
@@ -329,7 +331,9 @@ Comment section
   .some-main {
     display: none;
   }
-
+  .theme-settings{
+    display: none;
+  }
   .comment_profile {
     width: 20px;
     height: 20px;
@@ -341,5 +345,15 @@ Comment section
 
   .comment_date {
   width: 100%;
+  }
+  .page-nav{
+    display: block;
+     margin: auto;
+  width: 50%;
+  padding: 10px;
+  }
+  .theme-button{
+    display: flex;
+    justify-content: center;
   }
 }
