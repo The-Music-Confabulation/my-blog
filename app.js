@@ -402,7 +402,7 @@ app.post('/:id/like', (req, res, next) => {
 
 
 app.get('/test', (req, res) => {
-  res.render('test');
+  res.render('test', {isLoggedIn:isLoggedIn});
 })
 //for debug local
 // app.listen(3000, function() {
