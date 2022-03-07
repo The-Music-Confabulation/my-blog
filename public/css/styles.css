@@ -241,16 +241,16 @@ Comment section
 }
 
 .switch {
-  border: 2px solid black;
-  border-radius: 50px;
-  height: 30px;
-  width: 30px;
-  margin: 10px;
+  border: 3px solid black;
+  border-radius: 60px;
+  height: 40px;
+  width: 40px;
+  margin: 20px;
   cursor: pointer;
 }
 
 .switch:hover {
-  transform: scale(1.2);
+  transform: scale(1.3);
   transition: 0.3s ease-in-out;
 }
 
