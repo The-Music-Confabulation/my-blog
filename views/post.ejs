@@ -3,25 +3,29 @@
 <body>
     <div class="container-fluid body-block">
         <div class="py-3 mb-3">
-            <article class="blog-post border border-2 border-dark rounded-3 p-3 mb-3">
+            <article class="blog-post border border-2 border-dark  p-3 mb-3">
                 <h1 class="fw-bold"><%=title %></h1>
-                <p class="blog-post-meta fs-5"><%=date %> by <a href="#"
-                        class="text-decoration-none text-dark fs-5"><%=author %></a>
+                <p class="blog-post-meta fw-light"><%=date %> by <a href="#"
+                        class="text-decoration-none text-dark"><%=author %></a>
                 </p>
-                <p class="fs-4"><%-content %></p>
+                <p class=""><%-content %></p>
 
-                <% if (url != null) { %>
-                    <a class="text-decoration-none text-dark fs-3" href="<%-url %>">vibe</a>
+                <hr style="visibility: hidden;">
+                <% if (url) { %>
+                <div class="ratio ratio-16x9">
+                    <iframe src="https://www.youtube.com/embed/<%= url %>" title="YouTube video" allowfullscreen
+                        frameborder="0"></iframe>
+                </div>
                 <%} %>
-                
-       
+
+
             </article>
             <hr class="p-3" style="visibility: hidden;">
 
             <h2>comment section:</h2>
             <section>
                 <div class="comment-section">
-                    <div class="d-flex justify-content-center">
+                    <div class="">
                         <div class="col-md-12 col-lg-12 col-xl-12">
                             <% post_comments.forEach(element => { %>
                             <div class="card border border-2 border-dark rounded-3 mt-3">
@@ -66,7 +70,7 @@
 
             <section>
                 <div class="comment-section">
-                    <div class="d-flex justify-content-center">
+                    <div class="">
                         <div class="col-md-12 col-lg-12 col-xl-12">
                             <div class="card border border-2 border-dark rounded-3 mt-3">
 
@@ -121,6 +125,9 @@
 
     </div>
     <script src="/scripts/scripts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    </script>
 </body>
 
 

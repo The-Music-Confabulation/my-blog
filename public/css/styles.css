@@ -294,9 +294,7 @@ Comment section
   }
 
   .footer-block {
-    width: 100%;
-    margin-left: 0px;
-    margin-right: 0px;
+   display: none;
   }
 
   nav {
@@ -355,7 +353,7 @@ Comment section
   }
   .page-nav{
     display: block;
-     margin: auto;
+    margin: auto;
     width: 50%;
     padding: 10px;
   }

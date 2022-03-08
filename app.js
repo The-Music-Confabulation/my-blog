@@ -139,6 +139,11 @@ let isLoggedIn = false;
 
 
 //use nodemon app.js
+
+var getYouTubeID = require('get-youtube-id');
+
+
+
 app.get("/", async function (req, res) {
 
   //--Pagination && Load songs in homepage--//
@@ -296,6 +301,7 @@ app.get("/compose", function (req, res) {
 // }
 app.post('/compose', (req, res) => {
 
+
   let now = dayjs();
   console.log(req.body.postBody);
   const content_clean = xss(req.body.postBody)
@@ -304,7 +310,7 @@ app.post('/compose', (req, res) => {
     title: req.body.postTitle,
     content: content_clean,
     author: req.user.username,
-    url: req.body.postURL,
+    url: getYouTubeID(req.body.postURL),
     like: 0,
     tag: req.body.postTag,
     approved: false,
