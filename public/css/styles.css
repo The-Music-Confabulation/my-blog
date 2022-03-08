@@ -254,8 +254,8 @@ Comment section
 }
 
 #switch-1 {
-  /* background-color: white; */
- background: linear-gradient( -45deg, white, white 50%, rgb(192, 192, 192) 50% ); 
+  background-color: white;
+ /* background: linear-gradient( -45deg, white, white 50%, rgb(192, 192, 192) 50% );  */
 
 }
 
