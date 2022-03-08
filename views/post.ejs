@@ -9,6 +9,12 @@
                         class="text-decoration-none text-dark fs-5"><%=author %></a>
                 </p>
                 <p class="fs-4"><%-content %></p>
+
+                <% if (url != null) { %>
+                    <a class="text-decoration-none text-dark fs-3" href="<%-url %>">vibe</a>
+                <%} %>
+                
+       
             </article>
             <hr class="p-3" style="visibility: hidden;">
 
@@ -64,16 +70,15 @@
                         <div class="col-md-12 col-lg-12 col-xl-12">
                             <div class="card border border-2 border-dark rounded-3 mt-3">
 
-                                
+
 
                                 <div class="card-body">
                                     <div class="">
                                         <div class="row">
-                                            <form class="" method="post"
-                                                action="/posts/<%= postID  %>">
+                                            <form class="" method="post" action="/posts/<%= postID  %>">
 
                                                 <div class="row">
-                                       
+
 
 
                                                     <div class="col-13 ">
@@ -89,7 +94,8 @@
                                                         <label class="form-label">Name</label>
 
                                                         <div class=" mt-2 pt-1">
-                                                            <button type="submit" class="btn btn-dark btn-lg">comment</button>
+                                                            <button type="submit"
+                                                                class="btn btn-dark btn-lg">comment</button>
                                                         </div>
                                                     </div>
 
