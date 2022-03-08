@@ -34,8 +34,8 @@ body {
 }
 
 .like-button {
-  border: none;
-  outline: none;
+  /* border: none;
+  outline: none; */
   background: none;
   cursor: pointer;
   color: black;
