@@ -154,29 +154,29 @@
 
           </article>
           <% } %>
-          <div class="page-nav">
-            <nav aria-label="Page navigation ">
-              <ul class="pagination">
-                <li class="page-item">
-                  <a class="page-link text-decoration-none text-dark fw-bold fs-4" href="?page=1" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                  </a>
-                </li>
-                <% for  (var a = 1; a <= pages; a++) { %>
-                <li class="page-item "><a class="page-link text-decoration-none text-dark  fw-bold fs-4"
-                    href="?page=<%=a; %>"><%= a; %></a></li>
-                <% } %>
 
-                <li class="page-item">
-                  <a class="page-link text-decoration-none text-dark fw-bold fs-4" href="?page=<%=pages%>"
-                    aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
 
+
+          <div class="btn-group  " role="group" aria-label="Default button group">
+            
+
+            <a class="btn btn-outline-dark border-2" href="?page=1" aria-label="Previous">
+              <span aria-hidden="true" class="fw-bold">&laquo;</span>
+            </a>
+
+            <% for  (var a = 1; a <= pages; a++) { %>
+              <a class="btn btn-outline-dark border-2 border-end-0 border-start-0" href="?page=<%=a; %>" aria-label="Previous">
+                <span aria-hidden="true"  class="fw-bold"><%= a; %></span> 
+              </a>
+            <% } %>
+
+            <a class="btn btn-outline-dark border-2" href="?page=<%=pages%>" aria-label="Previous">
+              <span aria-hidden="true"  class="fw-bold">&raquo;</span>
+            </a>
           </div>
+
+
+
 
         </div>
 

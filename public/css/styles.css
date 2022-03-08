@@ -33,18 +33,6 @@ body {
   font-size: 2.5rem;
 }
 
-.like-button {
-  /* border: none;
-  outline: none; */
-  background: none;
-  cursor: pointer;
-  color: black;
-  padding: 0;
-  text-decoration: underline;
-  font-family: inherit;
-  font-size: inherit;
-}
-
 .article-blog {
   margin-bottom: 3rem;
 }
@@ -233,7 +221,10 @@ Comment section
     width: 15%;
 }
 
-
+/* .page-item :hover, .page-link :hover{
+  background-color: black;
+  color: white;
+} */
 
 .theme-switches {
   justify-content: center;
