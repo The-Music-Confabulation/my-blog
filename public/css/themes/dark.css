@@ -1,7 +1,7 @@
 
 body {
     background-color: black;
-    color: white;
+    /* color: white; */
 }
 
 
@@ -14,9 +14,10 @@ a{
 
 
 
-article{
+.article-blog{
   /* background-color:rgb(192, 192, 192); */
   /* background-color: black; */
+   color: white;
 }
 
 .card, .card-footer, .form-control{
@@ -26,7 +27,7 @@ article{
 }
 
 .switch {
-  border: 3px solid white;
+  border: 3px solid #212529;
   border-radius: 60px;
   height: 40px;
   width: 40px;
@@ -39,3 +40,6 @@ article{
   background-color: black;
 }
 
+.model-content{
+  ccolor:black;
+}
