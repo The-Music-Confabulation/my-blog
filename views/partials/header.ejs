@@ -34,7 +34,7 @@
 
       <div class="nav-b flex-column flex-md-row align-items-end">
 
-        <a href="/" class="page-title  d-flex align-items-center text-dark text-decoration-none">
+        <a href="/" class="page-title d-flex align-items-center text-decoration-none">
           <span class="com-name fw-bold">music confabulation.</span>
         </a>
 
@@ -42,15 +42,15 @@
         <nav class=" mt-2 mt-md-0 ms-md-auto pb-1">
           <!-- <a href="/" class="nav-link px-2 link-secondary">home</a> -->
           
-          <a href="/compose" class="nav-link mx-2 text-decoration-none text-dark  nav-a badge">post</a>
+          <a href="/compose" class="nav-link mx-2 text-decoration-none nav-a badge" id="compose">post</a>
           <!-- <a href="/help" class="nav-link mx-2 text-decoration-none text-dark nav-a badge  ">help</a> -->
 
           <% if (!isLoggedIn) { %>
-          <a href="/login" class="nav-link mx-2 text-decoration-none text-dark  nav-a badge ">log in</a>
-          <a href="/signup" class="nav-link mx-2 text-decoration-none text-dark  nav-a badge ">sign up</a>
+          <a href="/login" class="nav-link mx-2 text-decoration-none nav-a badge "id="logi">log in</a>
+          <a href="/signup" class="nav-link mx-2 text-decoration-none nav-a badge "id="signu">sign up</a>
 
           <%} else { %>
-          <a href="/logout" class="nav-link mx-2 text-decoration-none text-dark  nav-a badge ">log out</a>
+          <a href="/logout" class="nav-link mx-2 text-decoration-none nav-a badge "id="logout">log out</a>
           <% } %>
         </nav>
       </div>

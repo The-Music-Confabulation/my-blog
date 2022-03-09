@@ -43,19 +43,6 @@ article{
   font-size: 2.5rem;
 }
 
-.like-button {
-  border: none;
-  outline: none;
-  background: none;
-  cursor: pointer;
-  color: black;
-  padding: 0;
-  text-decoration: underline;
-  font-family: inherit;
-  font-size: inherit;
-}
-
-
 
 .article-blog {
   margin-bottom: 3rem;
@@ -67,7 +54,9 @@ article{
 
 .login-block {
   height: 100%;
+  margin-top: 120px;
 }
+
 
 /* stylelint-disable selector-list-comma-newline-after */
 .form-signin {
@@ -158,25 +147,7 @@ h6 {
   flex: 0 0 auto;
 }
 
-.nav-a {
-  position: relative;
-  border: #000000;
-}
 
-.nav-a:after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0%;
-  height: 0%;
-  border-bottom: 2px solid black;
-  transition: 0.4s;
-}
-
-.nav-a:hover:after {
-  width: 100%;
-}
 
 .h-250 {
   height: 250px;
@@ -247,14 +218,6 @@ Comment section
   justify-content: center;
 }
 
-.switch {
-  border: 3px solid black;
-  border-radius: 60px;
-  height: 40px;
-  width: 40px;
-  margin: 20px;
-  cursor: pointer;
-}
 
 .switch:hover {
   transform: scale(1.3);
@@ -278,7 +241,7 @@ Comment section
 }
 
 #switch-4 {
-  background-color: #b7b7a4;
+  background: linear-gradient( -45deg, black, black 50%, #0d6efd 50% ); 
 }
 
 .theme-button{

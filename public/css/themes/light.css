@@ -6,6 +6,7 @@ body {
 
 header {
   background-color: white;
+  color:black;
 }
 
 .page-link{
@@ -13,12 +14,47 @@ header {
   border-color: black;
 }
 
+a{
+  color:black;
+}
 article{
   /* background-color:rgb(192, 192, 192); */
   background-color: white;
 }
-
+#compose, #logi, #signu, #logout{
+  color: black;
+}
 .card, .card-footer, .form-control{
   /* background-color:rgb(192, 192, 192); */
   background-color: white;
 }
+
+.nav-a {
+  position: relative;
+  border: #000000;
+}
+
+.nav-a:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 0%;
+  border-bottom: 2px solid black;
+  transition: 0.4s;
+}
+
+.nav-a:hover:after {
+  width: 100%;
+}
+
+.switch {
+  border: 3px solid black;
+  border-radius: 60px;
+  height: 40px;
+  width: 40px;
+  margin: 20px;
+  cursor: pointer;
+}
+

@@ -21,8 +21,8 @@ function setTheme(theme) {
     document.getElementById('switcher-id').href = '/css/themes/cadetblue.css';
   } else if (theme == 'coral') {
     document.getElementById('switcher-id').href = '/css/themes/coral.css';
-  } else if (theme == 'grey') {
-    document.getElementById('switcher-id').href = '/css/themes/grey.css';
+  } else if (theme == 'dark') {
+    document.getElementById('switcher-id').href = '/css/themes/dark.css';
   }
   localStorage.setItem('style', theme);
 }

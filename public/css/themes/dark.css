@@ -1,0 +1,41 @@
+
+body {
+    background-color: black;
+    color: white;
+}
+
+
+a{
+  color: #0d6efd;
+}
+/* #compose, #logi, #signu, #logout{
+  color: white;
+} */
+
+
+
+article{
+  /* background-color:rgb(192, 192, 192); */
+  /* background-color: black; */
+}
+
+.card, .card-footer, .form-control{
+  /* background-color:rgb(192, 192, 192); */
+  background-color: black;
+  color: white;
+}
+
+.switch {
+  border: 3px solid white;
+  border-radius: 60px;
+  height: 40px;
+  width: 40px;
+  margin: 20px;
+  cursor: pointer;
+}
+
+#like-btn-article, #cmt-btn-article {
+  color: white;
+  background-color: black;
+}
+
