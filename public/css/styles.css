@@ -55,6 +55,8 @@ article{
   font-size: inherit;
 }
 
+
+
 .article-blog {
   margin-bottom: 3rem;
 }
@@ -295,9 +297,10 @@ Comment section
     height: 0vh;
   }
 
-  .login-block {
-    height: 0%;
+   .login-block {
+    margin-top: 10%;
   }
+
 
   .footer-block {
    display: none;
@@ -373,3 +376,257 @@ Comment section
 }
 
 }
+
+@media (min-width: 576px) and (max-width: 991.98px)  {
+
+  .head-block {
+    width: 100%;
+    margin-left: 0px;
+    margin-right: 0px;
+   
+  }
+
+  .login-block {
+    margin-top: 10%;
+  }
+
+
+
+  .footer-block {
+   display: none;
+  }
+
+  nav {
+    display: flex;
+    justify-content: center !important;
+  }
+
+  .body-block {
+    width: 100%;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .article-blog {
+    margin-bottom: 0;
+  }
+
+  .nav-b {
+    display: block;
+  }
+
+  .page-title {
+    justify-content: center !important;
+  }
+
+  .com-name {
+    font-size: 1.5rem;
+    text-align: justify;
+  }
+
+  .nav-a {
+    font-size: 1.3rem;
+
+  }
+  .side{
+    display: none;
+  }
+  .main{
+    flex: 0 0 auto;
+    width: 100%!important;
+  }
+
+  .about-main{
+    display: none;
+  }
+  .some-main {
+    display: none;
+  }
+  .theme-settings{
+    display: none;
+  }
+  .comment_profile {
+    width: 20px;
+    height: 20px;
+  }
+
+  .comment_content {
+    font-size: 1rem;
+  }
+
+  .comment_date {
+    width: 100%;
+  }
+  .page-nav{
+    display: block;
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+  }
+  .theme-button{
+    display: flex;
+    justify-content: center;
+  }
+  .media{
+  display: flex;
+  justify-content: center;
+}
+
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px)  {
+
+.head-block {
+    width: 100%;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .login-block {
+    margin-top: 10%;
+  }
+
+  .footer-block {
+   display: none;
+  }
+
+  nav {
+    display: flex;
+    justify-content: center !important;
+  }
+
+  .body-block {
+    width: 100%;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 30px;
+  }
+
+  .article-blog {
+    margin-bottom: 0;
+  }
+
+  .nav-b {
+    display: block;
+  }
+
+  .page-title {
+    justify-content: center !important;
+  }
+
+  .com-name {
+    font-size: 2.5rem;
+    text-align: justify;
+  }
+
+  .nav-a {
+    font-size: 2rem;
+
+  }
+
+
+  .comment_profile {
+    width: 20px;
+    height: 20px;
+  }
+
+  .comment_content {
+    font-size: 1rem;
+  }
+
+  .comment_date {
+    width: 100%;
+  }
+  .page-nav{
+    display: block;
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+  }
+  .theme-button{
+    display: none;
+  }
+  .media{
+  display: none;
+}
+
+}
+
+@media (min-width: 1200px) and (max-width: 1399.98px)  {
+
+.head-block {
+    width: 100%;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .login-block {
+    margin-top: 10%;
+  }
+
+  .footer-block {
+   display: none;
+  }
+
+  nav {
+    display: flex;
+    justify-content: center !important;
+  }
+
+  .body-block {
+    width: 100%;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 30px;
+  }
+
+  .article-blog {
+    margin-bottom: 0;
+  }
+
+  .nav-b {
+    display: block;
+  }
+
+  .page-title {
+    justify-content: center !important;
+  }
+
+  .com-name {
+    font-size: 2.5rem;
+    text-align: justify;
+  }
+
+  .nav-a {
+    font-size: 2rem;
+
+  }
+
+
+  .comment_profile {
+    width: 20px;
+    height: 20px;
+  }
+
+  .comment_content {
+    font-size: 1rem;
+  }
+
+  .comment_date {
+    width: 100%;
+  }
+  .page-nav{
+    display: block;
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+  }
+  .theme-button{
+    display: none;
+  }
+  .media{
+   display: none;
+}
+
+}
+
