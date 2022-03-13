@@ -27,3 +27,19 @@ function setTheme(theme) {
   localStorage.setItem('style', theme);
 }
 
+
+//https://www.w3schools.com/xml/ajax_xmlhttprequest_send.asp
+function updateLike(but_id){
+  var ajax = new XMLHttpRequest(); 
+
+  // Getting current likes in attempt to increase it
+  var data = document.getElementById(but_id).innerHTML;
+  let current_num_like =  parseInt(data)
+  current_num_like +=1 
+  let new_data = current_num_like.toString()
+
+  document.getElementById(but_id).innerHTML = new_data
+  //alert(typeof(current_num_like));  
+  ajax.open("POST", but_id, true);
+  ajax.send();
+}

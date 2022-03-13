@@ -1,5 +1,5 @@
-
 <%- include('partials/header'); -%>
+
 <body>
     <section class="login-block-sec">
         <div class="container ">
@@ -15,12 +15,20 @@
 
                             <form action="/signup" method="post">
 
+
+
                                 <div class="form-outline">
                                     <input type="text" id="floatingInput" name="username"
                                         class="form-control form-control-lg border border-2 border-dark rounded-3" />
                                     <label class="form-label" for="floatingInput">username</label>
                                 </div>
 
+
+                                <div class="form-outline">
+                                    <input type="text" id="floatingInput" name="email"
+                                        class="form-control form-control-lg border border-2 border-dark rounded-3" />
+                                    <label class="form-label" for="floatingInput">email</label>
+                                </div>
 
 
                                 <div class="form-outline">
@@ -38,12 +46,16 @@
 
 
                                 <div class="d-flex justify-content-center">
-                                    <button type="submit" class="btn btn-block btn-lg btn-dark">register</button>
+                                    <button type="submit" class="btn btn-block btn-lg btn-dark me-3">register</button>
+                                    
                                 </div>
 
+                                
                                 <p class="text-center mt-2 mb-0">already have an account? <a href="login"
                                         class=" fw-bolder"><u>login here</u></a></p>
 
+
+                                
                             </form>
 
 
@@ -55,8 +67,10 @@
 
         </div>
     </section>
-    <script src="/scripts/scripts.js"></script>
 
     
+    <script src="/scripts/scripts.js"></script>
+
+
 </body>
 <%- include('partials/footer'); -%>

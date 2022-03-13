@@ -1,6 +1,6 @@
 
 body {
-    background-color: black;
+    background-color: #030303;
     /* color: white; */
 }
 
@@ -14,7 +14,7 @@ a{
 
 
 
-.article-blog{
+.article-blog, .body-block{
   /* background-color:rgb(192, 192, 192); */
   /* background-color: black; */
    color: white;
@@ -22,7 +22,7 @@ a{
 
 .card, .card-footer, .form-control{
   /* background-color:rgb(192, 192, 192); */
-  background-color: black;
+  background-color: #030303;
   color: white;
 }
 
@@ -37,9 +37,9 @@ a{
 
 #like-btn-article, #cmt-btn-article {
   color: white;
-  background-color: black;
+  background-color: #030303;
 }
 
 .model-content{
-  ccolor:black;
+  color:#030303;
 }

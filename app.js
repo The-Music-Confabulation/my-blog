@@ -53,7 +53,7 @@ app.use(passport.session());
 // Connect flash
 app.use(flash());
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.locals.success_msg = req.flash('success_msg');
   res.locals.error_msg = req.flash('error_msg');
   res.locals.error = req.flash('error');
@@ -73,14 +73,32 @@ var posts = [];
 
 
 const postSchema = new mongoose.Schema({
-  title: {type: String, require: true},
-  content: {type: String, require: true},
-  author:{type: String},
-  url: {type: String},
-  date: {type: String},
-  like: {type: Number},
-  tag: {type: String},
-  approved: {type: Boolean},
+  title: {
+    type: String,
+    require: true
+  },
+  content: {
+    type: String,
+    require: true
+  },
+  author: {
+    type: String
+  },
+  url: {
+    type: String
+  },
+  date: {
+    type: String
+  },
+  like: {
+    type: Number
+  },
+  tag: {
+    type: String
+  },
+  approved: {
+    type: Boolean
+  },
   comments: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Comment'
@@ -102,9 +120,20 @@ const Comment = mongoose.model(
 );
 
 const userSchema = new mongoose.Schema({
-  username: {type: String, require: true},
-  password: {type: String, require: true},
-  email: {type: String, require: false},
+  username: {
+    type: String,
+    require: true,
+    allowNull: false,
+    unique: true
+  },
+  password: {
+    type: String,
+    require: true
+  },
+  email: {
+    type: String,
+    require: false
+  },
 });
 
 userSchema.plugin(passportLocalMongoose);
@@ -116,12 +145,12 @@ const User = new mongoose.model(
 
 passport.use(new LocalStrategy(User.authenticate()));
 
-passport.serializeUser(function(user, done) {
+passport.serializeUser(function (user, done) {
   done(null, user.id);
 });
 
-passport.deserializeUser(function(id, done) {
-  User.findById(id, function(err, user) {
+passport.deserializeUser(function (id, done) {
+  User.findById(id, function (err, user) {
     done(err, user);
   });
 });
@@ -152,16 +181,20 @@ app.get("/", async function (req, res) {
   var pages = Math.ceil(total / perPage); //calculate how many pages needed
   var pageNumber = (req.query.page == null) ? 1 : req.query.page;
   var startFrom = (pageNumber - 1) * perPage;
-  var songs = await Post.find({approved: {$eq: true} }).skip(startFrom).limit(perPage).sort({
+  var songs = await Post.find({
+    approved: {
+      $eq: true
+    }
+  }).skip(startFrom).limit(perPage).sort({
     _id: -1
   });
 
   //--Pagination--//
   res.render("home", {
-      pages: pages,
-      songs: songs,
-      isLoggedIn: isLoggedIn
-    });
+    pages: pages,
+    songs: songs,
+    isLoggedIn: isLoggedIn
+  });
 });
 
 app.get("/help", function (req, res) {
@@ -184,6 +217,17 @@ app.get('/login', (req, res) => {
 });
 
 
+function usernameConstraint(name) {
+  let format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+
+
+  if (format.test(name) || name.includes(" ")) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 
 //https://stackoverflow.com/questions/48096378/bad-request-when-registering-with-passport
 //passport.authenticate is a middleware, which means that you have to call it with 3 parameters (req, res, next)
@@ -192,88 +236,124 @@ app.post("/signup", function (req, res, next) {
   new_username = req.body.username;
   new_password = req.body.userpassword;
   new_password2 = req.body.userpassword_2;
-  let errors =  []
-  
-  if (!new_username || !new_password ) {
-    errors.push({ msg: 'All the fields must be filled to proceed' });
+  let errors = []
+
+
+
+
+  if (!new_username || !new_password) {
+    errors.push({
+      msg: 'All the fields must be filled to proceed'
+    });
   }
 
+
+
   if (new_password != new_password2) {
-    errors.push({ msg: 'The two passwords must match to proceed' });
+    errors.push({
+      msg: 'The two passwords must match to proceed'
+    });
   }
 
   if (new_password.length < 5) {
-    errors.push({ msg: 'Sorry the password must be at least 5 characters long' });
+    errors.push({
+      msg: 'Sorry the password must be at least 5 characters long'
+    });
   }
 
   if (errors.length > 0) {
-    res.render('signup', {errors, isLoggedIn});
-  }else{
+    res.render('signup', {
+      errors,
+      isLoggedIn
+    });
+  } else {
     //Check if the user exists
-    User.findOne({username: new_username}).then(user =>{
-      if(user){
-          errors.push({msg: 'A user with this username already exists'})
-          res.render('signup', {errors, isLoggedIn})
-      }else{
-  
-          //hash the password and register the user
-          User.register({username : new_username}, req.body.userpassword, function (err, user) {
-            if (err) {
-              console.log(err);
-              return res.redirect('/signup');
-            }
-            // go to the next middleware
-            next();
-          });
+    User.findOne({
+      username: new_username
+    }).then(user => {
+      if (user) {
+        errors.push({
+          msg: 'A user with this username already exists'
+        })
+        res.render('signup', {
+          errors,
+          isLoggedIn
+        })
+      } else {
+
+        //hash the password and register the user
+        User.register({
+          username: new_username,
+          email: req.body.email
+        }, req.body.userpassword, function (err, user) {
+          if (err) {
+            console.log(err);
+            return res.redirect('/signup');
+          }
+          // go to the next middleware
+          next();
+        });
       }
-  })
+    })
   }
-  }, passport.authenticate('local', {
+}, passport.authenticate('local', {
   successRedirect: '/login',
   failureRedirect: '/login'
 }));
 
 
-app.post("/login", function(req, res){
-  let errors =  []
+app.post("/login", function (req, res) {
+  let errors = []
   //check the DB to see if the username that was used to login exists in the DB
-  User.findOne({username: req.body.username}, function(err, foundUser){
-    
+  User.findOne({
+    username: req.body.username
+  }, function (err, foundUser) {
+
 
     //if username is found in the database, create an object called "user" that will store the username and password
     //that was used to login
-    if(foundUser){
-    const user = new User({
-      username: req.body.username,
-      password: req.body.password
-    });
+    if (foundUser) {
+      const user = new User({
+        username: req.body.username,
+        password: req.body.password
+      });
       //use the "user" object that was just created to check against the username and password in the database
       //in this case below, "user" will either return a "false" boolean value if it doesn't match, or it will
       //return the user found in the database
-      passport.authenticate("local", function(err, user){
-        if(err){
+      passport.authenticate("local", function (err, user) {
+        if (err) {
           console.log(err);
         } else {
           //this is the "user" returned from the passport.authenticate callback, which will be either
           //a false boolean value if no it didn't match the username and password or
           //a the user that was found, which would make it a truthy statement
-          if(user){
+          if (user) {
             //if true, then log the user in, else redirect to login page
-            req.login(user, function(err){
-            isLoggedIn=true;
-            res.redirect("/");
+            req.login(user, function (err) {
+              isLoggedIn = true;
+              res.redirect("/");
             });
           } else {
-            errors.push({msg:"Incorrect username or password."})
-            res.render('login', {errors, isLoggedIn})
+            errors.push({
+              msg: "Incorrect username or password."
+            })
+            res.render('login', {
+              errors,
+              isLoggedIn
+            })
           }
         }
       })(req, res);
-    //if no username is found at all, redirect to login page.
+      //if no username is found at all, redirect to login page.
     } else {
       //user does not exists
-      errors.push({msg: 'The username that you\'ve entered doesn\'t match any account. Sign up for an account.'})
-      res.render('login', {errors, isLoggedIn});
+      errors.push({
+        msg: 'The username that you\'ve entered doesn\'t match any account. Sign up for an account.'
+      })
+      res.render('login', {
+        errors,
+        isLoggedIn
+      });
     }
   });
 });
@@ -282,7 +362,7 @@ app.post("/login", function(req, res){
 app.get("/compose", function (req, res) {
   if (req.isAuthenticated()) {
     res.render("compose", {
-      isLoggedIn: isLoggedIn, 
+      isLoggedIn: isLoggedIn,
     });
   } else {
     req.flash('error_msg', 'You need to login to post.')
@@ -291,14 +371,6 @@ app.get("/compose", function (req, res) {
 });
 
 
-// function getCurrenDate(){
-//   var today = new Date();
-//   var dd = String(today.getDate()).padStart(2, '0');
-//   var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-//   var yyyy = today.getFullYear();
-
-//   return today = mm + '/' + dd + '/' + yyyy;
-// }
 app.post('/compose', (req, res) => {
 
 
@@ -333,7 +405,7 @@ app.get('/logout', (req, res) => {
   res.redirect("/");
 })
 
-  
+
 
 app.get("/posts/:postId", (req, res) => {
 
@@ -344,11 +416,11 @@ app.get("/posts/:postId", (req, res) => {
       res.render('post', {
         title: post.title,
         postID: post._id,
-        url:post.url,
+        url: post.url,
         post_comments: post.comments,
-        author:post.author,
-        date:post.date,
-        like:post.like,
+        author: post.author,
+        date: post.date,
+        like: post.like,
         content: post.content,
         isLoggedIn: isLoggedIn
       })
@@ -362,18 +434,18 @@ app.post("/posts/:postId", (req, res) => {
 
   // find out which post are being commented on 
   const post_id = req.params.postId;
-  const comment_user = req.body.commentUsername;
-  const comment_content = req.body.commentContent;
+  // const comment_user = req.body.commentUsername;
+  // const comment_content = req.body.commentContent;
 
   let now = dayjs();
-  
+
   const comment = new Comment({
     comment_user: req.body.commentUsername,
     comment_content: req.body.commentContent,
     comment_date: now.format("dddd, MMMM D YYYY")
   });
 
-  
+
   comment.save((err, result) => {
     if (err) {
       console.log(err);
@@ -392,28 +464,33 @@ app.post("/posts/:postId", (req, res) => {
 });
 
 app.post('/:id/like', (req, res, next) => {
-  
-  const post_id =  mongoose.Types.ObjectId(req.params.id);
-  
-  Post.updateOne({ _id : post_id}, {$inc:{like:1}}, function(err, result){
-        if (err){
-          console.log(err);
-        }
-        else {
-            console.log("Like updated");
-            res.redirect('/');
-        }});
+
+  const post_id = mongoose.Types.ObjectId(req.params.id);
+
+  Post.updateOne({
+    _id: post_id
+  }, {
+    $inc: {
+      like: 1
+    }
+  }, function (err, result) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("Like updated");
+      res.redirect('/');
+    }
+  });
 
 });
 
 
 app.get('/test', (req, res) => {
-  res.render('test', {isLoggedIn:isLoggedIn});
+  res.render('test', {
+    isLoggedIn: isLoggedIn
+  });
 })
-//for debug local
-// app.listen(3000, function() {
-//   console.log("Server started");
-// });
+
 
 let port = process.env.PORT;
 if (port == null || port == "") {
