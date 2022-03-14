@@ -115,6 +115,7 @@ const commentSchema = new mongoose.Schema({
   comment_content: "string",
   comment_date: "string"
 });
+
 const Comment = mongoose.model(
   "Comment", commentSchema
 );
@@ -150,8 +151,13 @@ const userSchema = new mongoose.Schema({
   },
   socialLinks: {
       type: String
-  }
-
+  },
+  fullname:{
+    type:String
+  },
+  dateJoin: {
+    type: String
+  },
 });
 
 userSchema.plugin(passportLocalMongoose);
@@ -192,9 +198,8 @@ var getYouTubeID = require('get-youtube-id');
 
 
 app.get("/", async function (req, res) {
-
   //--Pagination && Load songs in homepage--//
-  var perPage = 5; //limit how many songs per page
+  var perPage = 4; //limit how many songs per page
   var total = await Post.count();
   var pages = Math.ceil(total / perPage); //calculate how many pages needed
   var pageNumber = (req.query.page == null) ? 1 : req.query.page;
@@ -298,11 +303,18 @@ app.post("/signup", function (req, res, next) {
           isLoggedIn
         })
       } else {
-
+        let now = dayjs();
         //hash the password and register the user
         User.register({
           username: new_username,
-          email: req.body.email
+          email: req.body.email,
+          animal: "undecided",
+          follower: 0,
+          numberOfPosts:0 ,
+          following: 0,
+          info: "Something about yourself",
+          fullname: "Full Name",
+          dateJoin:now.format("dddd, MMMM D YYYY")
         }, req.body.userpassword, function (err, user) {
           if (err) {
             console.log(err);
@@ -506,6 +518,15 @@ app.post('/:id/like', (req, res, next) => {
 app.get('/profile', (req, res) => {
   if (req.isAuthenticated()) {
     res.render("profile", {
+      id:req.user._id,
+      username: req.user.username,
+      userFullname: req.user.fullname,
+      dateJoin: req.user.dateJoin,
+      posts : req.user.numberOfPosts,
+      followers: req.user.follower,      
+      following: req.user.following,
+      animal: req.user.animal,
+      info: req.user.info,
       isLoggedIn: isLoggedIn,
     });
   } else {
@@ -513,6 +534,41 @@ app.get('/profile', (req, res) => {
     res.redirect("/login");
   }
 })
+
+app.post('/profile', (req, res, next) => {
+
+  console.log(req.body);
+  User.updateOne({username: req.body.username}, 
+    {
+    $set: {
+      fullname: req.body.nameEdit,
+      info: req.body.bioEdit
+    }
+  }, function (err, result) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("User info updated");
+      res.redirect('/profile');
+    }
+  });
+
+});
+
+
+app.get('/profile/:id', (req, res, next) => {
+
+  Post.findById(req.params.postId).populate("comments").exec(function (err, post) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render('profile', {
+        //along with variables here
+      })
+    }
+  });
+
+});
 
 
 
