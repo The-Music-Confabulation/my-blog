@@ -131,9 +131,15 @@ const userSchema = new mongoose.Schema({
     require: true
   },
   email: {
-    type: String,
-    require: false
+    type: String
   },
+  animal: {
+    type: String
+  },
+  follower: {
+    type: String
+  }
+
 });
 
 userSchema.plugin(passportLocalMongoose);
@@ -483,6 +489,14 @@ app.post('/:id/like', (req, res, next) => {
   });
 
 });
+
+
+app.get('/profile', (req, res) => {
+  res.render('profile', {
+    isLoggedIn: isLoggedIn
+  });
+})
+
 
 
 app.get('/test', (req, res) => {

@@ -34,6 +34,13 @@ article{
 
 }
 
+.fa-heart:hover {
+    color: red;
+    cursor: pointer;
+}
+/* .fa-hashtag:hover {
+    color: red;
+} */
 .nav {
   display: inline-flex;
 }
