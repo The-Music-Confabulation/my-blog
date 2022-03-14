@@ -140,20 +140,20 @@ const userSchema = new mongoose.Schema({
   follower: {
     type: Number
   },
-  numberOfPosts:{
+  numberOfPosts: {
     type: Number
   },
   following: {
     type: Number
   },
-  info : {
+  info: {
     type: String
   },
   socialLinks: {
-      type: String
+    type: String
   },
-  fullname:{
-    type:String
+  fullname: {
+    type: String
   },
   dateJoin: {
     type: String
@@ -310,11 +310,11 @@ app.post("/signup", function (req, res, next) {
           email: req.body.email,
           animal: "undecided",
           follower: 0,
-          numberOfPosts:0 ,
+          numberOfPosts: 0,
           following: 0,
           info: "Something about yourself",
           fullname: "Full Name",
-          dateJoin:now.format("dddd, MMMM D YYYY")
+          dateJoin: now.format("dddd, MMMM D YYYY")
         }, req.body.userpassword, function (err, user) {
           if (err) {
             console.log(err);
@@ -518,12 +518,12 @@ app.post('/:id/like', (req, res, next) => {
 app.get('/profile', (req, res) => {
   if (req.isAuthenticated()) {
     res.render("profile", {
-      id:req.user._id,
+      id: req.user._id,
       username: req.user.username,
       userFullname: req.user.fullname,
       dateJoin: req.user.dateJoin,
-      posts : req.user.numberOfPosts,
-      followers: req.user.follower,      
+      posts: req.user.numberOfPosts,
+      followers: req.user.follower,
       following: req.user.following,
       animal: req.user.animal,
       info: req.user.info,
@@ -538,8 +538,9 @@ app.get('/profile', (req, res) => {
 app.post('/profile', (req, res, next) => {
 
   console.log(req.body);
-  User.updateOne({username: req.body.username}, 
-    {
+  User.updateOne({
+    username: req.body.username
+  }, {
     $set: {
       fullname: req.body.nameEdit,
       info: req.body.bioEdit
@@ -556,18 +557,31 @@ app.post('/profile', (req, res, next) => {
 });
 
 
-app.get('/profile/:id', (req, res, next) => {
+app.get('/profile/:name', (req, res) => {
 
-  Post.findById(req.params.postId).populate("comments").exec(function (err, post) {
+  User.findOne({
+    username: req.params.name
+  }, (err, foundUser) => {
     if (err) {
+      //user not found
       console.log(err);
     } else {
+      console.log("True")
       res.render('profile', {
         //along with variables here
+        id: foundUser._id,
+        username: foundUser.username,
+        userFullname: foundUser.fullname,
+        dateJoin: foundUser.dateJoin,
+        posts: foundUser.numberOfPosts,
+        followers: foundUser.follower,
+        following: foundUser.following,
+        animal: foundUser.animal,
+        info: foundUser.info,
+        isLoggedIn: isLoggedIn
       })
     }
-  });
-
+  })
 });
 
 

@@ -58,7 +58,7 @@
               <a class="text-decoration-none " href="/posts/<%= songs[a]._id %>"><%=songs[a].title %></a>
             </h2>
             <p class="font-weight-light"><%=songs[a].date %> by
-              <a href="#" class="text-decoration-none "><%= songs[a].author %></a>
+              <a href="/profile/<%= songs[a].author %>" class="text-decoration-none "><%= songs[a].author %></a>
             </p>
             <p>
               <i class="fa-solid fa-heart" onclick="updateLike('/<%= songs[a]._id %>/like')"></i>
