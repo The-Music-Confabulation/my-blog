@@ -28,7 +28,7 @@ a{
 }
 
 
-#compose, #logi, #signu, #logout{
+#compose, #logi, #signu, #logout,#profile{
   color: black;
 }
 
@@ -59,4 +59,8 @@ a{
   width: 40px;
   margin: 20px;
   cursor: pointer;
+}
+
+.media{
+  background-color: coral;
 }

@@ -30,7 +30,7 @@ article{
 }
 
 .nav-a {
-  font-size: 2.0rem;
+  font-size: 1.5rem;
 
 }
 
@@ -337,7 +337,7 @@ Comment section
   .media{
   display: flex;
   justify-content: center;
-  background-color: rgb(255, 255, 255);
+  
 }
 
   .s-media{
@@ -441,7 +441,7 @@ Comment section
   .media{
   display: flex;
   justify-content: center;
-  background-color: white;
+
 }
 
   .s-media{

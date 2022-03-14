@@ -21,7 +21,7 @@ article{
   /* background-color:rgb(192, 192, 192); */
   background-color: white;
 }
-#compose, #logi, #signu, #logout{
+#compose, #logi, #signu, #logout, #profile{
   color: black;
 }
 .card, .card-footer, .form-control{
@@ -58,3 +58,6 @@ article{
   cursor: pointer;
 }
 
+.media{
+  background-color: white;
+}
