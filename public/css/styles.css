@@ -163,11 +163,7 @@ h6 {
 .media{
   display: none;
 }
-@media (min-width: 768px) {
-  .h-md-250 {
-    height: 250px;
-  }
-}
+
 
 /* Pagination */
 .blog-pagination {
@@ -255,7 +251,10 @@ Comment section
   display:none;
 }
 
-
+.profile-pic{
+  font-size: 3rem;
+  padding-left: 1rem;
+  padding-right: 1rem;}
 /*----- RESPONSIVE ------*/
 @media (max-width: 575.98px) {
 
@@ -460,8 +459,7 @@ Comment section
   padding-bottom: 4rem!important;
   margin-bottom: 4rem!important;
 
-  
-}
+  }
 }
 
 @media (min-width: 992px) and (max-width: 1199.98px)  {

@@ -137,7 +137,19 @@ const userSchema = new mongoose.Schema({
     type: String
   },
   follower: {
+    type: Number
+  },
+  numberOfPosts:{
+    type: Number
+  },
+  following: {
+    type: Number
+  },
+  info : {
     type: String
+  },
+  socialLinks: {
+      type: String
   }
 
 });
@@ -492,9 +504,14 @@ app.post('/:id/like', (req, res, next) => {
 
 
 app.get('/profile', (req, res) => {
-  res.render('profile', {
-    isLoggedIn: isLoggedIn
-  });
+  if (req.isAuthenticated()) {
+    res.render("profile", {
+      isLoggedIn: isLoggedIn,
+    });
+  } else {
+    req.flash('error_msg', 'You need to login to post.')
+    res.redirect("/login");
+  }
 })
 
 
