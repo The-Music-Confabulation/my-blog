@@ -254,6 +254,7 @@ Comment section
     width: 100%;
     margin-left: 0px;
     margin-right: 0px;
+    display: none;
   }
 
   .login-block-sec {
@@ -336,8 +337,15 @@ Comment section
   .media{
   display: flex;
   justify-content: center;
+  background-color: rgb(255, 255, 255);
 }
 
+  .s-media{
+  display: flex;
+  justify-content: center;
+  padding-bottom: 4rem!important;
+  margin-bottom: 4rem!important;
+}
 }
 
 @media (min-width: 576px) and (max-width: 991.98px)  {
@@ -346,7 +354,7 @@ Comment section
     width: 100%;
     margin-left: 0px;
     margin-right: 0px;
-   
+   display: none;
   }
 
   .login-block {
@@ -433,8 +441,17 @@ Comment section
   .media{
   display: flex;
   justify-content: center;
+  background-color: white;
 }
 
+  .s-media{
+  display: flex;
+  justify-content: center;
+  padding-bottom: 4rem!important;
+  margin-bottom: 4rem!important;
+
+  
+}
 }
 
 @media (min-width: 992px) and (max-width: 1199.98px)  {
@@ -509,7 +526,7 @@ Comment section
   .theme-button{
     display: none;
   }
-  .media{
+  .media, .s-media{
   display: none;
 }
 

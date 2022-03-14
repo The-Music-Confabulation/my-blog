@@ -138,7 +138,7 @@
 
             <form action="/<%= songs[a]._id %>/like" method="post">
 
-              <button  name="/<%= songs[a]._id %>/like" type="button" class="btn btn-dark border-2 inline"
+              <button name="/<%= songs[a]._id %>/like" type="button" class="btn btn-dark border-2 inline"
                 onclick="updateLike('/<%= songs[a]._id %>/like')">
                 like
               </button>
@@ -146,11 +146,11 @@
 
               <a id="cmt-btn-article" href="/posts/<%= songs[a]._id %>" class="btn btn-dark border-2 inline">comment</a>
 
-            
-        
-              
 
-              
+
+
+
+
 
             </form>
 
@@ -162,7 +162,7 @@
 
 
 
-          <div class="btn-group"role="group" aria-label="Default button group">
+          <div class="btn-group" role="group" aria-label="Default button group">
 
 
             <a class="btn btn-dark border-2" href="?page=1" aria-label="Previous">
@@ -231,7 +231,7 @@
       </div>
     </div>
 
-    <div class="media pt-3 pb-5">
+    <div class="s-media pt-3">
 
       <!-- <span class="inline"><a class="text-decoration-none text-dark ps-2" href="">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-instagram"
@@ -267,7 +267,30 @@
       </ol>
     </div>
 
+    <div class="media fixed-bottom ">
+      <div class="nav-b flex-column flex-md-row align-items-end">
 
+        <nav class=" mt-2 mt-md-0 ms-md-auto pb-1">
+          <!-- <a href="/" class="nav-link px-2 link-secondary">home</a> -->
+          <a href="/" class="nav-link mx-2 text-decoration-none nav-a" id="compose"><i class="fa-solid fa-house"></i></a>
+
+          <a href="/compose" class="nav-link mx-2 text-decoration-none nav-a " id="compose"><i class="fa-solid fa-plus"></i></a>
+          <!-- <a href="/help" class="nav-link mx-2 text-decoration-none text-dark nav-a badge  ">help</a> -->
+
+          <% if (!isLoggedIn) { %>
+          <a href="/login" class="nav-link mx-2 text-decoration-none nav-a" id="logi"><i class="fa-solid fa-right-to-bracket"></i></a>
+          <a href="/signup" class="nav-link mx-2 text-decoration-none nav-a" id="signu"><i class="fa-solid fa-user-plus"></i></a>
+
+          <%} else { %>
+          <a href="/logout" class="nav-link mx-2 text-decoration-none nav-a " id="logout"><i class="fa-solid fa-right-from-bracket"></i></a>
+          <% } %>
+
+          <a href="/profile" class="nav-link mx-2 text-decoration-none nav-a" id="profile"><i class="fa-solid fa-user"></i></a>
+
+
+        </nav>
+      </div>
+    </div>
 
     <script src="/scripts/scripts.js"></script>
 </body>
