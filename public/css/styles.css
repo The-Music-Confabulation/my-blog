@@ -255,6 +255,8 @@ Comment section
   display:none;
 }
 
+
+/*----- RESPONSIVE ------*/
 @media (max-width: 575.98px) {
 
   .head-block {
@@ -269,7 +271,7 @@ Comment section
   }
 
    .login-block {
-    margin-top: 10%;
+    
   }
 
 
@@ -353,6 +355,7 @@ Comment section
   padding-bottom: 4rem!important;
   margin-bottom: 4rem!important;
 }
+
 }
 
 @media (min-width: 576px) and (max-width: 991.98px)  {
@@ -365,7 +368,7 @@ Comment section
   }
 
   .login-block {
-    margin-top: 10%;
+    
   }
 
 
@@ -470,7 +473,7 @@ Comment section
   }
 
   .login-block {
-    margin-top: 10%;
+
   }
 
   .footer-block {
