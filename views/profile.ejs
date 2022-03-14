@@ -20,25 +20,80 @@
                                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
                                     data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
                                     aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                ...
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Understood</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
 
+                                    <div class="modal-dialog modal-dialog-centered">
+
+                                        <div class="modal-content">
+                                            <form action="/profile" method="post">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="staticBackdropLabel">edit profile</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="d-flex justify-content-start">
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                id="inlineCheckbox1" value="option1">
+                                                            <label class="form-check-label"
+                                                                for="inlineCheckbox1"><i class="fa-solid fa-dog"></i></label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                id="inlineCheckbox2" value="option2">
+                                                            <label class="form-check-label"
+                                                                for="inlineCheckbox2"><i class="fa-solid fa-cat"></i></label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                id="inlineCheckbox2" value="option2">
+                                                            <label class="form-check-label"
+                                                                for="inlineCheckbox2"><i class="fa-solid fa-crow"></i></label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                id="inlineCheckbox2" value="option2">
+                                                            <label class="form-check-label"
+                                                                for="inlineCheckbox2"><i class="fa-solid fa-dragon"></i></label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                id="inlineCheckbox2" value="option2">
+                                                            <label class="form-check-label"
+                                                                for="inlineCheckbox2"><i class="fa-solid fa-fish"></i></label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                id="inlineCheckbox2" value="option2">
+                                                            <label class="form-check-label"
+                                                                for="inlineCheckbox2"><i class="fa-solid fa-otter"></i></label>
+                                                        </div>
+                                                    </div>
+                                                
+                                                    <div class="form-outline">
+                                                        <label class="form-label" for="floatingInput">name</label>
+                                                        <input type="text" id="floatingInput" name="nameEdit"
+                                                            class="form-control form-control-lg border border-2 border-dark rounded-3" />
+                                                    </div>
+
+                                                    
+                                                    <div class="form-outline">
+                                                        <label class="form-label" for="floatingInput">bio</label>
+                                                       <textarea class="form-control border border-2 border-dark rounded-3" rows="5" cols="30" name="bioEdit" ></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-primary">Submit</button>
+                                                </div>
+                                            </form>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
 
                                 <div class="row mt-3">
                                     <div class="col">
