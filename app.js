@@ -614,9 +614,10 @@ app.get('/profile/:name', (req, res) => {
   })
 });
 
-app.get('/profile/:name/following/:id/', (req, res) => {
+app.post('/profile/:name/follow/:id', (req, res) => {
 
-
+  console.log("here");
+  //need to check for authentication here in case people by pass api-url
    if (req.isAuthenticated()) {
         //User->id->username
         const follower = new Follower({
@@ -630,21 +631,7 @@ app.get('/profile/:name/following/:id/', (req, res) => {
     req.flash('error_msg', 'You need to login to post.')
     res.redirect("/login");
   }
-  // comment.save((err, result) => {
-  //   if (err) {
-  //     console.log(err);
-  //   } else {
-  //     Post.findById(post_id, (err, ret) => {
-  //       if (err) {
-  //         console.log(err);
-  //       } else {
-  //         ret.comments.push(result);
-  //         ret.save();
-  //         res.redirect('/posts/' + post_id)
-  //       }
-  //     });
-  //   }
-  // })
+
 });
 
 

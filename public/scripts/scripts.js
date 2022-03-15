@@ -30,10 +30,10 @@ function setTheme(theme) {
 
 //https://www.w3schools.com/xml/ajax_xmlhttprequest_send.asp
 function updateLike(but_id){
-  var ajax = new XMLHttpRequest(); 
+  let ajax = new XMLHttpRequest(); 
 
   // Getting current likes in attempt to increase it
-  var data = document.getElementById(but_id).innerHTML;
+  let data = document.getElementById(but_id).innerHTML;
   let current_num_like =  parseInt(data)
   current_num_like +=1 
   let new_data = current_num_like.toString()
@@ -46,27 +46,22 @@ function updateLike(but_id){
 
 //update follow
 //follow -> checkmark("following")
-function updateFollowing(username,user_id ){
+function updateFollowing(username, user_id){
 
-  var ajax = new XMLHttpRequest(); 
+  // /profile/:name/following/:id/
+  let ajax = new XMLHttpRequest(); 
+  url = '/profile/' + username + '/follow/' + user_id
 
-  if (user_id == ""){
-    alert("Here")
-    ajax.open("GET", "/login", true);
-    ajax.send();
-  }
+  // Update followers number
+  let follower_num = parseInt(document.getElementById('follower-num').innerHTML);
+  follower_num += 1
+  let new_follower_num = follower_num.toString()
 
-  //alert(username)
+  document.getElementById('follower-num').innerHTML = new_follower_num
 
+  // Set follow to followed 
+  document.getElementById('follow-btn').innerHTML = "followed"
 
-  // // Getting current likes in attempt to increase it
-  // var data = document.getElementById(but_id).innerHTML;
-  // let current_num_like =  parseInt(data)
-  // current_num_like +=1 
-  // let new_data = current_num_like.toString()
-
-  // document.getElementById(but_id).innerHTML = new_data
-  // //alert(typeof(current_num_like));  
-  // ajax.open("POST", but_id, true);
-  // ajax.send();
+  ajax.open("POST", url, true);
+  ajax.send();
 }

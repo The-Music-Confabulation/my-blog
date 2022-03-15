@@ -23,12 +23,13 @@
 
                                 <% if (current_user_id != id && current_user_id!=null) { %>
                                 <div class="d-flex flex-row justify-content-center align-items-center mt-1">
-                                    <button type="button" class="btn btn-outline-dark btn-sm"
+                                    <button id="follow-btn" class="btn btn-outline-dark btn-sm"
                                         onclick="updateFollowing('<%= username %>', '<%= current_user_id %>')">follow</button>
                                 </div>
                                 <%}%>
                                 
-                                
+
+
                                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
                                     data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
                                     aria-hidden="true">
@@ -121,7 +122,7 @@
                         <div class="col">
                             <ul class="list-unstyled">
                                 <li class="text-center"><span>followers</span></li>
-                                <li class="text-center"><span><%= followers.length %></span></li>
+                                <li class="text-center"><span id="follower-num"><%= followers.length %></span></li>
                             </ul>
                         </div>
                         <div class="col">
