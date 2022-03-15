@@ -12,11 +12,17 @@
                                 <button type="button" class="btn btn-dark mx-auto profile-pic" data-bs-toggle="modal"
                                     data-bs-target="#staticBackdrop">
                                     <i class="fa-solid fa-cat"></i></button>
-
+                                
                                 <div class="d-flex flex-row justify-content-center align-items-center mt-3">
-                                    <span class="fw-bold fs-4">@<%= username %></span>
+                                    <span class="fw-bold fs-4">@<%= username %> </span>
+                                    
+                                </div>
+                                <div class="d-flex flex-row justify-content-center align-items-center mt-1">
+                                   <button type="button" class=" btn btn-outline-dark btn-sm">follow</button>
+                                    
                                 </div>
 
+                                
                                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
                                     data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
                                     aria-hidden="true">
@@ -104,19 +110,19 @@
                                     <div class="col">
                                         <ul class="list-unstyled">
                                             <li class="text-center"><span>posts</span></li>
-                                            <li class="text-center"><span><%= posts %></span></li>
+                                            <li class="text-center"><span><%= posts.length %></span></li>
                                         </ul>
                                     </div>
                                     <div class="col">
                                         <ul class="list-unstyled">
                                             <li class="text-center"><span>followers</span></li>
-                                            <li class="text-center"><span><%= followers %></span></li>
+                                            <li class="text-center"><span><%= followers.length %></span></li>
                                         </ul>
                                     </div>
                                     <div class="col">
                                         <ul class="list-unstyled">
                                             <li class="text-center"><span>following</span></li>
-                                            <li class="text-center"><span><%= following %></span></li>
+                                            <li class="text-center"><span><%= following.length %></span></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -181,7 +187,5 @@
         </div>
     </div>
     <script src="/scripts/scripts.js"></script>
-
-
 </body>
 <%- include('partials/footer'); -%>

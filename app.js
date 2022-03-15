@@ -139,8 +139,6 @@ const Following = mongoose.model(
   "Following", followingSchema
 );
 
-
-
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -333,9 +331,6 @@ app.post("/signup", function (req, res, next) {
           username: new_username,
           email: req.body.email,
           animal: "undecided",
-          follower: 0,
-          numberOfPosts: 0,
-          following: 0,
           info: "Something about yourself",
           fullname: "Full Name",
           dateJoin: now.format("dddd, MMMM D YYYY")
@@ -540,6 +535,7 @@ app.post('/:id/like', (req, res, next) => {
 
 app.get('/profile', (req, res) => {
   if (req.isAuthenticated()) {
+
     res.render("profile", {
       id: req.user._id,
       username: req.user.username,
@@ -588,6 +584,32 @@ app.get('/profile/:name', (req, res) => {
       //user not found
       console.log(err);
     } else {
+      // console.log(foundUser.followers.length);
+      res.render('profile', {
+        //along with variables here
+        id: foundUser._id,
+        username: foundUser.username,
+        userFullname: foundUser.fullname,
+        dateJoin: foundUser.dateJoin,
+        posts: foundUser.numberOfPosts,
+        followers: foundUser.followers,
+        following: foundUser.followings,
+        animal: foundUser.animal,
+        info: foundUser.info,
+        isLoggedIn: isLoggedIn
+      })
+    }
+  })
+});
+
+app.get('/profile/:name/following/:id', (req, res) => {
+  User.findOne({
+    username: req.params.name
+  }, (err, foundUser) => {
+    if (err) {
+      //user not found
+      console.log(err);
+    } else {
       console.log("True")
       res.render('profile', {
         //along with variables here
@@ -605,6 +627,7 @@ app.get('/profile/:name', (req, res) => {
     }
   })
 });
+
 
 
 
