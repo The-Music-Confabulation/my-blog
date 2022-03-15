@@ -577,6 +577,7 @@ app.post('/profile', (req, res, next) => {
 
 
 app.get('/profile/:name', (req, res) => {
+  current_user_info = null
   User.findOne({
     username: req.params.name
   }, (err, foundUser) => {
@@ -585,9 +586,19 @@ app.get('/profile/:name', (req, res) => {
       console.log(err);
     } else {
       // console.log(foundUser.followers.length);
+      if (req.isAuthenticated()) {
+          current_user_info= req.user._id
+      } 
+      if (current_user_info!= null )
+      {
+        current_user_info= current_user_info.valueOf()
+      }
+      console.log(foundUser._id.valueOf());
       res.render('profile', {
         //along with variables here
-        id: foundUser._id,
+
+        current_user_id:current_user_info,
+        id: foundUser._id.valueOf(),
         username: foundUser.username,
         userFullname: foundUser.fullname,
         dateJoin: foundUser.dateJoin,
@@ -602,30 +613,35 @@ app.get('/profile/:name', (req, res) => {
   })
 });
 
-app.get('/profile/:name/following/:id', (req, res) => {
-  User.findOne({
-    username: req.params.name
-  }, (err, foundUser) => {
-    if (err) {
-      //user not found
-      console.log(err);
-    } else {
-      console.log("True")
-      res.render('profile', {
-        //along with variables here
-        id: foundUser._id,
-        username: foundUser.username,
-        userFullname: foundUser.fullname,
-        dateJoin: foundUser.dateJoin,
-        posts: foundUser.numberOfPosts,
-        followers: foundUser.follower,
-        following: foundUser.following,
-        animal: foundUser.animal,
-        info: foundUser.info,
-        isLoggedIn: isLoggedIn
-      })
-    }
-  })
+app.get('/profile/:name/following/:id/:current/', (req, res) => {
+   if (req.isAuthenticated()) {
+        //User->id->username
+        const follower = new Follower({
+        //here are the follower of 
+        comment_user: req.body.commentUsername,
+        comment_content: req.body.commentContent,
+        comment_date: now.format("dddd, MMMM D YYYY")
+      });
+
+  } else {
+    req.flash('error_msg', 'You need to login to post.')
+    res.redirect("/login");
+  }
+  // comment.save((err, result) => {
+  //   if (err) {
+  //     console.log(err);
+  //   } else {
+  //     Post.findById(post_id, (err, ret) => {
+  //       if (err) {
+  //         console.log(err);
+  //       } else {
+  //         ret.comments.push(result);
+  //         ret.save();
+  //         res.redirect('/posts/' + post_id)
+  //       }
+  //     });
+  //   }
+  // })
 });
 
 

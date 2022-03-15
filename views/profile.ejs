@@ -1,5 +1,7 @@
 <%- include('partials/header'); -%>
 
+
+
 <body>
     <section class="login-block-sec">
         <div class="container ">
@@ -17,10 +19,14 @@
                                     <span class="fw-bold fs-4">@<%= username %> </span>
                                     
                                 </div>
+
+                                <% if (current_user_id != id) { %>
                                 <div class="d-flex flex-row justify-content-center align-items-center mt-1">
-                                   <button type="button" class=" btn btn-outline-dark btn-sm">follow</button>
-                                    
+                                   <button type="button" class=" btn btn-outline-dark btn-sm" onclick="updateFollowing('test')">follow</button>
                                 </div>
+                                <%}%>
+                                
+
 
                                 
                                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"

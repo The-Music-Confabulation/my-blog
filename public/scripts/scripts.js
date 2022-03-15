@@ -43,3 +43,23 @@ function updateLike(but_id){
   ajax.open("POST", but_id, true);
   ajax.send();
 }
+
+//update follow
+//follow -> checkmark("following")
+function updateFollowing(user_id, username){
+
+  alert(user_id)
+  alert(username)
+  // var ajax = new XMLHttpRequest(); 
+
+  // // Getting current likes in attempt to increase it
+  // var data = document.getElementById(but_id).innerHTML;
+  // let current_num_like =  parseInt(data)
+  // current_num_like +=1 
+  // let new_data = current_num_like.toString()
+
+  // document.getElementById(but_id).innerHTML = new_data
+  // //alert(typeof(current_num_like));  
+  // ajax.open("POST", but_id, true);
+  // ajax.send();
+}
