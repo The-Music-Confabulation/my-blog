@@ -120,6 +120,27 @@ const Comment = mongoose.model(
   "Comment", commentSchema
 );
 
+
+const followerSchema = new mongoose.Schema({
+  follower_username: "string",
+  follower_since: "string"
+});
+
+const Follower = mongoose.model(
+  "Follower", followerSchema
+);
+
+const followingSchema = new mongoose.Schema({
+  follower_username: "string",
+  follower_since: "string"
+});
+
+const Following = mongoose.model(
+  "Following", followingSchema
+);
+
+
+
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -137,15 +158,18 @@ const userSchema = new mongoose.Schema({
   animal: {
     type: String
   },
-  follower: {
-    type: Number
-  },
-  numberOfPosts: {
-    type: Number
-  },
-  following: {
-    type: Number
-  },
+  followers: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Follower'
+  }],
+  numberOfPosts: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Post'
+  }],
+  followings: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Following'
+  }],
   info: {
     type: String
   },
@@ -494,7 +518,6 @@ app.post("/posts/:postId", (req, res) => {
 });
 
 app.post('/:id/like', (req, res, next) => {
-
   const post_id = mongoose.Types.ObjectId(req.params.id);
 
   Post.updateOne({
@@ -558,7 +581,6 @@ app.post('/profile', (req, res, next) => {
 
 
 app.get('/profile/:name', (req, res) => {
-
   User.findOne({
     username: req.params.name
   }, (err, foundUser) => {
