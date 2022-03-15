@@ -594,6 +594,7 @@ app.get('/profile/:name', (req, res) => {
         current_user_info= current_user_info.valueOf()
       }
       console.log(foundUser._id.valueOf());
+      
       res.render('profile', {
         //along with variables here
 
@@ -613,7 +614,9 @@ app.get('/profile/:name', (req, res) => {
   })
 });
 
-app.get('/profile/:name/following/:id/:current/', (req, res) => {
+app.get('/profile/:name/following/:id/', (req, res) => {
+
+
    if (req.isAuthenticated()) {
         //User->id->username
         const follower = new Follower({

@@ -46,11 +46,18 @@ function updateLike(but_id){
 
 //update follow
 //follow -> checkmark("following")
-function updateFollowing(user_id, username){
+function updateFollowing(username,user_id ){
 
-  alert(user_id)
-  alert(username)
-  // var ajax = new XMLHttpRequest(); 
+  var ajax = new XMLHttpRequest(); 
+
+  if (user_id == ""){
+    alert("Here")
+    ajax.open("GET", "/login", true);
+    ajax.send();
+  }
+
+  //alert(username)
+
 
   // // Getting current likes in attempt to increase it
   // var data = document.getElementById(but_id).innerHTML;
