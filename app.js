@@ -537,16 +537,18 @@ app.get('/profile', (req, res) => {
   if (req.isAuthenticated()) {
 
     res.render("profile", {
-      id: req.user._id,
-      username: req.user.username,
-      userFullname: req.user.fullname,
-      dateJoin: req.user.dateJoin,
-      posts: req.user.numberOfPosts,
-      followers: req.user.follower,
-      following: req.user.following,
-      animal: req.user.animal,
-      info: req.user.info,
-      isLoggedIn: isLoggedIn,
+        alreadyFollow: false,
+        current_user_id: req.user._id.valueOf(),
+        id:  req.user._id.valueOf(),
+        username: req.user.username,
+        userFullname: req.user.fullname,
+        dateJoin: req.user.dateJoin,
+        posts: req.user.numberOfPosts,
+        followers: req.user.followers,
+        following: req.user.followings,
+        animal: req.user.animal,
+        info: req.user.info,
+        isLoggedIn: isLoggedIn
     });
   } else {
     req.flash('error_msg', 'You need to login to post.')
@@ -555,7 +557,6 @@ app.get('/profile', (req, res) => {
 })
 
 app.post('/profile', (req, res, next) => {
-
   console.log(req.body);
   User.updateOne({
     username: req.body.username
@@ -624,8 +625,8 @@ app.post('/profile/:name/follow/:id', (req, res) => {
   //need to check for authentication here in case people by pass api-url
   if (req.isAuthenticated()) {
     //User->id->username
-    console.log(req.params.name); //the person the current user want to follow
-    console.log(req.params.id); //this is id of current user
+    // console.log(req.params.name); //the person the current user want to follow
+    // console.log(req.params.id); //this is id of current user
 
 
     const following = new Following({
@@ -633,12 +634,6 @@ app.post('/profile/:name/follow/:id', (req, res) => {
       following_id: req.params.id
     });
 
-    // const follower = new Follower({
-    //   follower_username: req.params.name,
-    //   follower_id: req.params.id
-    // });
-
-    
     //check if already follow
     //find in the Follower schema
     //check if there is an object
@@ -679,21 +674,6 @@ app.post('/profile/:name/follow/:id', (req, res) => {
               }
           })
 
-          // follower.save((err, result) => {
-          //     if(err){
-          //       console.log(err);
-          //     } else {
-          //       User.findById(req.params.id, (err, ret) => {
-          //           if (err) {
-          //             console.log(err);
-          //           } else {
-          //             ret.followers.push(result);
-          //             ret.save();
-          //             res.redirect('/profile/' + req.params.name)
-          //           }
-          //       })
-          //     }
-          // })
           
         }
     })
