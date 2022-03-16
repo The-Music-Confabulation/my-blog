@@ -585,7 +585,7 @@ app.get('/profile/:name', async  function(req, res) {
   console.log(alreadyFollow);
   current_user_info = null
   //Post.findById(req.params.postId).populate("comments").exec(function (err, post)
-   User.findOne({
+  await User.findOne({
     username: req.params.name
   }).populate('numberOfPosts').populate('followings').populate('followers').exec( async  function (err, results){
     if (err) {
@@ -593,6 +593,7 @@ app.get('/profile/:name', async  function(req, res) {
       console.log(err);
     } else {
       // console.log(foundUser.followers.length);
+      console.log(results)
       if (req.isAuthenticated()) {
         
         current_user_info = req.user._id
@@ -600,16 +601,10 @@ app.get('/profile/:name', async  function(req, res) {
         console.log(req.user._id.valueOf())
         
         let result = await Following.findOne({following_username:results.username, following_id:req.user._id.valueOf()})
-          
         if (result!=null)
         {
-          console.log("here")
           alreadyFollow=true
         }
-        else{
-          console.log("there")
-        }
-        
 
       }
       if (current_user_info != null) {
@@ -646,10 +641,11 @@ app.post('/profile/:name/follow/:id', (req, res) => {
       following_id: req.params.id
     });
 
+
     
     const follower = new Follower({
-      follower_username: req.params.name,
-      follower_id: req.params.id
+      follower_username: req.user.username,
+      follower_id: req.user.id
     });
     //check if already follow
     //find in the Follower schema
@@ -658,7 +654,7 @@ app.post('/profile/:name/follow/:id', (req, res) => {
     //and object.follower.name = req.params.name
     //if yes, mean person A already follow person B
     //thus no need to save
-    Following.findOne({following_username: req.params.name,following_id: req.params.id}, (err, foundUser) => {
+   Following.findOne({following_username: req.params.name,following_id: req.params.id}, (err, foundUser) => {
       if (foundUser)
       {
          //if user exists, no need to save, may do unfollow here

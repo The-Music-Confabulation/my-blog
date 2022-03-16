@@ -144,7 +144,10 @@
                                             <li class="text-center"><span>followers</span></li>
                                             <li class="text-center"><span
                                                     id="follower-num"><%= followers.length %></span></li>
-
+                                            <% followers.forEach(element => { %>
+                                           
+                                            <li class="text-center"><span> <%=  element.follower_username %></span></li>
+                                            <% }) %>
                                                 
                                         </ul>
                                     </div>
