@@ -123,7 +123,7 @@ const Comment = mongoose.model(
 
 const followerSchema = new mongoose.Schema({
   follower_username: "string",
-  follower_since: "string"
+  follower_id:"string"
 });
 
 const Follower = mongoose.model(
@@ -131,8 +131,8 @@ const Follower = mongoose.model(
 );
 
 const followingSchema = new mongoose.Schema({
-  follower_username: "string",
-  follower_since: "string"
+  following_username: "string",
+  following_id:"string"
 });
 
 const Following = mongoose.model(
@@ -587,18 +587,17 @@ app.get('/profile/:name', (req, res) => {
     } else {
       // console.log(foundUser.followers.length);
       if (req.isAuthenticated()) {
-          current_user_info= req.user._id
-      } 
-      if (current_user_info!= null )
-      {
-        current_user_info= current_user_info.valueOf()
+        current_user_info = req.user._id
+      }
+      if (current_user_info != null) {
+        current_user_info = current_user_info.valueOf()
       }
       console.log(foundUser._id.valueOf());
-      
+
       res.render('profile', {
         //along with variables here
 
-        current_user_id:current_user_info,
+        current_user_id: current_user_info,
         id: foundUser._id.valueOf(),
         username: foundUser.username,
         userFullname: foundUser.fullname,
@@ -615,17 +614,44 @@ app.get('/profile/:name', (req, res) => {
 });
 
 app.post('/profile/:name/follow/:id', (req, res) => {
-
-  console.log("here");
   //need to check for authentication here in case people by pass api-url
-   if (req.isAuthenticated()) {
-        //User->id->username
-        const follower = new Follower({
-        //here are the follower of 
-        comment_user: req.body.commentUsername,
-        comment_content: req.body.commentContent,
-        comment_date: now.format("dddd, MMMM D YYYY")
-      });
+  if (req.isAuthenticated()) {
+    //User->id->username
+    console.log(req.params.name); //the person the current user want to follow
+    console.log(req.params.id); //this is id of current user
+
+
+    const follower = new Follower({
+      follower_username: req.params.name,
+      follower_id: req.params.id
+    });
+
+    //check if already follow
+    Follower.findById(req.params.id, (err, result) =>{
+      console.log(result);
+
+
+      follower.save((err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        User.findById(req.params.id, (err, ret) => {
+          if (err) {
+            console.log(err);
+          } else {
+            ret.followers.push(result);
+            ret.save();
+            res.redirect('/profile/' + req.params.name)
+          }
+        });
+      }
+    })
+
+    })
+
+    
+
+
 
   } else {
     req.flash('error_msg', 'You need to login to post.')
