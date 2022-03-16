@@ -539,20 +539,22 @@ app.post('/:id/like', (req, res, next) => {
 app.get('/profile', (req, res) => {
   if (req.isAuthenticated()) {
 
-    res.render("profile", {
+    User.findById(req.user._id).populate('followings').populate('followers').exec( function (err, results) {
+        res.render("profile", {
         alreadyFollow: false,
         current_user_id: req.user._id.valueOf(),
-        id:  req.user._id.valueOf(),
-        username: req.user.username,
-        userFullname: req.user.fullname,
-        dateJoin: req.user.dateJoin,
-        posts: req.user.numberOfPosts,
-        followers: req.user.followers,
-        following: req.user.followings,
-        animal: req.user.animal,
-        info: req.user.info,
+        id: results._id.valueOf(),
+        username: results.username,
+        userFullname: results.fullname,
+        dateJoin: results.dateJoin,
+        posts: results.numberOfPosts,
+        followers: results.followers,
+        following: results.followings,
+        animal: results.animal,
+        info: results.info,
         isLoggedIn: isLoggedIn
-    });
+      });
+    })
   } else {
     req.flash('error_msg', 'You need to login to post.')
     res.redirect("/login");
@@ -582,7 +584,7 @@ app.post('/profile', (req, res, next) => {
 
 app.get('/profile/:name', async  function(req, res) {
   let alreadyFollow=false
-  console.log(alreadyFollow);
+
   current_user_info = null
   //Post.findById(req.params.postId).populate("comments").exec(function (err, post)
   await User.findOne({
