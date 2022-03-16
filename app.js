@@ -421,8 +421,6 @@ app.get("/compose", function (req, res) {
 
 
 app.post('/compose', (req, res) => {
-
-
   let now = dayjs();
   console.log(req.body.postBody);
   const content_clean = xss(req.body.postBody)
@@ -438,14 +436,19 @@ app.post('/compose', (req, res) => {
     date: now.format("dddd, MMMM D YYYY")
   });
 
-  console.log(post);
-
-  post.save(function (err) {
+  post.save(function (err,result) {
     if (!err) {
-      res.redirect("/");
-    }
-  })
-
+      User.findById(req.user._id, (err, ret) => {
+        if (err) {
+          console.log(err);
+        } else {
+          ret.numberOfPosts.push(result);
+          ret.save();
+          res.redirect('/')
+        }
+      });
+      }
+      })
 })
 
 app.get('/logout', (req, res) => {
