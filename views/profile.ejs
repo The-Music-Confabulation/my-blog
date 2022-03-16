@@ -12,15 +12,13 @@
                             <h2 class="text-uppercase text-center">Profile</h2>
                             <div class="image d-flex flex-column justify-content-center ">
 
-                                <% if (current_user_id != id && current_user_id!=null) { %>
+                                <% if (current_user_id != id || current_user_id!=null || !isLoggedIn) { %>
                                 <button type="button" class="btn btn-dark mx-auto profile-pic">
                                     <i class="fa-solid fa-cat"></i></button>
                                 <%} else {%>
                                 <button type="button" class="btn btn-dark mx-auto profile-pic" data-bs-toggle="modal"
                                     data-bs-target="#staticBackdrop">
                                     <i class="fa-solid fa-cat"></i></button>
-
-
                                 <%}%>
                                 <div class="d-flex flex-row justify-content-center align-items-center mt-3">
                                     <span class="fw-bold fs-4">@<%= username %> </span>
