@@ -628,11 +628,17 @@ app.post('/profile/:name/follow/:id', (req, res) => {
     console.log(req.params.id); //this is id of current user
 
 
-    const follower = new Follower({
-      follower_username: req.params.name,
-      follower_id: req.params.id
+    const following = new Following({
+      following_username: req.params.name,
+      following_id: req.params.id
     });
 
+    // const follower = new Follower({
+    //   follower_username: req.params.name,
+    //   follower_id: req.params.id
+    // });
+
+    
     //check if already follow
     //find in the Follower schema
     //check if there is an object
@@ -640,16 +646,16 @@ app.post('/profile/:name/follow/:id', (req, res) => {
     //and object.follower.name = req.params.name
     //if yes, mean person A already follow person B
     //thus no need to save
-    Follower.findOne({follower_username: req.params.name,follower_id: req.params.id}, (err, foundUser) => {
+    Following.findOne({following_username: req.params.name,following_id: req.params.id}, (err, foundUser) => {
       if (foundUser)
       {
-         //if user exists, no need to save
-         //may do unfollow here
+         //if user exists, no need to save, may do unfollow here
          console.log(foundUser);
          res.redirect('/profile/' + req.params.name)
       }
       else {
-          follower.save((err, result) => {
+          //save in following schema
+          following.save((err, result) => {
               if(err){
                 console.log(err);
               } else {
@@ -657,14 +663,39 @@ app.post('/profile/:name/follow/:id', (req, res) => {
                     if (err) {
                       console.log(err);
                     } else {
+                      ret.followings.push(result);
+                      ret.save();
+                    }
+                })
+
+                User.findOne({username:req.params.name}, (err, ret) => {
+                    if (err) {
+                      console.log(err);
+                    } else {
                       ret.followers.push(result);
                       ret.save();
-                      res.redirect('/profile/' + req.params.name)
                     }
                 })
               }
           })
-      }
+
+          // follower.save((err, result) => {
+          //     if(err){
+          //       console.log(err);
+          //     } else {
+          //       User.findById(req.params.id, (err, ret) => {
+          //           if (err) {
+          //             console.log(err);
+          //           } else {
+          //             ret.followers.push(result);
+          //             ret.save();
+          //             res.redirect('/profile/' + req.params.name)
+          //           }
+          //       })
+          //     }
+          // })
+          
+        }
     })
   } else {
     req.flash('error_msg', 'You need to login to post.')
