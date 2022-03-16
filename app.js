@@ -576,10 +576,11 @@ app.post('/profile', (req, res, next) => {
 });
 
 
-app.get('/profile/:name', (req, res) => {
+app.get('/profile/:name', function(req, res) {
   let alreadyFollow=false
 
   current_user_info = null
+
   User.findOne({
     username: req.params.name
   }, (err, foundUser) => {
@@ -590,14 +591,19 @@ app.get('/profile/:name', (req, res) => {
       // console.log(foundUser.followers.length);
       if (req.isAuthenticated()) {
         current_user_info = req.user._id
+        foundFollower = Follower.findOne({follower_username: req.params.name,follower_id: req.user._id})
+        if (foundFollower)
+        {
+          alreadyFollow=true
+        }
       }
       if (current_user_info != null) {
         current_user_info = current_user_info.valueOf()
       }
 
-
       res.render('profile', {
         //along with variables here
+        alreadyFollow:alreadyFollow,
         current_user_id: current_user_info,
         id: foundUser._id.valueOf(),
         username: foundUser.username,

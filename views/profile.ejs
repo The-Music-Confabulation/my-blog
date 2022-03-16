@@ -24,7 +24,13 @@
                                 <% if (current_user_id != id && current_user_id!=null) { %>
                                 <div class="d-flex flex-row justify-content-center align-items-center mt-1">
                                     <button id="follow-btn" class="btn btn-outline-dark btn-sm"
-                                        onclick="updateFollowing('<%= username %>', '<%= current_user_id %>')">follow</button>
+                                        onclick="updateFollowing('<%= username %>', '<%= current_user_id %>')">
+                                        <% if (!alreadyFollow) { %>
+                                        follow
+                                        <%} else {%>
+                                        followed <i class="fa-solid fa-circle-check"></i>
+                                        <%}%>
+                                    </button>
                                 </div>
                                 <%}%>
                                 
