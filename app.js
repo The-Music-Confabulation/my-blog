@@ -580,44 +580,55 @@ app.post('/profile', (req, res, next) => {
 });
 
 
-app.get('/profile/:name', function(req, res) {
+app.get('/profile/:name', async  function(req, res) {
   let alreadyFollow=false
-
+  console.log(alreadyFollow);
   current_user_info = null
-
-  User.findOne({
+  //Post.findById(req.params.postId).populate("comments").exec(function (err, post)
+   User.findOne({
     username: req.params.name
-  }, (err, foundUser) => {
+  }).populate('numberOfPosts').populate('followings').populate('followers').exec( async  function (err, results){
     if (err) {
       //user not found
       console.log(err);
     } else {
       // console.log(foundUser.followers.length);
       if (req.isAuthenticated()) {
+        
         current_user_info = req.user._id
-        foundFollower = Follower.findOne({follower_username: req.params.name,follower_id: req.user._id})
-        if (foundFollower)
+        console.log(req.params.name)
+        console.log(req.user._id.valueOf())
+        
+        let result = await Following.findOne({following_username:results.username, following_id:req.user._id.valueOf()})
+          
+        if (result!=null)
         {
+          console.log("here")
           alreadyFollow=true
         }
+        else{
+          console.log("there")
+        }
+        
+
       }
       if (current_user_info != null) {
         current_user_info = current_user_info.valueOf()
       }
-
+      console.log(alreadyFollow);
       res.render('profile', {
         //along with variables here
         alreadyFollow:alreadyFollow,
         current_user_id: current_user_info,
-        id: foundUser._id.valueOf(),
-        username: foundUser.username,
-        userFullname: foundUser.fullname,
-        dateJoin: foundUser.dateJoin,
-        posts: foundUser.numberOfPosts,
-        followers: foundUser.followers,
-        following: foundUser.followings,
-        animal: foundUser.animal,
-        info: foundUser.info,
+        id: results._id.valueOf(),
+        username: results.username,
+        userFullname: results.fullname,
+        dateJoin: results.dateJoin,
+        posts: results.numberOfPosts,
+        followers: results.followers,
+        following: results.followings,
+        animal: results.animal,
+        info: results.info,
         isLoggedIn: isLoggedIn
       })
     }
@@ -630,13 +641,16 @@ app.post('/profile/:name/follow/:id', (req, res) => {
     //User->id->username
     // console.log(req.params.name); //the person the current user want to follow
     // console.log(req.params.id); //this is id of current user
-
-
     const following = new Following({
       following_username: req.params.name,
       following_id: req.params.id
     });
 
+    
+    const follower = new Follower({
+      follower_username: req.params.name,
+      follower_id: req.params.id
+    });
     //check if already follow
     //find in the Follower schema
     //check if there is an object
@@ -665,7 +679,12 @@ app.post('/profile/:name/follow/:id', (req, res) => {
                       ret.save();
                     }
                 })
-
+              }
+          })
+          follower.save((err, result) => {
+              if(err){
+                console.log(err);
+              } else {
                 User.findOne({username:req.params.name}, (err, ret) => {
                     if (err) {
                       console.log(err);
@@ -676,7 +695,6 @@ app.post('/profile/:name/follow/:id', (req, res) => {
                 })
               }
           })
-
           
         }
     })

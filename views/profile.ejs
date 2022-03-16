@@ -133,6 +133,10 @@
                                         <ul class="list-unstyled">
                                             <li class="text-center"><span>posts</span></li>
                                             <li class="text-center"><span><%= posts.length %></span></li>
+                                            <% posts.forEach(element => { %>
+                                           
+                                            <li class="text-center"><span> <%=  element.title %></span></li>
+                                            <% }) %>
                                         </ul>
                                     </div>
                                     <div class="col">
@@ -140,12 +144,19 @@
                                             <li class="text-center"><span>followers</span></li>
                                             <li class="text-center"><span
                                                     id="follower-num"><%= followers.length %></span></li>
+
+                                                
                                         </ul>
                                     </div>
                                     <div class="col">
                                         <ul class="list-unstyled">
                                             <li class="text-center"><span>following</span></li>
                                             <li class="text-center"><span><%= following.length %></span></li>
+                                            <% following.forEach(element => { %>
+                                           
+                                            <li class="text-center"><span> <%=  element.following_username %></span></li>
+                                            <% }) %>
+                               
                                         </ul>
                                     </div>
                                 </div>
