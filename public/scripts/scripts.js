@@ -38,10 +38,8 @@ function updateLike(id, title, numberLikes, post_number, user){
   //if 0, add 
   if (numberLikes === 0){
     let output = "liked by " + user.toString()
-    console.log(output);
     document.getElementById(text_id).textContent = output
     document.getElementById(post_number.toString()+"heart-icon").style.color= "#EB0000";
-    document.getElementById(post_number.toString()+"heart-icon").disabled = true;
   } 
   else if ( numberLikes >= 2){
     let output = parseInt(document.getElementById(text_id).textContent);
@@ -57,8 +55,7 @@ function updateLike(id, title, numberLikes, post_number, user){
   }
   
   
-  post_url = '/'+id+'/'+title+'/like'
-
+  post_url = '/'+id+'/like'
   ajax.open("POST", post_url, true);
   ajax.send();
 }

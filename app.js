@@ -90,7 +90,6 @@ const Post = mongoose.model("Post", postSchema);
 
 const likeSchema = new mongoose.Schema({
   like_username: {type : String},
-  like_title: {type: String},
   like_title_id: {type: String}
 });
 
@@ -477,18 +476,16 @@ app.post("/posts/:postId", (req, res) => {
   }
 });
 
-app.post('/:id/:title/like', (req, res) => {
+app.post('/:id/like', (req, res) => {
 
   if (req.isAuthenticated()) {
       const post_title = req.params.title
       const like = new Like({
         like_username: req.user.username,
-        like_title: post_title,
         like_title_id: req.params.id
       })
       //check if user already like
       Like.findOne({like_username: req.user.username,
-                    like_title: post_title, 
                     like_title_id: req.params.id }, (err, foundLike) => {
           if (!foundLike){
             like.save((err, result)  =>{
