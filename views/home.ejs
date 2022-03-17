@@ -67,17 +67,24 @@
                  <a href="/login"><i class="fa-solid fa-heart"></i></a>
               <% } %>
              
-              <span id="/<%= songs[a]._id %>/like" class="fw-bold me-2"> <%= songs[a].like.length %> 
-              <% songs[a].like.forEach(element => { %>
-                  <%= element.like_username %>
-              <% }) %>
-              </span>
-
-              
-
+              <% if (songs[a].like.length >= 2 ) { %>
+                  <span id="/<%= songs[a]._id %>/like" class="fw-bold me-2"> <%= songs[a].like.length %>  
+                  likes by 
+                  <% for( let index = 0; index <= 1; index++ ) { %>
+                      <%= songs[a].like[index].like_username %>,
+                  <% } %>and others 
+                  </span>
+              <% } else if (songs[a].like.length == 0) { %>
+                  <span id="/<%= songs[a]._id %>/like" class="fw-bold me-2"> <%= songs[a].like.length %></span>
+              <% } else {%>
+                <span id="/<%= songs[a]._id %>/like" class="fw-bold me-2"> <%= songs[a].like.length %>
+                   like by <%= songs[a].like[0].like_username %>
+                </span>
+              <% } %>      
+            </p>
+            <p>
               <a class="text-decoration-none" id="" href="/posts/<%= songs[a]._id %>"><i class="fa-solid fa-message"></i></a>
-              <span class="fw-bold me-2"> <%=songs[a].comments.length %> </span>
-
+              <span class="fw-bold me-2"> <%=songs[a].comments.length %> comments</span>
               <i class="fa-solid fa-hashtag"></i>
               <span class="fw-bold"> <%=songs[a].tag %> </span>
             </p>
