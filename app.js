@@ -133,6 +133,10 @@ const userSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Like'
   }],
+  comment: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Comment'
+  }]
 });
 
 userSchema.plugin(passportLocalMongoose);
@@ -432,13 +436,16 @@ app.post("/posts/:postId", (req, res) => {
   // const comment_user = req.body.commentUsername;
   // const comment_content = req.body.commentContent;
   let now = dayjs();
-  const comment = new Comment({
-    comment_user: req.body.commentUsername,
+
+  if (req.isAuthenticated()){
+    const comment = new Comment({
+    comment_user: req.user.username,
     comment_content: req.body.commentContent,
     comment_date: now.format("dddd, MMMM D YYYY")
   });
 
-  comment.save((err, result) => {
+
+    comment.save((err, result) => {
     if (err) {
       console.log(err);
     } else {
@@ -448,11 +455,26 @@ app.post("/posts/:postId", (req, res) => {
         } else {
           ret.comments.push(result);
           ret.save();
+          // res.redirect('/posts/' + post_id)
+        }
+      });
+
+      User.findOne({username:req.user.username}, (err, foundUser) => {
+        if (err) {
+          console.log(err);
+        } else {
+          foundUser.comment.push(result);
+          foundUser.save();
           res.redirect('/posts/' + post_id)
         }
       });
-    }
-  })
+      }
+    })
+  }
+  else {
+    req.flash('error_msg', 'You need to login to post.')
+    res.redirect("/login");
+  }
 });
 
 app.post('/:id/:title/like', (req, res) => {
