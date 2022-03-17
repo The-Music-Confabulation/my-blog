@@ -47,15 +47,15 @@
 
                                 <div class="d-flex justify-content-center">
                                     <button type="submit" class="btn btn-block btn-lg btn-dark me-3">register</button>
-                                    
+
                                 </div>
 
-                                
+
                                 <p class="text-center mt-2 mb-0">already have an account? <a href="login"
                                         class=" fw-bolder"><u>login here</u></a></p>
 
 
-                                
+
                             </form>
 
 
@@ -68,27 +68,43 @@
         </div>
     </section>
 
+    <div class="s-media pt-3">
+        <span class="inline"><a class="text-decoration-none  ps-2" href="https://discord.gg/gkmAGEbsAG"><i class="fa-brands fa-discord"></i> discord</a>
+        </span>
+  
+        <span class="inline"><a class="text-decoration-none  ps-2"
+            href="https://github.com/ttran293/my-blog"><i class="fa-brands fa-github"></i> github</a>
+        </span>
+        </ol>
+      </div>
+      
     <div class="media fixed-bottom ">
         <div class="nav-b flex-column flex-md-row align-items-end">
-  
-          <nav class=" mt-2 mt-md-0 ms-md-auto pb-1">
-            <a href="/" class="nav-link mx-2 text-decoration-none nav-a" id="compose"><i class="fa-solid fa-arrow-rotate-left"></i></a>
-            <a href="/compose" class="nav-link mx-2 text-decoration-none nav-a " id="compose"><i class="fa-solid fa-plus"></i></a>
-            <a href="/profile" class="nav-link mx-2 text-decoration-none nav-a" id="profile"><i class="fa-solid fa-question"></i></a>
-  
-                                        
-            <% if (!isLoggedIn) { %>
-            <a href="/login" class="nav-link mx-2 text-decoration-none nav-a" id="logi"><i class="fa-solid fa-angle-right"></i></a>
-            <a href="/signup" class="nav-link mx-2 text-decoration-none nav-a" id="signu"><i class="fa-solid fa-angle-up"></i></a>
-  
-            <%} else { %>
-            <a href="/logout" class="nav-link mx-2 text-decoration-none nav-a " id="logout"><i class="fa-solid fa-right-from-bracket"></i></a>
-            <% } %>
-  
-            
-          </nav>
+
+            <nav class=" mt-2 mt-md-0 ms-md-auto pb-1">
+                <a href="/" class="nav-link mx-2 text-decoration-none nav-a" id="compose"><i
+                        class="fa-solid fa-arrow-rotate-left"></i></a>
+                <a href="/compose" class="nav-link mx-2 text-decoration-none nav-a " id="compose"><i
+                        class="fa-solid fa-plus"></i></a>
+                <a href="/profile" class="nav-link mx-2 text-decoration-none nav-a" id="profile"><i
+                        class="fa-solid fa-question"></i></a>
+
+
+                <% if (!isLoggedIn) { %>
+                <a href="/login" class="nav-link mx-2 text-decoration-none nav-a" id="logi"><i
+                        class="fa-solid fa-angle-right"></i></a>
+                <a href="/signup" class="nav-link mx-2 text-decoration-none nav-a" id="signu"><i
+                        class="fa-solid fa-angle-up"></i></a>
+
+                <%} else { %>
+                <a href="/logout" class="nav-link mx-2 text-decoration-none nav-a " id="logout"><i
+                        class="fa-solid fa-right-from-bracket"></i></a>
+                <% } %>
+
+
+            </nav>
         </div>
-      </div>
+    </div>
     <script src="/scripts/scripts.js"></script>
 
 
