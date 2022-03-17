@@ -1,7 +1,4 @@
 <%- include('partials/header'); -%>
-
-<hr style="visibility:hidden">
-
 <body>
   <div class="container-fluid body-block">
     <div class="article-blog">
@@ -159,10 +156,10 @@
     </div>
 
     <div class="s-media pt-3">
-      <span class="inline"><a class="text-decoration-none text-dark ps-2" href="https://discord.gg/gkmAGEbsAG"><i class="fa-brands fa-discord"></i> discord</a>
+      <span class="inline"><a class="text-decoration-none  ps-2" href="https://discord.gg/gkmAGEbsAG"><i class="fa-brands fa-discord"></i> discord</a>
       </span>
 
-      <span class="inline"><a class="text-decoration-none text-dark ps-2"
+      <span class="inline"><a class="text-decoration-none  ps-2"
           href="https://github.com/ttran293/my-blog"><i class="fa-brands fa-github"></i> github</a>
       </span>
       </ol>
@@ -172,23 +169,20 @@
       <div class="nav-b flex-column flex-md-row align-items-end">
 
         <nav class=" mt-2 mt-md-0 ms-md-auto pb-1">
-          <!-- <a href="/" class="nav-link px-2 link-secondary">home</a> -->
-          <a href="/" class="nav-link mx-2 text-decoration-none nav-a" id="compose"><i class="fa-solid fa-house"></i></a>
-
+          <a href="/" class="nav-link mx-2 text-decoration-none nav-a" id="compose"><i class="fa-solid fa-arrow-rotate-left"></i></a>
           <a href="/compose" class="nav-link mx-2 text-decoration-none nav-a " id="compose"><i class="fa-solid fa-plus"></i></a>
-          <!-- <a href="/help" class="nav-link mx-2 text-decoration-none text-dark nav-a badge  ">help</a> -->
+          <a href="/profile" class="nav-link mx-2 text-decoration-none nav-a" id="profile"><i class="fa-solid fa-question"></i></a>
 
+                                      
           <% if (!isLoggedIn) { %>
-          <a href="/login" class="nav-link mx-2 text-decoration-none nav-a" id="logi"><i class="fa-solid fa-right-to-bracket"></i></a>
-          <a href="/signup" class="nav-link mx-2 text-decoration-none nav-a" id="signu"><i class="fa-solid fa-user-plus"></i></a>
+          <a href="/login" class="nav-link mx-2 text-decoration-none nav-a" id="logi"><i class="fa-solid fa-angle-right"></i></a>
+          <a href="/signup" class="nav-link mx-2 text-decoration-none nav-a" id="signu"><i class="fa-solid fa-angle-up"></i></a>
 
           <%} else { %>
           <a href="/logout" class="nav-link mx-2 text-decoration-none nav-a " id="logout"><i class="fa-solid fa-right-from-bracket"></i></a>
           <% } %>
 
-          <a href="/profile" class="nav-link mx-2 text-decoration-none nav-a" id="profile"><i class="fa-solid fa-cat"></i></a>
-
-
+          
         </nav>
       </div>
     </div>

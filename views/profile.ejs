@@ -10,10 +10,10 @@
                     <div class="card border border-2 border-dark rounded-3 login-block" style="border-radius: 15px;">
                         <div class="card-body">
                             <h2 class="text-uppercase text-center">Profile</h2>
-                            <div class="image flex-column justify-content-center ">
+                            <div class="image d-flex flex-column justify-content-center ">
 
                                 <div class="">
-                                    <div class="">
+                                    <div class="profile-edit ">
                                         <% if (current_user_id == id && isLoggedIn) { %>
                                         <button type="button  flex-fill" class="btn btn-dark mx-auto profile-pic"
                                             data-bs-toggle="modal" data-bs-target="#staticBackdrop">
@@ -22,14 +22,14 @@
                                         <button type="button" class="btn btn-dark mx-auto profile-pic">
                                             <i class="fa-solid fa-cat"></i></button>
                                         <%}%>
-                                        
-                                        
+                                        <span class="fw-bold fs-4">@<%= username %> </span>
+                                        <hr>
                                         <button class="text-center  border-0 bg-white">
                                             <span id="follower-num"><%= posts.length %></span>
                                         <span> posts</span>
                                         </button>
 
-
+                                    
                                         <button type="button"  class="text-center  border-0 bg-white"
                                             data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
                                             <span id="follower-num"><%= followers.length %></span>
@@ -94,13 +94,8 @@
 
                                 </div>
 
-                                <div class=" flex-row justify-content-center align-items-center mt-3">
-                                    <span class="fw-bold fs-4">@<%= username %> </span>
 
-                                </div>
-
-
-                                <% if (current_user_id != id && current_user_id!=null) { %>
+                            <% if (current_user_id != id && current_user_id!=null) { %>
                                 <div class="flex-row justify-content-center  mt-1">
                                     <% if (!alreadyFollow) { %>
                                     <button id="follow-btn" class="btn btn-outline-dark btn-sm"
@@ -231,34 +226,25 @@
 
     <div class="media fixed-bottom ">
         <div class="nav-b flex-column flex-md-row align-items-end">
-
-            <nav class=" mt-2 mt-md-0 ms-md-auto pb-1">
-                <!-- <a href="/" class="nav-link px-2 link-secondary">home</a> -->
-                <a href="/" class="nav-link mx-2 text-decoration-none nav-a" id="compose"><i
-                        class="fa-solid fa-house"></i></a>
-
-                <a href="/compose" class="nav-link mx-2 text-decoration-none nav-a " id="compose"><i
-                        class="fa-solid fa-plus"></i></a>
-                <!-- <a href="/help" class="nav-link mx-2 text-decoration-none text-dark nav-a badge  ">help</a> -->
-
-                <% if (!isLoggedIn) { %>
-                <a href="/login" class="nav-link mx-2 text-decoration-none nav-a" id="logi"><i
-                        class="fa-solid fa-right-to-bracket"></i></a>
-                <a href="/signup" class="nav-link mx-2 text-decoration-none nav-a" id="signu"><i
-                        class="fa-solid fa-user-plus"></i></a>
-
-                <%} else { %>
-                <a href="/logout" class="nav-link mx-2 text-decoration-none nav-a " id="logout"><i
-                        class="fa-solid fa-right-from-bracket"></i></a>
-                <% } %>
-
-                <a href="/profile" class="nav-link mx-2 text-decoration-none nav-a" id="profile"><i
-                        class="fa-solid fa-user"></i></a>
-
-
-            </nav>
+  
+          <nav class=" mt-2 mt-md-0 ms-md-auto pb-1">
+            <a href="/" class="nav-link mx-2 text-decoration-none nav-a" id="compose"><i class="fa-solid fa-arrow-rotate-left"></i></a>
+            <a href="/compose" class="nav-link mx-2 text-decoration-none nav-a " id="compose"><i class="fa-solid fa-plus"></i></a>
+            <a href="/profile" class="nav-link mx-2 text-decoration-none nav-a" id="profile"><i class="fa-solid fa-question"></i></a>
+  
+                                        
+            <% if (!isLoggedIn) { %>
+            <a href="/login" class="nav-link mx-2 text-decoration-none nav-a" id="logi"><i class="fa-solid fa-angle-right"></i></a>
+            <a href="/signup" class="nav-link mx-2 text-decoration-none nav-a" id="signu"><i class="fa-solid fa-angle-up"></i></a>
+  
+            <%} else { %>
+            <a href="/logout" class="nav-link mx-2 text-decoration-none nav-a " id="logout"><i class="fa-solid fa-right-from-bracket"></i></a>
+            <% } %>
+  
+            
+          </nav>
         </div>
-    </div>
+      </div>
     <script src="/scripts/scripts.js"></script>
 </body>
 <%- include('partials/footer'); -%>

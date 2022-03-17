@@ -49,29 +49,26 @@
 
 </section>
 <div class="media fixed-bottom ">
-      <div class="nav-b flex-column flex-md-row align-items-end">
+    <div class="nav-b flex-column flex-md-row align-items-end">
 
-        <nav class=" mt-2 mt-md-0 ms-md-auto pb-1">
-          <!-- <a href="/" class="nav-link px-2 link-secondary">home</a> -->
-          <a href="/" class="nav-link mx-2 text-decoration-none nav-a" id="compose"><i class="fa-solid fa-house"></i></a>
+      <nav class=" mt-2 mt-md-0 ms-md-auto pb-1">
+        <a href="/" class="nav-link mx-2 text-decoration-none nav-a" id="compose"><i class="fa-solid fa-arrow-rotate-left"></i></a>
+        <a href="/compose" class="nav-link mx-2 text-decoration-none nav-a " id="compose"><i class="fa-solid fa-plus"></i></a>
+        <a href="/profile" class="nav-link mx-2 text-decoration-none nav-a" id="profile"><i class="fa-solid fa-question"></i></a>
 
-          <a href="/compose" class="nav-link mx-2 text-decoration-none nav-a " id="compose"><i class="fa-solid fa-plus"></i></a>
-          <!-- <a href="/help" class="nav-link mx-2 text-decoration-none text-dark nav-a badge  ">help</a> -->
+                                    
+        <% if (!isLoggedIn) { %>
+        <a href="/login" class="nav-link mx-2 text-decoration-none nav-a" id="logi"><i class="fa-solid fa-angle-right"></i></a>
+        <a href="/signup" class="nav-link mx-2 text-decoration-none nav-a" id="signu"><i class="fa-solid fa-angle-up"></i></a>
 
-          <% if (!isLoggedIn) { %>
-          <a href="/login" class="nav-link mx-2 text-decoration-none nav-a" id="logi"><i class="fa-solid fa-right-to-bracket"></i></a>
-          <a href="/signup" class="nav-link mx-2 text-decoration-none nav-a" id="signu"><i class="fa-solid fa-user-plus"></i></a>
+        <%} else { %>
+        <a href="/logout" class="nav-link mx-2 text-decoration-none nav-a " id="logout"><i class="fa-solid fa-right-from-bracket"></i></a>
+        <% } %>
 
-          <%} else { %>
-          <a href="/logout" class="nav-link mx-2 text-decoration-none nav-a " id="logout"><i class="fa-solid fa-right-from-bracket"></i></a>
-          <% } %>
-
-          <a href="/profile" class="nav-link mx-2 text-decoration-none nav-a" id="profile"><i class="fa-solid fa-user"></i></a>
-
-
-        </nav>
-      </div>
+        
+      </nav>
     </div>
+  </div>
 
 <script src="/scripts/scripts.js"></script>
 </body>

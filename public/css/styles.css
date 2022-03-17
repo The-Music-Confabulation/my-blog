@@ -268,6 +268,9 @@ Comment section
     width: 100%;
     margin-left: 0px;
     margin-right: 0px;
+    /* display: none; */
+  }
+  #head-nav{
     display: none;
   }
 
@@ -275,10 +278,9 @@ Comment section
     height: 0vh;
   }
 
-   .login-block {
-    
+  .login-block {
+    margin-top: 0px;
   }
-
 
   .footer-block {
    display: none;
@@ -308,7 +310,7 @@ Comment section
   }
 
   .com-name {
-    font-size: 1.5rem;
+    font-size: 2rem;
     text-align: justify;
   }
 
@@ -360,7 +362,15 @@ Comment section
   padding-bottom: 4rem!important;
   margin-bottom: 4rem!important;
 }
+.card-body{
 
+}
+.profile-pic{
+ 
+}
+.profile-edit{
+  font-size: 0.8rem;
+}
 }
 
 @media (min-width: 576px) and (max-width: 991.98px)  {
@@ -369,11 +379,14 @@ Comment section
     width: 100%;
     margin-left: 0px;
     margin-right: 0px;
-   display: none;
+    /* display: none; */
+  }
+  #head-nav{
+    display: none;
   }
 
   .login-block {
-    
+    margin-top: 0px;
   }
 
 
@@ -406,7 +419,7 @@ Comment section
   }
 
   .com-name {
-    font-size: 1.5rem;
+    font-size: 2.3rem;
     text-align: justify;
   }
 
@@ -465,6 +478,9 @@ Comment section
   padding-bottom: 4rem!important;
   margin-bottom: 4rem!important;
 
+  }
+  .profile-pic{
+    
   }
 }
 

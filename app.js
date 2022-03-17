@@ -400,7 +400,7 @@ app.post('/compose', (req, res) => {
           res.redirect('/')
         }
       });
-      }
+    }
   })
 })
 
