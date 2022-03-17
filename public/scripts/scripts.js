@@ -29,20 +29,36 @@ function setTheme(theme) {
 
 
 //https://www.w3schools.com/xml/ajax_xmlhttprequest_send.asp
-function updateLike(id, title){
+function updateLike(id, title, numberLikes, post_number, user){
   let ajax = new XMLHttpRequest(); 
 
-  //id to change /<%= songs[a]._id %>/like
-  // Getting current likes in attempt to increase it
-  let data = document.getElementById('/'+id+'/like').innerHTML;
-  let current_num_like =  parseInt(data)
-  current_num_like +=1 
-  let new_data = current_num_like.toString()
+  numberLikes = parseInt(numberLikes)
+  text_id = post_number.toString() + 'other-likes'
 
-  document.getElementById('/'+id+'/like').innerHTML = new_data
- 
+  //if 0, add 
+  if (numberLikes === 0){
+    let output = "liked by " + user.toString()
+    console.log(output);
+    document.getElementById(text_id).textContent = output
+    document.getElementById(post_number.toString()+"heart-icon").style.color= "#EB0000";
+    document.getElementById(post_number.toString()+"heart-icon").disabled = true;
+  } 
+  else if ( numberLikes >= 2){
+    let output = parseInt(document.getElementById(text_id).textContent);
+    output+=1; 
+    document.getElementById(text_id).textContent = output.toString()
+    document.getElementById(post_number.toString()+"heart-icon").style.color= "#EB0000";
+  }
+  else {
+    let output = document.getElementById(text_id).textContent; //like by <user>
+    output += " and " + user
+    document.getElementById(text_id).textContent = output.toString()
+    document.getElementById(post_number.toString()+"heart-icon").style.color= "#EB0000";
+  }
+  
+  
   post_url = '/'+id+'/'+title+'/like'
-  alert(post_url)
+
   ajax.open("POST", post_url, true);
   ajax.send();
 }

@@ -62,23 +62,27 @@
             </p>
             <p>
               <% if (isLoggedIn) { %>
-                 <i class="fa-solid fa-heart" onclick="updateLike('<%= songs[a]._id %>','<%= songs[a].title%>')"></i>
+                 <i  id="<%=a%>heart-icon" class="fa-solid fa-heart" 
+                 onclick="updateLike('<%= songs[a]._id %>','<%= songs[a].title%>', '<%= songs[a].like.length %>', '<%= a %>', '<%= current_user_info %>')">
+                </i>
               <% } else { %>
                  <a href="/login"><i class="fa-solid fa-heart"></i></a>
               <% } %>
              
               <% if (songs[a].like.length >= 2 ) { %>
-                  <span id="/<%= songs[a]._id %>/like" class="fw-bold me-2"> <%= songs[a].like.length %>  
-                  likes by 
+                  <span class="fw-bold"> 
+                  liked by 
                   <% for( let index = 0; index <= 1; index++ ) { %>
                       <%= songs[a].like[index].like_username %>,
-                  <% } %>and others 
+                  <% } %> and <span id="<%=a%>other-likes"><%= songs[a].like.length -2 %></span> others 
                   </span>
               <% } else if (songs[a].like.length == 0) { %>
-                  <span id="/<%= songs[a]._id %>/like" class="fw-bold me-2"> <%= songs[a].like.length %></span>
+                  <span id="<%= a %>other-likes" class="fw-bold me-2"> 
+                    <%= songs[a].like.length %>
+                  </span>
               <% } else {%>
-                <span id="/<%= songs[a]._id %>/like" class="fw-bold me-2"> <%= songs[a].like.length %>
-                   like by <%= songs[a].like[0].like_username %>
+                  <span class="fw-bold">liked by</span>
+                  <span class="fw-bold" id="<%=a%>other-likes"> <%= songs[a].like[0].like_username %></span>
                 </span>
               <% } %>      
             </p>

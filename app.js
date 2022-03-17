@@ -168,6 +168,12 @@ var getYouTubeID = require('get-youtube-id');
 
 
 app.get("/", async function (req, res) {
+
+  current_user_info = ""
+  if (req.isAuthenticated()) {
+      current_user_info = req.user.username;
+  }
+
   //--Pagination && Load songs in homepage--//
   var perPage = 4; //limit how many songs per page
   var total = await Post.count();
@@ -185,7 +191,8 @@ app.get("/", async function (req, res) {
                     res.render("home", {
                     pages: pages,
                     songs: songs,
-                    isLoggedIn: isLoggedIn
+                    isLoggedIn: isLoggedIn,
+                    current_user_info:current_user_info
                   });
 
               }
