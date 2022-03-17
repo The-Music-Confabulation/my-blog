@@ -129,6 +129,10 @@ const userSchema = new mongoose.Schema({
   socialLinks: {type: String},
   fullname: {type: String},
   dateJoin: {type: String},
+  like: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Like'
+  }],
 });
 
 userSchema.plugin(passportLocalMongoose);
@@ -170,20 +174,22 @@ app.get("/", async function (req, res) {
   var pages = Math.ceil(total / perPage); //calculate how many pages needed
   var pageNumber = (req.query.page == null) ? 1 : req.query.page;
   var startFrom = (pageNumber - 1) * perPage;
-  var songs = await Post.find({
-    approved: {
-      $eq: true
-    }
-  }).skip(startFrom).limit(perPage).sort({
-    _id: -1
-  });
+  await Post.find({approved: {$eq: true}})
+            .skip(startFrom)
+            .limit(perPage)
+            .sort({ _id: -1})
+            .populate('like')
+            .exec(function (err, songs){
+              if(err){console.log(err)}
+              else{
+                    res.render("home", {
+                    pages: pages,
+                    songs: songs,
+                    isLoggedIn: isLoggedIn
+                  });
 
-  //--Pagination--//
-  res.render("home", {
-    pages: pages,
-    songs: songs,
-    isLoggedIn: isLoggedIn
-  });
+              }
+            })    
 });
 
 app.get("/help", function (req, res) {
@@ -451,22 +457,38 @@ app.post('/:id/:title/like', (req, res) => {
         like_title: post_title,
         like_title_id: req.params.id
       })
+      //check if user already like
+      Like.findOne({like_username: req.user.username,
+                    like_title: post_title, 
+                    like_title_id: req.params.id }, (err, foundLike) => {
+          if (!foundLike){
+            like.save((err, result)  =>{
+                  if (err) {console.log(err);}
+                  else {
+                        Post.findById(req.params.id, function (err, ret) {
+                        if (err) {
+                          console.log(err);
+                        } else {
+                          ret.like.push(result);
+                          ret.save();
+                          }});
 
-      
-      like.save((err, result)  =>{
-        if (err) {console.log(err);}
-        else {
-            Post.findById(req.params.id, function (err, ret) {
-              if (err) {
-                console.log(err);
-              } else {
-                console.log("Like updated");
-                ret.like.push(result);
-                ret.save();
-                res.redirect('/')
-              }
-            });
-        }
+                        User.findOne({username:req.user.username}, function (err, ret_u) {
+                        if (err) {
+                          console.log(err);
+                        } else {
+                          console.log("Like updated");
+                          ret_u.like.push(result);
+                          ret_u.save();
+                          res.redirect('/')
+                        }});
+                   }
+            })
+          }
+          else
+          {
+              res.redirect('/')
+          }
       })
   }
   else{
