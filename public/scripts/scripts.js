@@ -29,18 +29,21 @@ function setTheme(theme) {
 
 
 //https://www.w3schools.com/xml/ajax_xmlhttprequest_send.asp
-function updateLike(but_id){
+function updateLike(id, title){
   let ajax = new XMLHttpRequest(); 
 
+  //id to change /<%= songs[a]._id %>/like
   // Getting current likes in attempt to increase it
-  let data = document.getElementById(but_id).innerHTML;
+  let data = document.getElementById('/'+id+'/like').innerHTML;
   let current_num_like =  parseInt(data)
   current_num_like +=1 
   let new_data = current_num_like.toString()
 
-  document.getElementById(but_id).innerHTML = new_data
-  //alert(typeof(current_num_like));  
-  ajax.open("POST", but_id, true);
+  document.getElementById('/'+id+'/like').innerHTML = new_data
+ 
+  post_url = '/'+id+'/'+title+'/like'
+  alert(post_url)
+  ajax.open("POST", post_url, true);
   ajax.send();
 }
 
@@ -65,3 +68,8 @@ function updateFollowing(username, user_id){
   ajax.open("POST", url, true);
   ajax.send();
 }
+
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})

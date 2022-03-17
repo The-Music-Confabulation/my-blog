@@ -61,8 +61,13 @@
               <a href="/profile/<%= songs[a].author %>" class="text-decoration-none "><%= songs[a].author %></a>
             </p>
             <p>
-              <i class="fa-solid fa-heart" onclick="updateLike('/<%= songs[a]._id %>/like')"></i>
-              <span id="/<%= songs[a]._id %>/like" class="fw-bold me-2"> <%= songs[a].like %> </span>
+              <% if (isLoggedIn) { %>
+                 <i class="fa-solid fa-heart" onclick="updateLike('<%= songs[a]._id %>','<%= songs[a].title%>')"></i>
+              <% } else { %>
+                 <a href="/login"><i class="fa-solid fa-heart"></i></a>
+              <% } %>
+             
+              <span id="/<%= songs[a]._id %>/like" class="fw-bold me-2"> <%= songs[a].like.length %> </span>
 
               <a class="text-decoration-none" id="" href="/posts/<%= songs[a]._id %>"><i class="fa-solid fa-message"></i></a>
               <span class="fw-bold me-2"> <%=songs[a].comments.length %> </span>

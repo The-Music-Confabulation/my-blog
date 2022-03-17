@@ -45,7 +45,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   cookie: {}
-}))
+}));
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -68,47 +68,34 @@ mongoose.connect(server + pass + server_option, {
   useNewUrlParser: true
 });
 
-
-var posts = [];
-
-
 const postSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    require: true
-  },
-  content: {
-    type: String,
-    require: true
-  },
-  author: {
-    type: String
-  },
-  url: {
-    type: String
-  },
-  date: {
-    type: String
-  },
-  like: {
-    type: Number
-  },
-  tag: {
-    type: String
-  },
-  approved: {
-    type: Boolean
-  },
+  title: {type: String, require: true},
+  content: {type: String, require: true},
+  author: {type: String},
+  url: {type: String},
+  date: {type: String},
+  like: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Like'
+  }],
+  tag: {type: String},
+  approved: {type: Boolean},
   comments: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Comment'
   }]
 });
 
+const Post = mongoose.model("Post", postSchema);
 
-const Post = mongoose.model(
-  "Post", postSchema
-);
+const likeSchema = new mongoose.Schema({
+  like_username: {type : String},
+  like_title: {type: String},
+  like_title_id: {type: String}
+});
+
+const Like = mongoose.model("Like", likeSchema);
+
 
 const commentSchema = new mongoose.Schema({
   comment_user: "string",
@@ -116,70 +103,32 @@ const commentSchema = new mongoose.Schema({
   comment_date: "string"
 });
 
-const Comment = mongoose.model(
-  "Comment", commentSchema
-);
+const Comment = mongoose.model("Comment", commentSchema);
 
 
-const followerSchema = new mongoose.Schema({
-  follower_username: "string",
-  follower_id:"string"
-});
+const followerSchema = new mongoose.Schema({follower_username: "string",follower_id:"string"});
 
-const Follower = mongoose.model(
-  "Follower", followerSchema
-);
+const Follower = mongoose.model("Follower", followerSchema);
 
 const followingSchema = new mongoose.Schema({
   following_username: "string",
   following_id:"string"
 });
 
-const Following = mongoose.model(
-  "Following", followingSchema
-);
+const Following = mongoose.model("Following", followingSchema);
 
 const userSchema = new mongoose.Schema({
-  username: {
-    type: String,
-    require: true,
-    allowNull: false,
-    unique: true
-  },
-  password: {
-    type: String,
-    require: true
-  },
-  email: {
-    type: String
-  },
-  animal: {
-    type: String
-  },
-  followers: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Follower'
-  }],
-  numberOfPosts: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Post'
-  }],
-  followings: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Following'
-  }],
-  info: {
-    type: String
-  },
-  socialLinks: {
-    type: String
-  },
-  fullname: {
-    type: String
-  },
-  dateJoin: {
-    type: String
-  },
+  username: {type: String,require: true,allowNull: false,unique: true},
+  password: {type: String,require: true},
+  email: {type: String},
+  animal: {type: String},
+  followers: [{type: mongoose.Schema.Types.ObjectId,ref: 'Follower'}],
+  numberOfPosts: [{type: mongoose.Schema.Types.ObjectId,ref: 'Post'}],
+  followings: [{type: mongoose.Schema.Types.ObjectId,ref: 'Following'}],
+  info: {type: String},
+  socialLinks: {type: String},
+  fullname: {type: String},
+  dateJoin: {type: String},
 });
 
 userSchema.plugin(passportLocalMongoose);
@@ -187,7 +136,6 @@ userSchema.plugin(passportLocalMongoose);
 const User = new mongoose.model(
   "User", userSchema
 );
-
 
 passport.use(new LocalStrategy(User.authenticate()));
 
@@ -212,11 +160,7 @@ app.use(express.static("public"));
 
 let isLoggedIn = false;
 
-
-//use nodemon app.js
-
 var getYouTubeID = require('get-youtube-id');
-
 
 
 app.get("/", async function (req, res) {
@@ -248,7 +192,6 @@ app.get("/help", function (req, res) {
   });
 });
 
-
 app.get("/signup", function (req, res) {
   res.render("signup", {
     isLoggedIn: isLoggedIn
@@ -261,18 +204,14 @@ app.get('/login', (req, res) => {
   });
 });
 
-
 function usernameConstraint(name) {
-  let format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
-
-
-  if (format.test(name) || name.includes(" ")) {
+  //let format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+  if (name.includes(" ")) {
     return true;
   } else {
     return false;
   }
 }
-
 
 //https://stackoverflow.com/questions/48096378/bad-request-when-registering-with-passport
 //passport.authenticate is a middleware, which means that you have to call it with 3 parameters (req, res, next)
@@ -283,17 +222,17 @@ app.post("/signup", function (req, res, next) {
   new_password2 = req.body.userpassword_2;
   let errors = []
 
-
-
-
   if (!new_username || !new_password) {
     errors.push({
       msg: 'All the fields must be filled to proceed'
     });
   }
 
-
-
+  if (usernameConstraint(new_username)){
+    errors.push({
+      msg: 'Username must have no spaces'
+    });
+  }
   if (new_password != new_password2) {
     errors.push({
       msg: 'The two passwords must match to proceed'
@@ -407,7 +346,6 @@ app.post("/login", function (req, res) {
   });
 });
 
-
 app.get("/compose", function (req, res) {
   if (req.isAuthenticated()) {
     res.render("compose", {
@@ -419,18 +357,16 @@ app.get("/compose", function (req, res) {
   }
 });
 
-
 app.post('/compose', (req, res) => {
   let now = dayjs();
   console.log(req.body.postBody);
   const content_clean = xss(req.body.postBody)
-  console.log(content_clean);
+
   const post = new Post({
     title: req.body.postTitle,
     content: content_clean,
     author: req.user.username,
     url: getYouTubeID(req.body.postURL),
-    like: 0,
     tag: req.body.postTag,
     approved: false,
     date: now.format("dddd, MMMM D YYYY")
@@ -448,7 +384,7 @@ app.post('/compose', (req, res) => {
         }
       });
       }
-      })
+  })
 })
 
 app.get('/logout', (req, res) => {
@@ -457,10 +393,7 @@ app.get('/logout', (req, res) => {
   res.redirect("/");
 })
 
-
-
 app.get("/posts/:postId", (req, res) => {
-
   Post.findById(req.params.postId).populate("comments").exec(function (err, post) {
     if (err) {
       console.log(err);
@@ -478,25 +411,19 @@ app.get("/posts/:postId", (req, res) => {
       })
     }
   });
-
 });
 
-
 app.post("/posts/:postId", (req, res) => {
-
   // find out which post are being commented on 
   const post_id = req.params.postId;
   // const comment_user = req.body.commentUsername;
   // const comment_content = req.body.commentContent;
-
   let now = dayjs();
-
   const comment = new Comment({
     comment_user: req.body.commentUsername,
     comment_content: req.body.commentContent,
     comment_date: now.format("dddd, MMMM D YYYY")
   });
-
 
   comment.save((err, result) => {
     if (err) {
@@ -515,24 +442,37 @@ app.post("/posts/:postId", (req, res) => {
   })
 });
 
-app.post('/:id/like', (req, res, next) => {
-  const post_id = mongoose.Types.ObjectId(req.params.id);
+app.post('/:id/:title/like', (req, res) => {
 
-  Post.updateOne({
-    _id: post_id
-  }, {
-    $inc: {
-      like: 1
-    }
-  }, function (err, result) {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log("Like updated");
-      res.redirect('/');
-    }
-  });
+  if (req.isAuthenticated()) {
+      const post_title = req.params.title
+      const like = new Like({
+        like_username: req.user.username,
+        like_title: post_title,
+        like_title_id: req.params.id
+      })
 
+      
+      like.save((err, result)  =>{
+        if (err) {console.log(err);}
+        else {
+            Post.findById(req.params.id, function (err, ret) {
+              if (err) {
+                console.log(err);
+              } else {
+                console.log("Like updated");
+                ret.like.push(result);
+                ret.save();
+                res.redirect('/')
+              }
+            });
+        }
+      })
+  }
+  else{
+    req.flash('error_msg', 'You need to login to like.')
+    res.redirect("/login");
+  }
 });
 
 
@@ -556,7 +496,7 @@ app.get('/profile', (req, res) => {
       });
     })
   } else {
-    req.flash('error_msg', 'You need to login to post.')
+    req.flash('error_msg', 'You need to login first.')
     res.redirect("/login");
   }
 })
