@@ -17,10 +17,10 @@ header {
 
 
 article{
-  background-color: #52d1ffe0;
+  background-color: #52d1ff;
 }
 .card, .card-footer, .form-control{
-  background-color:#52d1ffe0;
+  background-color:#52d1ff;
 }
 
 a{
@@ -67,4 +67,9 @@ a{
 
 .fa-heart{
   color:black;
+}
+
+.button-profile{
+  background-color: #52d1ff;
+  color: black;
 }

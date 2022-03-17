@@ -49,3 +49,16 @@ a{
 .fa-heart{
   color:#0d6efd;
 }
+
+#compose-block{
+  color:white;
+}
+
+.button-profile{
+  background-color: #030303;
+  color: white;
+}
+
+.modal-body{
+  color: black;
+}
