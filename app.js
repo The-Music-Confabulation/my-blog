@@ -178,7 +178,7 @@ app.get("/", async function (req, res) {
   }
 
   //--Pagination && Load songs in homepage--//
-  var perPage = 4; //limit how many songs per page
+  var perPage = 8; //limit how many songs per page
   var total = await Post.count();
   var pages = Math.ceil(total / perPage); //calculate how many pages needed
   var pageNumber = (req.query.page == null) ? 1 : req.query.page;

@@ -1,11 +1,11 @@
 
 body {
-    background-color: white;
+    background-color: rgb(245, 245, 245);
     color: black;
 }
 
 header {
-  background-color: white;
+  background-color: rgb(245, 245, 245);
   color:black;
 }
 
@@ -14,12 +14,27 @@ header {
   border-color: black;
 }
 
+.main{
+  background-color: white;
+  border-radius: 3px;
+  border: 1px solid rgb(219, 219, 219);
+}
+.head-main{
+  background-color: white;
+  border-radius: 3px;
+  border: 1px solid rgb(219, 219, 219);
+}
+
 a{
   color:black;
 }
 article{
-  /* background-color:rgb(192, 192, 192); */
   background-color: white;
+  border-radius: 3px;
+  border: 1px solid rgb(219, 219, 219);
+}
+.date{
+  font-size: 12px;
 }
 #compose, #logi, #signu, #logout, #profile{
   color: black;
@@ -50,7 +65,7 @@ article{
 }
 
 .switch {
-  border: 3px solid black;
+  border: 2px solid black;
   border-radius: 60px;
   height: 40px;
   width: 40px;

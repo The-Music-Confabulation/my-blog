@@ -17,7 +17,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed&family=Lato:wght@400;700&family=Monofett&family=Monoton&family=Roboto&family=Roboto+Mono&family=Ubuntu+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed&family=Lato:wght@400;700&family=Monofett&family=Monoton&family=Pacifico&family=Roboto&family=Roboto+Mono&family=Ubuntu+Mono&display=swap" rel="stylesheet">
   <link rel="stylesheet" id="switcher-id" href="">  
   <link rel="stylesheet" href="/css/styles.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -29,34 +29,39 @@
 
 <header>
 
-  <div class="container-fluid head-block">
+  <div class="container-fluid head-block mt-3">
 
-    <div class="py-3">
+    <div class="row">
 
-      <div class="nav-b flex-column flex-md-row align-items-end">
+      <div class="col-lg-2 col-md-1"></div>
+      <div class="col-lg-8 col-md-10 head-main ">
+        <div class="nav-b flex-column flex-md-row align-items-end m-3">
 
         <a href="/" class="page-title d-flex align-items-center text-decoration-none">
-          <span class="com-name fw-bold">music confabulation.</span>
+          <span class="com-name ps-3">Music Confabulation.</span>
         </a>
 
 
         <nav id='head-nav'class=" mt-2 mt-md-0 ms-md-auto pb-1">
           <!-- <a href="/" class="nav-link px-2 link-secondary">home</a> -->
           
-          <a href="/compose" class="nav-link mx-2 text-decoration-none nav-a badge" id="compose">post</a>
+          <a href="/compose" class="nav-link mx-2 text-decoration-none nav-a badge" id="compose">Post</a>
           <!-- <a href="/help" class="nav-link mx-2 text-decoration-none text-dark nav-a badge  ">help</a> -->
 
           <% if (!isLoggedIn) { %>
-          <a href="/login" class="nav-link mx-2 text-decoration-none nav-a badge "id="logi">log in</a>
-          <a href="/signup" class="nav-link mx-2 text-decoration-none nav-a badge "id="signu">sign up</a>
+          <a href="/login" class="nav-link mx-2 text-decoration-none nav-a badge "id="logi">Log in</a>
+          <a href="/signup" class="nav-link mx-2 text-decoration-none nav-a badge "id="signu">Sign up</a>
 
           <%} else { %>
-          <a href="/logout" class="nav-link mx-2 text-decoration-none nav-a badge "id="logout">log out</a>
+          <a href="/logout" class="nav-link mx-2 text-decoration-none nav-a badge "id="logout">Log out</a>
           <% } %>
-          <a href="/profile" class="nav-link mx-2 text-decoration-none nav-a badge"id="profile">profile</a>
+          <a href="/profile" class="nav-link mx-2 text-decoration-none nav-a badge"id="profile">Profile</a>
           <!-- <i class="fa-solid fa-dog"></i> -->
         </nav>
       </div>
+      </div>
+      <div class="col-lg-2 col-md-1 col"></div>
+      
     </div>
   </div>
 </header>
