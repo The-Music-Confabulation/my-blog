@@ -66,6 +66,13 @@ article{
   margin-top: 120px;
 }
 
+    .blog-post{
+    margin-top: 1rem;
+    margin-top: 1rem;
+    padding: 1rem;
+    padding-left: 1.5rem;
+  }
+  
 
 /* stylelint-disable selector-list-comma-newline-after */
 .form-signin {
@@ -252,10 +259,6 @@ Comment section
 }
 
 
-
-
-
-  
 /*----- RESPONSIVE ------*/
 @media (max-width: 575.98px) {
 
@@ -277,15 +280,33 @@ Comment section
     margin-top: 0px;
   }
 
-  .footer-block {
+  .blog-post{
+    margin-top: 1rem;
+    margin-top: 1rem;
+  }
+  .footer-block, .side {
    display: none;
   }
 
+    .col-9, .col-8, .col-md-10{
+    flex: 0 0 auto;
+    width: 100%;
+  }
+
+  div > span{
+    font-size: x-small;
+  }
+  #blog-title{  
+font-size: x-small;
+  }
   nav {
     display: flex;
     justify-content: center !important;
   }
-
+  article{
+    border: 0;
+    padding: 0;
+  }
   .body-block {
     width: 100%;
     margin-left: 0px;
@@ -295,6 +316,7 @@ Comment section
   .article-blog {
     margin-bottom: 0;
   }
+
 
   .nav-b {
     display: block;
@@ -314,14 +336,15 @@ Comment section
 
   }
 
+
   .about-main{
-    display: none;
+   
   }
   .some-main {
-    display: none;
+  
   }
   .theme-settings{
-    display: none;
+   
   }
   .comment_profile {
     width: 20px;
@@ -366,6 +389,9 @@ Comment section
 .profile-edit{
   font-size: 0.8rem;
 }
+
+
+
 }
 
 @media (min-width: 576px) and (max-width: 991.98px)  {
@@ -384,7 +410,10 @@ Comment section
     margin-top: 0px;
   }
 
-
+  .blog-post{
+    margin-top: 1rem;
+    margin-top: 1rem;
+  }
 
   .footer-block {
    display: none;
@@ -395,12 +424,19 @@ Comment section
     justify-content: center !important;
   }
 
+    article{
+    border: 0;
+  }
   .body-block {
     width: 100%;
     margin-left: 0px;
     margin-right: 0px;
   }
 
+  .col-9, .col-md-10{
+    flex: 0 0 auto;
+    width: 100%;
+  }
   .article-blog {
     margin-bottom: 0;
   }
@@ -495,6 +531,13 @@ Comment section
    display: none;
   }
 
+    .blog-post{
+    margin-top: 1rem;
+    margin-top: 1rem;
+    padding: 1rem;
+    padding-left: 1.5rem;
+  }
+
   nav {
     display: flex;
     justify-content: center !important;
@@ -524,10 +567,10 @@ Comment section
     text-align: justify;
   }
 
-  .nav-a {
+  /* .nav-a {
     font-size: 2rem;
 
-  }
+  } */
 
 
   .comment_profile {
@@ -573,6 +616,13 @@ Comment section
    display: none;
   }
 
+      .blog-post{
+    margin-top: 1rem;
+    margin-top: 1rem;
+    padding: 1rem;
+    padding-left: 1.5rem;
+  }
+
   nav {
     display: flex;
     justify-content: center !important;
@@ -602,10 +652,10 @@ Comment section
     text-align: justify;
   }
 
-  .nav-a {
-    font-size: 2rem;
+  /* .nav-a {
+    font-size: 1.8rem;
 
-  }
+  } */
 
 
   .comment_profile {
