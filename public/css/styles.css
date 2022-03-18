@@ -297,15 +297,18 @@ Comment section
   }
 
   div>span {
-    font-size: 13px;
+    font-size: 14px;
   }
 
+  div>a {
+    font-size: 14px;
+  }
   .date {
-    font-size: xx-small;
+    font-size: 12px;
   }
 
   #blog-title {
-    font-size: 13px;
+    font-size: 14px;
   }
 
   #blog-info {}
@@ -318,7 +321,7 @@ Comment section
   article {
     border: 0;
     padding: 0;
-    line-height: 1.2;
+    line-height: 18px;
   }
 
   .body-block {
