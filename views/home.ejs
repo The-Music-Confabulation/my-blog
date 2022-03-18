@@ -61,6 +61,8 @@
               <article class="blog-post">
                 <div class="mb-3">
                   <a href="/profile/<%= songs[a].author %>" id="blog-title" class="text-decoration-none fw-bold"><%= songs[a].author %></a><span> posted:</span>
+                  <a class="text-decoration-none " href="/posts/<%= songs[a]._id %>"><%=songs[a].title %></a>
+                </span>
                 </div>
                 
                 <div class="ratio ratio-16x9 ">
@@ -68,7 +70,7 @@
                     title="YouTube video" allowfullscreen frameborder="0"></iframe>
                 </div>
 
-                <div class="mt-3">
+                <div class="mt-2">
                   <span>
                   <% if (isLoggedIn) { %>
                   <i id="<%=a%>heart-icon" class="fa-solid fa-heart"
@@ -102,12 +104,6 @@
                   <span class="fw-bold me-2"> <%=songs[a].comments.length %> comments</span>
                   <i class="fa-solid fa-hashtag"></i>
                   <span class="fw-bold"> <%=songs[a].tag %> </span>
-                </span>
-                </div>
-                <div class="mt-1">
-                <span class="blog-post-title">
-                  <a href="/profile/<%= songs[a].author %>" id="blog-title" class="text-decoration-none fw-bold"><%= songs[a].author %></a>
-                  <a class="text-decoration-none " href="/posts/<%= songs[a]._id %>"><%=songs[a].title %></a>
                 </span>
                 </div>
                 <p class="fw-light date mt-2"><%=songs[a].date %> </p>
