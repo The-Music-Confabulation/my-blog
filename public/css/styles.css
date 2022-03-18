@@ -297,8 +297,15 @@ Comment section
   div > span{
     font-size: x-small;
   }
+  .date{
+    font-size: xx-small;
+  }
   #blog-title{  
 font-size: x-small;
+  }
+
+  #blog-info{
+    
   }
   nav {
     display: flex;
@@ -307,6 +314,7 @@ font-size: x-small;
   article{
     border: 0;
     padding: 0;
+    
   }
   .body-block {
     width: 100%;
