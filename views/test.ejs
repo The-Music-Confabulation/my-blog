@@ -1,6 +1,83 @@
-<%- include('partials/header'); -%>
-<div>
+<!DOCTYPE html>
+<html>
 
-    
-</div>
-<%- include('partials/footer'); -%>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed&family=Lato:wght@400;700&family=Monofett&family=Monoton&family=Pacifico&family=Roboto&family=Roboto+Mono&family=Ubuntu+Mono&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Roboto Mono", monospace;
+            font-size: 18px;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+        #myVideo {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+      
+        }
+
+        .center {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+
+        .slide {
+            font-size: 20px;
+            font-weight: 200;
+            letter-spacing: 1px;
+            padding: 13px 30px 13px;
+            outline: 0;
+            border: 1px solid rgb(255, 255, 255);
+            cursor: pointer;
+            position: relative;
+            background-color: rgba(0, 0, 0, 0);
+        }
+
+        .slide div {
+            transition: transform 0.8s;
+        }
+        .slide:hover i {
+            opacity: 1;
+            transform: translateX(-6px);
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <video autoplay muted loop id="myVideo">
+        <source src="/video/bg.mp4" type="video/mp4">
+    </video>
+    <div class="center">
+        <button type="button" class="slide">
+            <div> <a href="/home">home</a></div>
+        </button>
+    </div>
+</body>
+
+</html>

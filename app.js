@@ -170,7 +170,8 @@ let isLoggedIn = false;
 var getYouTubeID = require('get-youtube-id');
 
 
-app.get("/", async function (req, res) {
+
+app.get("/home", async function (req, res) {
 
   current_user_info = ""
   if (req.isAuthenticated()) {
@@ -396,7 +397,7 @@ app.post('/compose', (req, res) => {
         } else {
           ret.numberOfPosts.push(result);
           ret.save();
-          res.redirect('/')
+          res.redirect('/home')
         }
       });
     }
@@ -406,7 +407,7 @@ app.post('/compose', (req, res) => {
 app.get('/logout', (req, res) => {
   req.logout();
   isLoggedIn = false;
-  res.redirect("/");
+  res.redirect("/home");
 })
 
 app.get("/posts/:postId", (req, res) => {
@@ -506,14 +507,14 @@ app.post('/:id/like', (req, res) => {
                           console.log("Like updated");
                           ret_u.like.push(result);
                           ret_u.save();
-                          res.redirect('/')
+                          res.redirect('/home')
                         }});
                    }
             })
           }
           else
           {
-              res.redirect('/')
+              res.redirect('/home')
           }
       })
   }
@@ -692,12 +693,8 @@ app.post('/profile/:name/follow/:id', (req, res) => {
 });
 
 
-
-
-app.get('/test', (req, res) => {
-  res.render('test', {
-    isLoggedIn: isLoggedIn
-  });
+app.get('/', (req, res) => {
+  res.render('test');
 })
 
 

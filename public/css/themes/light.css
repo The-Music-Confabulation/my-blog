@@ -1,11 +1,11 @@
 
 body {
-    background-color: rgb(245, 245, 245);
+    background-color: rgb(255, 255, 255);
     color: black;
 }
 
 header {
-  background-color: rgb(245, 245, 245);
+  background-color: rgb(255, 255, 255);
   color:black;
 }
 
@@ -16,13 +16,15 @@ header {
 
 .main{
   background-color: white;
-  border-radius: 3px;
+  /* border-radius: 3px;
   border: 1px solid rgb(219, 219, 219);
+  border-top: 0; */
 }
 .head-main{
   background-color: white;
-  border-radius: 3px;
+  /* border-radius: 3px;
   border: 1px solid rgb(219, 219, 219);
+  border-bottom: 0; */
 }
 
 a{
