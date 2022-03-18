@@ -336,7 +336,7 @@ app.post("/login", function (req, res) {
             //if true, then log the user in, else redirect to login page
             req.login(user, function (err) {
               isLoggedIn = true;
-              res.redirect("/");
+              res.redirect("/home");
             });
           } else {
             errors.push({

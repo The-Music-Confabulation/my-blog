@@ -7,7 +7,10 @@ body {
 header {
   background-color: rgb(255, 255, 255);
   color:black;
+    border-radius: 3px;
+  border-bottom: 1px solid rgb(219, 219, 219);
 }
+
 
 .page-link{
   background-color: white;
@@ -19,12 +22,14 @@ header {
   /* border-radius: 3px;
   border: 1px solid rgb(219, 219, 219);
   border-top: 0; */
+   border-radius: 3px;
+  border-left: 1px solid rgb(219, 219, 219);
+  border-right: 1px solid rgb(219, 219, 219);
 }
 .head-main{
   background-color: white;
-  /* border-radius: 3px;
-  border: 1px solid rgb(219, 219, 219);
-  border-bottom: 0; */
+
+  
 }
 
 a{

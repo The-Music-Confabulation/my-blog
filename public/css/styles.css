@@ -1,19 +1,31 @@
 .head-block {
 
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto Mono', monospace;
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto Mono', monospace;
   line-height: 1.3;
 }
 
 article {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto Mono', monospace;
 }
 
 #blog-title {
   font-size: 16px;
+}
+
+#myVideo {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
 }
 
 .nav-b {
@@ -292,6 +304,7 @@ Comment section
   div>a {
     font-size: 14px;
   }
+
   .date {
     font-size: 12px;
   }
