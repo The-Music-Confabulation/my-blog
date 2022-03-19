@@ -184,7 +184,7 @@ app.get("/home", async function (req, res) {
   var pages = Math.ceil(total / perPage); //calculate how many pages needed
   var pageNumber = (req.query.page == null) ? 1 : req.query.page;
   var startFrom = (pageNumber - 1) * perPage;
-  await Post.find({approved: {$eq: true}})
+  Post.find({approved: {$eq: true}})
             .skip(startFrom)
             .limit(perPage)
             .sort({ _id: -1})
