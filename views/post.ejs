@@ -1,18 +1,23 @@
 <%- include('partials/header'); -%>
 
 <body>
-    <div class="container-fluid body-block article-blog mb-5">
+<video autoplay loop muted playsinline id="myVideo">
+    <source id="vid-source" src="/video/new.mp4" type="video/mp4">
+  </video>
+    <div class="container-fluid body-block article-blog mb-5 w-50">
         <div class="py-3 mb-5">
-            <article class="blog-post border border-2 border-dark  p-3 mb-3">
+
+
+            <article class="blog-post p-3 mb-3">
                 <h1 class="fw-bold"><%=title %></h1>
-                <p class="blog-post-meta fw-light"><%=date %> by <a href="#"
-                        class="text-decoration-none"><%=author %></a>
-                </p>
+                <span class="blog-post-meta fw-light fs-6"><%=date %> by <a href="/profile/<%= author %>"
+                        class="text-decoration-none fs-6 fw-bold"><%=author %></a>
+                </span>
                 <p class=""><%-content %></p>
 
                 <hr style="visibility: hidden;">
                 <% if (url) { %>
-                <div class="ratio ratio-16x9">
+                <div class="ratio ratio-16x9 mb-3">
                     <iframe src="https://www.youtube.com/embed/<%= url %>" title="YouTube video" allowfullscreen
                         frameborder="0"></iframe>
                 </div>
@@ -22,19 +27,16 @@
             </article>
             <hr class="p-3" style="visibility: hidden;">
 
-            <h2>comment section:</h2>
             <section>
                 <div class="comment-section">
                     <div class="">
                         <div class="col-md-12 col-lg-12 col-xl-12">
                             <% post_comments.forEach(element => { %>
-                            <div class="card border border-2 border-dark rounded-3 mt-3">
-
+                            <div class="card mt-3">
                                 <!-- Display comment here -->
-
                                 <div class="card-body">
                                     <div class="">
-                                        <div class="row">
+                                        <div class="row d-flex align-items-center">
                                             <div class="col-1">
                                                 <!-- <svg  -->
                                                 <svg class="rounded-circle shadow-1-strong me-3 comment_profile"
@@ -46,9 +48,10 @@
                                             </div>
 
                                             <div class="col-9 comment_content">
-                                                <p class="text-decoration-none mt-0 fw-bold">
-                                                    <%=  element.comment_user %></p>
-                                                <p class="mb-0"> <%=  element.comment_content %> </p>
+                                                <span class="text-decoration-none mt-0 fw-bold">
+                                                    <a href="/profile/<%=  element.comment_user %>"class='text-decoration-none'><%=  element.comment_user %></a>
+                                                    </span>
+                                                <span class="mb-0"> <%=  element.comment_content %> </span>
 
                                             </div>
 
@@ -72,7 +75,7 @@
                 <div class="comment-section">
                     <div class="">
                         <div class="col-md-12 col-lg-12 col-xl-12">
-                            <div class="card border border-2 border-dark rounded-3 mt-3">
+                            <div class="card  mt-3">
 
 
 
@@ -90,12 +93,9 @@
                                                             class="form-control border border-2 border-dark rounded-3"
                                                             id="textAreaExample" rows="4"
                                                             name="commentContent"></textarea>
-                                                        <label class="form-label" for="textAreaExample">Message</label>
-
-                                                        <div class=" mt-2 pt-1">
-                                                            <button type="submit"
-                                                                class="btn btn-dark btn-lg">comment</button>
-                                                        </div>
+                                                        <label class="form-label mt-2" for="textAreaExample">Message</label>
+                                                        <button type="submit"
+                                                                class="btn"><i class="fa-solid fa-arrow-turn-up"></i></button>
                                                     </div>
 
 

@@ -65,10 +65,12 @@
                   </span>
                 </div>
 
+                <% if ( songs[a].url) { %>
                 <div class="ratio ratio-2x1  " style="--bs-aspect-ratio: 50%;">
                   <iframe class="" src="https://www.youtube.com/embed/<%= songs[a].url %>" title="YouTube video"
                     allowfullscreen frameborder="0"></iframe>
                 </div>
+                <%} %>
 
                 <div class="mt-2">
                   <span>

@@ -37,7 +37,7 @@ article {
 
 }
 
-.fa-heart:hover {
+.fa-heart:hover, .fa-message:hover{
   color: red;
   cursor: pointer;
 }
