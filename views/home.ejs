@@ -3,9 +3,9 @@
 <body>
 
   
-      <video autoplay loop muted playsinline id="myVideo">
-        <source src="/video/new.mp4" type="video/mp4">
-    </video>
+  <video autoplay loop muted playsinline id="myVideo">
+      <source id="vid-source" src="/video/new.mp4" type="video/mp4">
+  </video>
   <div class="container-fluid body-block">
     <div class="article-blog">
       <div class="row d-flex">
@@ -47,7 +47,7 @@
                   <h4 class="">Themes</h4>
                   <div class="theme-switches">
                     <div data-theme="light" class="switch" id="switch-1"></div>
-                    <div data-theme="dark" class="switch inline-block" id="switch-4"></div>
+                    <!-- <div data-theme="dark" class="switch inline-block" id="switch-4"></div> -->
                     <!-- <div data-theme="cadetblue" class="switch inline-block" id="switch-2"></div>
                     <div data-theme="coral" class="switch inline-block" id="switch-3"></div> -->
                   </div>
@@ -155,7 +155,7 @@
                 <div class="theme-switches">
                   <div data-theme="light" class="switch" id="switch-1"><span class="ps-5 fw-bold">light</span></div>
 
-                  <div data-theme="dark" class="switch" id="switch-4"><span class="ps-5 fw-bold">dark</span></div>
+                  <!-- <div data-theme="dark" class="switch" id="switch-4"><span class="ps-5 fw-bold">dark</span></div> -->
 
                   <!-- <div data-theme="cadetblue" class="switch" id="switch-2"><span class="ps-5 fw-bold">cadetblue</span>
                   </div>
@@ -197,23 +197,18 @@
       <div class="nav-b flex-column flex-md-row align-items-end">
 
         <nav class=" mt-2 mt-md-0 ms-md-auto pb-1">
-          <a href="/home" class="nav-link mx-2 text-decoration-none nav-a" id="compose"><i
-              class="fa-solid fa-arrow-rotate-left"></i></a>
+          <a href="/home" class="nav-link mx-2 text-decoration-none nav-a" id="compose"><i class="fa-solid fa-house"></i></a>
           <a href="/compose" class="nav-link mx-2 text-decoration-none nav-a " id="compose"><i
               class="fa-solid fa-plus"></i></a>
-          <a href="/profile" class="nav-link mx-2 text-decoration-none nav-a" id="profile"><i
-              class="fa-solid fa-question"></i></a>
+          <a href="/profile" class="nav-link mx-2 text-decoration-none nav-a" id="profile"><i class="fa-solid fa-cloud"></i></a>
 
 
           <% if (!isLoggedIn) { %>
-          <a href="/login" class="nav-link mx-2 text-decoration-none nav-a" id="logi"><i
-              class="fa-solid fa-angle-right"></i></a>
-          <a href="/signup" class="nav-link mx-2 text-decoration-none nav-a" id="signu"><i
-              class="fa-solid fa-angle-up"></i></a>
+          <a href="/login" class="nav-link mx-2 text-decoration-none nav-a" id="logi"><i class="fa-solid fa-volume-high"></i></a>
+          <a href="/signup" class="nav-link mx-2 text-decoration-none nav-a" id="signu"><i class="fa-solid fa-circle-arrow-up"></i></a>
 
           <%} else { %>
-          <a href="/logout" class="nav-link mx-2 text-decoration-none nav-a " id="logout"><i
-              class="fa-solid fa-right-from-bracket"></i></a>
+          <a href="/logout" class="nav-link mx-2 text-decoration-none nav-a " id="logout">\<i class="fa-solid fa-volume-xmark"></i></a>
           <% } %>
 
 

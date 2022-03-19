@@ -17,12 +17,14 @@ for (let i of switches) {
 function setTheme(theme) {
   if (theme == 'light') {
     document.getElementById('switcher-id').href = '/css/themes/light.css';
+    // document.getElementById('vid-source').src="/video/new.mp4";
   } else if (theme == 'cadetblue') {
     document.getElementById('switcher-id').href = '/css/themes/cadetblue.css';
   } else if (theme == 'coral') {
     document.getElementById('switcher-id').href = '/css/themes/coral.css';
   } else if (theme == 'dark') {
     document.getElementById('switcher-id').href = '/css/themes/dark.css';
+    // document.getElementById('vid-source').src="/video/dark2.mp4";
   }
   localStorage.setItem('style', theme);
 }

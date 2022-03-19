@@ -17,20 +17,20 @@
                                         <% if (current_user_id == id && isLoggedIn) { %>
                                         <button type="button  flex-fill" class="btn btn-dark mx-auto profile-pic"
                                             data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                            <i class="fa-solid fa-cat"></i></button>
+                                            <i class="fa-solid fa-cloud"></i></button>
                                         <%} else {%>
                                         <button type="button" class="btn btn-dark mx-auto profile-pic">
-                                            <i class="fa-solid fa-cat"></i></button>
+                                            <i class="fa-solid fa-cloud"></i></button>
                                         <%}%>
-                                        <span class="fw-bold fs-4">@<%= username %> </span>
+                                        <span class="fw-bold fs-4 ms-3">@<%= username %> </span>
                                         <hr>
-                                        <button class="button-profile text-center  border-0 ">
+                                        <button class="button-profile text-center  rounded ">
                                             <span id="follower-num"><%= posts.length %></span>
                                         <span> posts</span>
                                         </button>
 
                                     
-                                        <button type="button"  class=" button-profile text-center  border-0"
+                                        <button type="button"  class=" button-profile text-center rounded"
                                             data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
                                             <span id="follower-num"><%= followers.length %></span>
                                             <span> followers</span>
@@ -59,7 +59,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                      <button type="button"  class="button-profile text-center  border-0"
+                                      <button type="button"  class="button-profile text-center rounded"
                                             data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
                                             <span id=""><%= following.length %></span>
                                             <span> following</span>
@@ -211,7 +211,7 @@
                                             class="fa fa-instagram"></i></span> <span><i
                                             class="fa fa-linkedin"></i></span> </div> -->
                                     <div class=" flex-row justify-content-center align-items-center mt-3">
-                                        <span class="number"><%= dateJoin %></span>
+                                        <span class="number ">Joined <%= dateJoin %></span>
                                     </div>
                                 </div>
                             </div>
@@ -245,26 +245,27 @@
 
       
     <div class="media fixed-bottom ">
-        <div class="nav-b flex-column flex-md-row align-items-end">
-  
-          <nav class=" mt-2 mt-md-0 ms-md-auto pb-1">
-            <a href="/" class="nav-link mx-2 text-decoration-none nav-a" id="compose"><i class="fa-solid fa-arrow-rotate-left"></i></a>
-            <a href="/compose" class="nav-link mx-2 text-decoration-none nav-a " id="compose"><i class="fa-solid fa-plus"></i></a>
-            <a href="/profile" class="nav-link mx-2 text-decoration-none nav-a" id="profile"><i class="fa-solid fa-question"></i></a>
-  
-                                        
-            <% if (!isLoggedIn) { %>
-            <a href="/login" class="nav-link mx-2 text-decoration-none nav-a" id="logi"><i class="fa-solid fa-angle-right"></i></a>
-            <a href="/signup" class="nav-link mx-2 text-decoration-none nav-a" id="signu"><i class="fa-solid fa-angle-up"></i></a>
-  
-            <%} else { %>
-            <a href="/logout" class="nav-link mx-2 text-decoration-none nav-a " id="logout"><i class="fa-solid fa-right-from-bracket"></i></a>
-            <% } %>
-  
-            
-          </nav>
-        </div>
+      <div class="nav-b flex-column flex-md-row align-items-end">
+
+        <nav class=" mt-2 mt-md-0 ms-md-auto pb-1">
+          <a href="/home" class="nav-link mx-2 text-decoration-none nav-a" id="compose"><i class="fa-solid fa-house"></i></a>
+          <a href="/compose" class="nav-link mx-2 text-decoration-none nav-a " id="compose"><i
+              class="fa-solid fa-plus"></i></a>
+          <a href="/profile" class="nav-link mx-2 text-decoration-none nav-a" id="profile"><i class="fa-solid fa-cloud"></i></a>
+
+
+          <% if (!isLoggedIn) { %>
+          <a href="/login" class="nav-link mx-2 text-decoration-none nav-a" id="logi"><i class="fa-solid fa-volume-high"></i></a>
+          <a href="/signup" class="nav-link mx-2 text-decoration-none nav-a" id="signu"><i class="fa-solid fa-circle-arrow-up"></i></a>
+
+          <%} else { %>
+          <a href="/logout" class="nav-link mx-2 text-decoration-none nav-a " id="logout">\<i class="fa-solid fa-volume-xmark"></i></a>
+          <% } %>
+
+
+        </nav>
       </div>
+    </div>
     <script src="/scripts/scripts.js"></script>
 </body>
 <%- include('partials/footer'); -%>

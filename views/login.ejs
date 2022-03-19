@@ -71,31 +71,26 @@
 
       
     <div class="media fixed-bottom ">
-        <div class="nav-b flex-column flex-md-row align-items-end">
+      <div class="nav-b flex-column flex-md-row align-items-end">
 
-            <nav class=" mt-2 mt-md-0 ms-md-auto pb-1">
-                <a href="/" class="nav-link mx-2 text-decoration-none nav-a" id="compose"><i
-                        class="fa-solid fa-arrow-rotate-left"></i></a>
-                <a href="/compose" class="nav-link mx-2 text-decoration-none nav-a " id="compose"><i
-                        class="fa-solid fa-plus"></i></a>
-                <a href="/profile" class="nav-link mx-2 text-decoration-none nav-a" id="profile"><i
-                        class="fa-solid fa-question"></i></a>
+        <nav class=" mt-2 mt-md-0 ms-md-auto pb-1">
+          <a href="/home" class="nav-link mx-2 text-decoration-none nav-a" id="compose"><i class="fa-solid fa-house"></i></a>
+          <a href="/compose" class="nav-link mx-2 text-decoration-none nav-a " id="compose"><i
+              class="fa-solid fa-plus"></i></a>
+          <a href="/profile" class="nav-link mx-2 text-decoration-none nav-a" id="profile"><i class="fa-solid fa-cloud"></i></a>
 
 
-                <% if (!isLoggedIn) { %>
-                <a href="/login" class="nav-link mx-2 text-decoration-none nav-a" id="logi"><i
-                        class="fa-solid fa-angle-right"></i></a>
-                <a href="/signup" class="nav-link mx-2 text-decoration-none nav-a" id="signu"><i
-                        class="fa-solid fa-angle-up"></i></a>
+          <% if (!isLoggedIn) { %>
+          <a href="/login" class="nav-link mx-2 text-decoration-none nav-a" id="logi"><i class="fa-solid fa-volume-high"></i></a>
+          <a href="/signup" class="nav-link mx-2 text-decoration-none nav-a" id="signu"><i class="fa-solid fa-circle-arrow-up"></i></a>
 
-                <%} else { %>
-                <a href="/logout" class="nav-link mx-2 text-decoration-none nav-a " id="logout"><i
-                        class="fa-solid fa-right-from-bracket"></i></a>
-                <% } %>
+          <%} else { %>
+          <a href="/logout" class="nav-link mx-2 text-decoration-none nav-a " id="logout">\<i class="fa-solid fa-volume-xmark"></i></a>
+          <% } %>
 
 
-            </nav>
-        </div>
+        </nav>
+      </div>
     </div>
 
     <script src="/scripts/scripts.js"></script>

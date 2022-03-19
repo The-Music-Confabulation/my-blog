@@ -34,7 +34,7 @@ a{
   color: rgb(255, 255, 255);
 }
 
-article, article > div> a, a > i, .card-body, div > button{
+article, article > div> a, a > i, div > button{
   background-color: rgb(230, 230, 230);
   border-radius: 25px;
   /* border: 1px solid rgb(219, 219, 219); */
@@ -88,3 +88,4 @@ article, article > div> a, a > i, .card-body, div > button{
 .fa-heart{
   color:black;
 }
+

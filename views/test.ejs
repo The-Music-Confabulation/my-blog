@@ -24,16 +24,27 @@
 
         a {
             text-decoration: none;
-            color: white;
+            color: rgb(0, 0, 0);
         }
 
+        a:hover {
+            text-decoration: none;
+            color: rgb(255, 255, 255);
+        }
+
+        button{
+            color: rgb(0, 0, 0);
+        }
+        button:hover{
+            color:white;
+        }
         #myVideo {
             position: fixed;
             right: 0;
             bottom: 0;
             min-width: 100%;
             min-height: 100%;
-      
+
         }
 
         .center {
@@ -51,15 +62,16 @@
             letter-spacing: 1px;
             padding: 13px 30px 13px;
             outline: 0;
-            border: 1px solid rgb(255, 255, 255);
+            border: 1px solid rgb(0, 0, 0);
             cursor: pointer;
             position: relative;
             background-color: rgba(0, 0, 0, 0);
         }
 
-        .slide div {
-            transition: transform 0.8s;
+        .slide:hover {
+            border: 1px solid rgb(255, 255, 255);
         }
+
         .slide:hover i {
             opacity: 1;
             transform: translateX(-6px);
@@ -70,13 +82,16 @@
 
 <body>
 
-    <video  autoplay loop muted playsinline id="myVideo">
+    <video autoplay loop muted playsinline id="myVideo">
         <source src="/video/new.mp4" type="video/mp4">
     </video>
     <div class="center">
-        <button type="button" class="slide">
-            <div> <a href="/home">home</a></div>
-        </button>
+        <a href="/home">
+            <button type="button" class="slide">
+                home
+            </button>
+        </a>
+
     </div>
 </body>
 
