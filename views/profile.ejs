@@ -64,7 +64,8 @@
                                                         </div>
                                                         <div class="modal-body">
                                                             <% followers.forEach(element => { %>
-                                                            <p> <%=  element.follower_username %></p>
+
+                                                            <p><a class="text-dark text-decoration-none fw-bold" href="/profile/<%= element.follower_username %>"><i class="fa-solid fa-cloud-arrow-down"></i> <%= element.follower_username %></a></p>
                                                             <% }) %>
                                                         </div>
                                                         <div class="modal-footer">
@@ -93,7 +94,7 @@
                                                         </div>
                                                         <div class="modal-body">
                                                             <% following.forEach(element => { %>
-                                                            <p> <%=  element.following_username %></p>
+                                                            <p><a class="text-dark text-decoration-none fw-bold" href="/profile/<%=  element.following_username %>"><i class="fa-solid fa-cloud-arrow-up"></i> <%=  element.following_username %></a></p>
                                                             <% }) %>
                                                         </div>
                                                         <div class="modal-footer">
