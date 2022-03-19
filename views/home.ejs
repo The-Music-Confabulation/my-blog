@@ -72,9 +72,23 @@
                 <div class="mt-2">
                   <span>
                   <% if (isLoggedIn) { %>
-                  <i id="<%=a%>heart-icon" class="fa-solid fa-heart"
-                    onclick="updateLike('<%= songs[a]._id %>','<%= songs[a].title%>', '<%= songs[a].like.length %>', '<%= a %>', '<%= current_user_info %>')">
-                  </i>
+                  
+                      
+                      <% let alreadylike= false %> 
+                     <% for( let i = 0; i < songs[a].like.length; i++ ) { %>
+                       <% if (songs[a].like[i].like_username===current_user_info ) { %>
+                                 <% alreadylike= true %>    
+                        <% } %> 
+                      <% } %>
+
+                        <% if (alreadylike) { %>
+                            <i class="fa-solid fa-heart" style="color:red"></i>
+                        <% } else {%>
+                            <i id="<%=a%>heart-icon" class="fa-solid fa-heart"
+                            onclick="updateLike('<%= songs[a]._id %>','<%= songs[a].title%>', '<%= songs[a].like.length %>', '<%= a %>', '<%= current_user_info %>')">
+                            </i>
+                        <% } %> 
+
                   <% } else { %>
                   <a href="/login"><i class="fa-solid fa-heart"></i></a>
                   <% } %>
