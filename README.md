@@ -1,4 +1,6 @@
 # <h1 align="center"> :wave: Welcome to the Music Confabulation :musical_note: [www.confabulation.me ](https://www.confabulation.me/)
+# <h2 align="center"> Check out how the platform is doing on [Data visualization](   https://music-blog-visualization.herokuapp.com/)
+
 <p align ="center">
 <img src="https://github.com/The-Music-Confabulation/my-blog/blob/f8a090207cdb1bde12a5c5fa2abeda512cbb5073/readme-img/cover-page.gif" alt="Markdownify" width="80%" height="80%"></a>
 </p>
