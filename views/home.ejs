@@ -103,15 +103,15 @@
                       <% for( let index = 0; index <= 1; index++ ) { %>
                       <a href="/profile/<%= songs[a].like[index].like_username %>" class="text-decoration-none">
                         <%= songs[a].like[index].like_username %></a>,
-                      <% } %> and<span id="<%=a%>other-likes"><button type="button" class="border-0" data-bs-toggle="modal"
-                          data-bs-target="#likelist<%=a%>"><%= songs[a].like.length -2 %></button></span>others
+                      <% } %> and <span id="<%=a%>other-likes"><button type="button" class="border-0 p-0" data-bs-toggle="modal"
+                          data-bs-target="#likelist<%=a%>"><%= songs[a].like.length -2 %></button></span> others
                       <div class="like-list-button">
                         <div class="modal fade" id="likelist<%=a%>" tabindex="-1" aria-labelledby="exampleModalLabel"
                           aria-hidden="true">
                           <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                               <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">liked by</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">liked by </h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                   aria-label="Close"></button>
                               </div>
@@ -142,9 +142,9 @@
                       <%= songs[a].like.length %>
                     </span>
                     <% } else {%>
-                    <span class="">liked by</span>
+                    <span class="">liked by </span>
                     <span class="" id="<%=a%>other-likes">
-                      <a href="/profile/<%= songs[a].like[0].like_username %>" class="text-decoration-none">
+                      <a href="/profile/<%= songs[a].like[0].like_username %>" class="text-decoration-none p-0">
                         <%= songs[a].like[0].like_username %></a>
                     </span>
 

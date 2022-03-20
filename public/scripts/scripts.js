@@ -42,18 +42,21 @@ function updateLike(id, title, numberLikes, post_number, user){
     let output = "liked by " + user.toString()
     document.getElementById(text_id).textContent = output
     document.getElementById(post_number.toString()+"heart-icon").style.color= "#EB0000";
+    document.getElementById(post_number.toString()+"heart-icon").onclick = null;
   } 
   else if ( numberLikes >= 2){
     let output = parseInt(document.getElementById(text_id).textContent);
     output+=1; 
     document.getElementById(text_id).textContent = output.toString()
     document.getElementById(post_number.toString()+"heart-icon").style.color= "#EB0000";
+    document.getElementById(post_number.toString()+"heart-icon").onclick = null;
   }
   else {
     let output = document.getElementById(text_id).textContent; //like by <user>
     output += " and " + user
     document.getElementById(text_id).textContent = output.toString()
     document.getElementById(post_number.toString()+"heart-icon").style.color= "#EB0000";
+    document.getElementById(post_number.toString()+"heart-icon").onclick = null;
   }
   
   
