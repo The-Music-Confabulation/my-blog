@@ -768,14 +768,13 @@ app.get('/admin/dashboard', async (req, res) => {
         username: "admin",
         password:  process.env.ADMIN_PW
       });
-
-       Post.find({}, await function(err, foundPost) {
+       passport.authenticate("local", function (err, user) {
+          Post.find({}, await function(err, foundPost) {
           res.render("admindashboard", {
                  foundPost:foundPost
           }); 
-      }).sort({ _id: -1});
-
-      
+          }).sort({ _id: -1});
+       })
   }
   else{
    res.redirect('/login');
