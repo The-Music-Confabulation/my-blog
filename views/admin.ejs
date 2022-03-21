@@ -1,0 +1,26 @@
+<body>
+    <style>
+        .center {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+    </style>
+    <div class="center">
+        <form action="/admin" method="POST">
+            <!-- <img class="mb-4" src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
+            <div class="">
+                <input type="text" name="username" class="" id="floatingInput" placeholder="Username">
+                <label for="floatingInput">username</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" name="password" class="" id="floatingPassword" placeholder="Password">
+                <label for="floatingPassword">password</label>
+            </div>
+            <button class="" type="submit">sign in</button>
+        </form>
+    </div>
+
+</body>

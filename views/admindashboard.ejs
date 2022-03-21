@@ -1,0 +1,43 @@
+<body>
+    <h1>Admin</h1>
+    <ol>
+        <h2>Total post: <%= foundPost.length %> </h2>
+        <% for  (var a = 0; a < foundPost.length; a++) { %>
+
+        <form action="/admin/dashboard/<%= foundPost[a]._id %>" method="POST">
+            <li>
+                <span>
+                    Name: <%= foundPost[a].title %>
+                    <a href="https://www.youtube.com/watch?v=<%= foundPost[a].url %>">
+                        <%= foundPost[a].url %>
+                    </a>
+                    <br>
+                    (ID: <%= foundPost[a]._id %>)
+                </span>
+
+                <p>
+                    Content: <%= foundPost[a].content %>
+                </p>
+                <p>
+                    Approved: <%= foundPost[a].approved %>
+                </p>
+                <p>
+                    <ul>
+                        <% if (foundPost[a].approved === false) { %>
+                        <li>
+                            <input type="radio" value="approve" name="act" id="approve">
+                            <label for="approve">approve</label>
+                        </li>
+                        <button type="submit">
+                            Submit
+                        </button>
+                        <% } %>
+                 
+                    </ul>
+
+                </p>
+            </li>
+        </form>
+        <%} %>
+    </ol>
+</body>

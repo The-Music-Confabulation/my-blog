@@ -44,7 +44,7 @@ app.use(session({
   secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true,
-  cookie: {}
+  cookie: { maxAge: 2592000000 }
 }));
 
 app.use(passport.initialize());
@@ -99,6 +99,7 @@ const Like = mongoose.model("Like", likeSchema);
 const commentSchema = new mongoose.Schema({
   comment_user: "string",
   comment_content: "string",
+   comment_id: "string",
   comment_date: "string"
 });
 
@@ -441,6 +442,7 @@ app.post("/posts/:postId", (req, res) => {
     const comment = new Comment({
     comment_user: req.user.username,
     comment_content: req.body.commentContent,
+    comment_id: post_id,
     comment_date: now.format("dddd, MMMM D YYYY")
   });
 
@@ -696,6 +698,119 @@ app.post('/profile/:name/follow/:id', (req, res) => {
 app.get('/', (req, res) => {
   res.render('test');
 })
+
+
+app.get('/admin', (req, res) => {
+  res.render("admin", {
+    isLoggedIn: isLoggedIn
+  });
+});
+
+app.post("/admin", function (req, res) {
+  let errors = []
+  //check the DB to see if the username that was used to login exists in the DB
+  User.findOne({
+    username: req.body.username
+  }, function (err, foundUser) {
+
+    //if username is found in the database, create an object called "user" that will store the username and password
+    //that was used to login
+    if (foundUser) {
+      const user = new User({
+        username: "admin",
+        password: req.body.password
+      });
+      //use the "user" object that was just created to check against the username and password in the database
+      //in this case below, "user" will either return a "false" boolean value if it doesn't match, or it will
+      //return the user found in the database
+      passport.authenticate("local", function (err, user) {
+        if (err) {
+          console.log(err);
+        } else {
+          //this is the "user" returned from the passport.authenticate callback, which will be either
+          //a false boolean value if no it didn't match the username and password or
+          //a the user that was found, which would make it a truthy statement
+          if (user) {
+            //if true, then log the user in, else redirect to login page
+            req.login(user, function (err) {
+              isLoggedIn = true;
+              res.redirect("/admin/dashboard");
+            });
+          } else {
+            errors.push({
+              msg: "Incorrect username or password."
+            })
+            res.render('login', {
+              errors,
+              isLoggedIn
+            })
+          }
+        }
+      })(req, res);
+      //if no username is found at all, redirect to login page.
+    } else {
+      //user does not exists
+      errors.push({
+        msg: 'The username that you\'ve entered doesn\'t match any account. Sign up for an account.'
+      })
+      res.render('login', {
+        errors,
+        isLoggedIn
+      });
+    }
+  });
+});
+
+app.get('/admin/dashboard', async (req, res) => {
+  if (req.isAuthenticated()) {
+    
+    const user = User({
+        username: "admin",
+        password:  process.env.ADMIN_PW
+      });
+
+       Post.find({}, await function(err, foundPost) {
+          res.render("admindashboard", {
+                 foundPost:foundPost
+          }); 
+      }).sort({ _id: -1});
+
+      
+  }
+  else{
+   res.redirect('/login');
+  }
+});
+
+app.post('/admin/dashboard/:id', (req, res) => {
+  if (req.isAuthenticated()) {
+    
+      const user = User({
+        username: "admin",
+        password:  process.env.ADMIN_PW
+      });
+
+      passport.authenticate("local", function (err, user) {
+          todo = req.body.act
+          if(todo==='delete' ){     
+            res.redirect('/admin/dashboard');
+          }
+          else if(todo==='approve'){     
+            console.log("Updating");
+            Post.updateOne({ '_id': req.params.id }, {'$set': {'approved': 'true'}}, function (err) {
+              if (err) return handleError(err);
+            });
+            res.redirect('/admin/dashboard');
+          }
+
+      })
+      
+  }
+  else{
+   res.redirect('/login');
+  }
+});
+
 
 
 let port = process.env.PORT;
