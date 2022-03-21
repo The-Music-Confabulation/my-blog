@@ -761,18 +761,19 @@ app.post("/admin", function (req, res) {
   });
 });
 
-app.get('/admin/dashboard', async (req, res) => {
+app.get('/admin/dashboard', (req, res) => {
   if (req.isAuthenticated()) {
-    
     const user = User({
         username: "admin",
         password:  process.env.ADMIN_PW
       });
+
+
        passport.authenticate("local", function (err, user) {
-          Post.find({}, await function(err, foundPost) {
+          Post.find({}, function(err, foundPost) {
           res.render("admindashboard", {
                  foundPost:foundPost
-          }); 
+             }); 
           }).sort({ _id: -1});
        })
   }
