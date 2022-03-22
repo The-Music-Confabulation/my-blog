@@ -167,7 +167,7 @@ app.use(bodyParser.urlencoded({
 app.use(express.static("public"));
 
 let isLoggedIn = false;
-
+let isAdmin = false;
 var getYouTubeID = require('get-youtube-id');
 
 
@@ -709,16 +709,18 @@ app.get('/admin', (req, res) => {
 app.post("/admin", function (req, res) {
   let errors = []
   //check the DB to see if the username that was used to login exists in the DB
+
+
   User.findOne({
     username: req.body.username
   }, function (err, foundUser) {
-
+ 
     //if username is found in the database, create an object called "user" that will store the username and password
     //that was used to login
     if (foundUser) {
-      const user = new User({
+      let user = new User({
         username: "admin",
-        password: req.body.password
+        password: process.env.ADMIN_PW
       });
       //use the "user" object that was just created to check against the username and password in the database
       //in this case below, "user" will either return a "false" boolean value if it doesn't match, or it will
@@ -730,10 +732,14 @@ app.post("/admin", function (req, res) {
           //this is the "user" returned from the passport.authenticate callback, which will be either
           //a false boolean value if no it didn't match the username and password or
           //a the user that was found, which would make it a truthy statement
-          if (user) {
+
+          if (user.username==='admin') {
             //if true, then log the user in, else redirect to login page
             req.login(user, function (err) {
               isLoggedIn = true;
+              isAdmin=true;
+
+
               res.redirect("/admin/dashboard");
             });
           } else {
@@ -762,20 +768,17 @@ app.post("/admin", function (req, res) {
 });
 
 app.get('/admin/dashboard', (req, res) => {
+
   if (req.isAuthenticated()) {
-    const user = User({
-        username: "admin",
-        password:  process.env.ADMIN_PW
-      });
 
-
-       passport.authenticate("local", function (err, user) {
-          Post.find({}, function(err, foundPost) {
+       
+        if(isAdmin)
+       {   Post.find({}, function(err, foundPost) {
           res.render("admindashboard", {
                  foundPost:foundPost
              }); 
-          }).sort({ _id: -1});
-       })
+          }).sort({ _id: -1});}
+       
   }
   else{
    res.redirect('/login');
@@ -783,14 +786,8 @@ app.get('/admin/dashboard', (req, res) => {
 });
 
 app.post('/admin/dashboard/:id', (req, res) => {
-  if (req.isAuthenticated()) {
-    
-      const user = User({
-        username: "admin",
-        password:  process.env.ADMIN_PW
-      });
+  if (isAdmin) {
 
-      passport.authenticate("local", function (err, user) {
           todo = req.body.act
           if(todo==='delete' ){     
             res.redirect('/admin/dashboard');
@@ -803,7 +800,7 @@ app.post('/admin/dashboard/:id', (req, res) => {
             res.redirect('/admin/dashboard');
           }
 
-      })
+   
       
   }
   else{
