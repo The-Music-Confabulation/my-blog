@@ -58,15 +58,9 @@
 
             <div class="col-9  pb-3 "> <% for  (var a = 0; a < songs.length; a++) { %>
               <article class="blog-post ">
-                <div class="mb-3">
-                  <a href="/profile/<%= songs[a].author %>" id="blog-title"
-                    class="text-decoration-none fw-bold"><%= songs[a].author %></a><span> posted:</span>
-                  <a class="text-decoration-none fw-bold" href="/posts/<%= songs[a]._id %>"><%=songs[a].title %></a>
-                  </span>
-                </div>
-
+              
                 <% if ( songs[a].url) { %>
-                <div class="ratio ratio-2x1  " style="--bs-aspect-ratio: 50%;">
+                <div class="ratio ratio-2x1 mt-3 " style="--bs-aspect-ratio: 50%;">
                   <iframe class="" src="https://www.youtube.com/embed/<%= songs[a].url %>" title="YouTube video"
                     allowfullscreen frameborder="0"></iframe>
                 </div>
@@ -149,16 +143,52 @@
                     </span>
 
                     <% } %>
-                  </span>
 
-                  <span class="">
-                    <a class="text-decoration-none" id="" href="/posts/<%= songs[a]._id %>"><i
+
+                  </span>
+                                      <a class="text-decoration-none" id="" href="/posts/<%= songs[a]._id %>"><i
                         class="fa-solid fa-message"></i></a>
                     <span class=" me-2"> <%=songs[a].comments.length %> comments</span>
                     <i class="fa-solid fa-hashtag"></i>
                     <span class=""> <%=songs[a].tag %> </span>
+
+                <div class="mb-3">
+                  <span> 
+                  <a href="/profile/<%= songs[a].author %>" id="blog-title"
+                    class="text-decoration-none fw-bold"><%= songs[a].author %></a>
+                  posted:
+                  <a class="text-decoration-none fw-bold " href="/posts/<%= songs[a]._id %>"><%=songs[a].title %></a>
+                  </span>
+                  <br>
+                  <span>
+                    <% if (songs[a].comments.length >= 2) { %>
+                         <% for( let index = 0; index <= 1; index++ ) { %>
+                              <span>
+                              <i class="fa-solid fa-arrow-right-long"></i>
+                              <a href="/profile/<%= songs[a].comments[index].comment_user %>" id=""
+                                    class="text-decoration-none fw-bold"><%= songs[a].comments[index].comment_user %></a>
+                                  <%=songs[a].comments[index].comment_content %>
+                              </span>
+                              <br>
+                          <% } %>
+
+                    <% } else {%> 
+                          <% for( let index = 0; index < songs[a].comments.length; index++ ) { %>
+                              <span>
+                              <i class="fa-solid fa-arrow-right-long"></i>
+                              <a href="/profile/<%= songs[a].comments[index].comment_user %>" id=""
+                                    class="text-decoration-none fw-bold"><%= songs[a].comments[index].comment_user %></a>
+                                  <%=songs[a].comments[index].comment_content %>
+                              </span>
+                              <br>
+                          <% } %>
+                     <% } %>
                   </span>
                 </div>
+
+
+
+              
                 <p class="fw-light date mt-2"><%=songs[a].date %> </p>
               </article>
 
@@ -166,17 +196,17 @@
 
 
               <div class="btn-group" role="group" aria-label="Default button group">
-                <a class="btn " href="?page=1" aria-label="Previous">
+                <a class="btn " href="home/?page=1" aria-label="Previous">
                   <span aria-hidden="true" class="fw-bold">&laquo;</span>
                 </a>
 
                 <% for  (var a = 1; a <= pages; a++) { %>
-                <a class="btn  border-end-0 border-start-0" href="?page=<%=a; %>" aria-label="Previous">
+                <a class="btn  border-end-0 border-start-0" href="home/?page=<%=a; %>" aria-label="Previous">
                   <span aria-hidden="true" class="fw-bold"><%= a; %></span>
                 </a>
                 <% } %>
 
-                <a class="btn " href="?page=<%=pages%>" aria-label="Previous">
+                <a class="btn " href="home/?page=<%=pages%>" aria-label="Previous">
                   <span aria-hidden="true" class="fw-bold">&raquo;</span>
                 </a>
               </div>
