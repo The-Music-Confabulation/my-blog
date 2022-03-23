@@ -551,6 +551,7 @@ app.get("/profile", (req, res) => {
     User.findById(req.user._id)
       .populate("followings")
       .populate("followers")
+      .populate("numberOfPosts")
       .exec(function (err, results) {
         res.render("profile", {
           alreadyFollow: false,

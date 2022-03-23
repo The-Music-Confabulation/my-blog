@@ -96,9 +96,21 @@
                       liked by
                       <% for( let index = 0; index <= 1; index++ ) { %>
                       <a href="/profile/<%= songs[a].like[index].like_username %>" class="text-decoration-none">
-                        <%= songs[a].like[index].like_username %></a>,
-                      <% } %> and <span id="<%=a%>other-likes"><button type="button" class="border-0 p-0" data-bs-toggle="modal"
-                          data-bs-target="#likelist<%=a%>"><%= songs[a].like.length -2 %></button></span> others
+                        <%= songs[a].like[index].like_username %></a>
+                          <% if (index !== 1){ %>
+                            ,   
+                          <% } %>
+                      <% } %> 
+                      
+                      <% if (songs[a].like.length -2 !== 0) { %>
+                        and <span id="<%=a%>other-likes">
+                        <button type="button" class="border-0 p-0" data-bs-toggle="modal"
+                          data-bs-target="#likelist<%=a%>"><%= songs[a].like.length -2 %></button>
+                        </span>
+                        others
+                      <% } %>
+
+
                       <div class="like-list-button">
                         <div class="modal fade" id="likelist<%=a%>" tabindex="-1" aria-labelledby="exampleModalLabel"
                           aria-hidden="true">
