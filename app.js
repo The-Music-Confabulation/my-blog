@@ -449,9 +449,11 @@ app.get("/posts/:postId", (req, res) => {
     });
 });
 
-app.post("/posts/:postId", (req, res) => {
+app.post("/comments/:view/:postId", (req, res) => {
   // find out which post are being commented on
   const post_id = req.params.postId;
+  let route_back = req.params.view;
+  
   // const comment_user = req.body.commentUsername;
   // const comment_content = req.body.commentContent;
   let now = dayjs();
@@ -464,6 +466,8 @@ app.post("/posts/:postId", (req, res) => {
       comment_date: now.format("dddd, MMMM D YYYY"),
     });
 
+    console.log(post_id);
+    console.log(route_back);
     comment.save((err, result) => {
       if (err) {
         console.log(err);
@@ -484,7 +488,15 @@ app.post("/posts/:postId", (req, res) => {
           } else {
             foundUser.comment.push(result);
             foundUser.save();
-            res.redirect("/posts/" + post_id);
+            if (route_back==='home'){
+              res.redirect("/home");  
+            } 
+            else if (route_back === "post") {
+              res.redirect("/posts/" + post_id);
+            }
+            else {
+              res.redirect("/home");  
+            }
           }
         });
       }

@@ -173,8 +173,8 @@
                   </span>
                   <br>
                   <span>
-                    <% if (songs[a].comments.length >= 2) { %>
-                         <% for( let index = songs[a].comments.length; index <= 1; index++ ) { %>
+                    <% if (songs[a].comments.length >= 3) { %>
+                         <% for( let index = songs[a].comments.length-2; index <= songs[a].comments.length-1; index++ ) { %>
                               <span>
                               <i class="fa-solid fa-arrow-right-long"></i>
                               <a href="/profile/<%= songs[a].comments[index].comment_user %>" id=""
@@ -198,12 +198,12 @@
                   </span>
                   <div>
                                         <button type="button" class="text-center border-0 p-0"
-                                            data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
+                                            data-bs-toggle="modal" data-bs-target="#comment-edit-<%=songs[a].id %>">
                                             <i class="fa-solid fa-arrow-right-long"></i>
                                         </button>
 
-                                        <form  action="/posts/<%=songs[a].id %>" method="POST">
-                                              <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static"
+                                        <form  action="/comments/home/<%=songs[a].id %>" method="POST">
+                                              <div class="modal fade" id="comment-edit-<%=songs[a].id %>" data-bs-backdrop="static"
                                               data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
                                               aria-hidden="true">
                                               <div class="modal-dialog modal-dialog-centered">
