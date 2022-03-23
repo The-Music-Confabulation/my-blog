@@ -158,7 +158,7 @@
 
 
                   </span>
-                                      <a class="text-decoration-none" id="" href="/posts/<%= songs[a]._id %>"><i
+                <a class="text-decoration-none" id="" href="/posts/<%= songs[a]._id %>"><i
                         class="fa-solid fa-message"></i></a>
                     <span class=" me-2"> <%=songs[a].comments.length %> comments</span>
                     <i class="fa-solid fa-hashtag"></i>
@@ -174,7 +174,7 @@
                   <br>
                   <span>
                     <% if (songs[a].comments.length >= 2) { %>
-                         <% for( let index = 0; index <= 1; index++ ) { %>
+                         <% for( let index = songs[a].comments.length; index <= 1; index++ ) { %>
                               <span>
                               <i class="fa-solid fa-arrow-right-long"></i>
                               <a href="/profile/<%= songs[a].comments[index].comment_user %>" id=""
@@ -196,6 +196,44 @@
                           <% } %>
                      <% } %>
                   </span>
+                  <div>
+                                        <button type="button" class="text-center border-0 p-0"
+                                            data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
+                                            <i class="fa-solid fa-arrow-right-long"></i>
+                                        </button>
+
+                                        <form  action="/posts/<%=songs[a].id %>" method="POST">
+                                              <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static"
+                                              data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                              aria-hidden="true">
+                                              <div class="modal-dialog modal-dialog-centered">
+                                                  <div class="modal-content">
+                                                      <div class="modal-header">
+                                                          <h5 class="modal-title" id="staticBackdropLabel">
+                                                              please be polite
+                                                          </h5>
+                                                      </div>
+                                                      <div class="modal-body">
+                                                        <label class="form-label" for="commentContent">Comment</label>
+                                                        <input type="text" id="<%=songs[a].id %>commentEdit" name="commentContent"
+                                                            class="form-control form-control-lg border border-2 border-dark rounded-3" />
+                                                      </div>
+                                                      <div class="modal-footer">
+                                                          <button type="button" class="btn btn-secondary"
+                                                              data-bs-dismiss="modal">
+                                                              close
+                                                          </button>
+                                                          <button id="submit-comment" type="submit" class="btn btn-secondary"
+                                                              data-bs-dismiss="modal">
+                                                              comment
+                                                          </button>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                            </div>
+                                      </form>
+                                       
+                  </div>
                 </div>
 
 
