@@ -4,13 +4,13 @@
 <video autoplay loop muted playsinline id="myVideo">
     <source id="vid-source" src="/video/new.mp4" type="video/mp4">
   </video>
-    <div class="container-fluid body-block article-blog mb-5 w-50">
+    <div class="container-fluid mb-5" id="designed-post">
         <div class="py-3 mb-5">
 
 
             <article class="blog-post p-3 mb-3">
-                <h1 class="fw-bold"><%=title %></h1>
-                <span class="blog-post-meta fw-light fs-6"><%=date %> by <a href="/profile/<%= author %>"
+                <h2 class="fw-bold"><%=title %></h2>
+                <span class="fw-light fs-6"><%=date %> by <a href="/profile/<%= author %>"
                         class="text-decoration-none fs-6 fw-bold"><%=author %></a>
                 </span>
                 <p class=""><%-content %></p>

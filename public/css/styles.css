@@ -253,7 +253,9 @@ Comment section
   padding-left: 1rem;
   padding-right: 1rem;
 }
-
+#designed-post{
+  width: 80%;
+}
 
 .form-check-input,
 .form-check-label {}
@@ -402,7 +404,9 @@ Comment section
     font-size: 0.8rem;
   }
 
-
+  #designed-post{
+    width: 80%;
+  }
 
 }
 
@@ -538,6 +542,12 @@ Comment section
   }
 
   .profile-pic {}
+
+    #designed-post{
+    width: 80%;
+  }
+
+
 }
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
@@ -624,7 +634,9 @@ Comment section
   .s-media {
     display: none;
   }
-
+    #designed-post{
+    width: 80%;
+  }
 }
 
 @media (min-width: 1200px) and (max-width: 1399.98px) {
@@ -712,5 +724,7 @@ Comment section
   .media {
     display: none;
   }
-
+    #designed-post{
+    width: 80%;
+  }
 }
