@@ -1,14 +1,11 @@
 
 body {
-    background-color: rgb(255, 255, 255);
-    color: rgb(0, 0, 0);
+
 }
 
 header {
-  background-color: rgba(255, 255, 255, 0);
-  color: rgb(255, 255, 255);
-    /* border-radius: 3px;
-  border-bottom: 1px solid rgb(219, 219, 219); */
+
+
 }
 
 
@@ -18,13 +15,7 @@ header {
 }
 
 .main{
-  /* background-color: white;
-  /* border-radius: 3px;
-  border: 1px solid rgb(219, 219, 219);
-  border-top: 0; */
-   /* border-radius: 3px;
-  border-left: 1px solid rgb(219, 219, 219);
-  border-right: 1px solid rgb(219, 219, 219); */
+
 }
 .head-main{
 
@@ -39,21 +30,23 @@ span > a, li >a {
 }
 article, article > div> a, a > i, div > button, span > button, .card{
   background-color: rgb(230, 230, 230);
-  border-radius: 25px;
-  /* border: 1px solid rgb(219, 219, 219); */
   color: black;
 }
 
+.side, .head-main {
+  background-color: rgb(230, 230, 230);
+}
 span > button:hover {
   color:#0d6efd;
 }
 .date{
   font-size: 12px;
 }
-#compose, #logi, #signu, #logout, #profile{
-  color: rgb(255, 255, 255);
-  font-weight: 500;
+#compose, #logi, #signu, #logout, #profile, .com-name{
+  color: rgb(0, 0, 0);
 }
+
+
 .card, .card-footer, .form-control{
   /* background-color:rgb(192, 192, 192); */
   background-color: white;
@@ -72,8 +65,9 @@ span > button:hover {
   left: 0;
   width: 0%;
   height: 0%;
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid rgb(69, 108, 235);
   transition: 0.6s;
+
 }
 
 .nav-a:hover:after {

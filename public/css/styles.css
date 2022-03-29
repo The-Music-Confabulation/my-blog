@@ -10,6 +10,10 @@ body {
 
 article {
   font-family: 'Roboto', sans-serif;
+     border-radius: 0.25rem;
+    border-width: 3px;
+    border-color: #212529;
+    border: 3px solid #212529;
 }
 
 #blog-title {
@@ -37,6 +41,13 @@ article {
 
 }
 
+.side{
+  width: 25%;
+}
+
+.article-outline{
+  width: 75%;
+}
 .fa-heart:hover, .fa-message:hover{
   color: red;
   cursor: pointer;
@@ -55,6 +66,7 @@ article {
 }
 .article-blog {
   margin-bottom: 3rem;
+
 }
 
 .login-block-sec {
@@ -69,9 +81,8 @@ article {
 
 .blog-post {
   margin-top: 1rem;
-  margin-top: 1rem;
   padding: 1rem;
-  padding-left: 1.5rem;
+
 }
 
 
@@ -255,6 +266,7 @@ Comment section
 }
 #designed-post{
   width: 80%;
+
 }
 
 .form-check-input,
@@ -265,10 +277,7 @@ Comment section
 @media (max-width: 575.98px) {
 
   .head-block {
-    width: 100%;
-    margin-left: 0px;
-    margin-right: 0px;
-    /* display: none; */
+    display: none;
   }
 
   #head-nav {
@@ -284,9 +293,8 @@ Comment section
   }
 
   .blog-post {
-    margin-top: 1rem;
-    margin-top: 1rem;
- 
+    margin: 0;
+    
   }
 
   .footer-block,
@@ -327,12 +335,16 @@ Comment section
     border: 0;
     padding: 0;
     line-height: 18px;
+    border-radius: 0;
+    border-width: 0;
+    border-color: #eee;
   }
 
   .body-block {
     width: 100%;
     margin-left: 0px;
     margin-right: 0px;
+    padding: 0;
   }
 
   .article-blog {
@@ -407,16 +419,21 @@ Comment section
   #designed-post{
     width: 80%;
   }
-
+ .body-main{
+      align-items: center!important;
+      justify-content: center!important;
+      display: flex!important;
+  }
+  .article-outline{
+    width: 100%;
+  }
 }
 
 @media (min-width: 576px) and (max-width: 991.98px) {
 
   .head-block {
-    width: 100%;
-    margin-left: 0px;
-    margin-right: 0px;
-    /* display: none; */
+  
+    display: none;
   }
 
   #head-nav {
@@ -443,9 +460,12 @@ Comment section
   }
 
   article {
-    border: 0;
+  
     line-height: 1.2;
-    
+       border-radius: 0.25rem!important;
+    border-width: 3px!important;
+    border-color: #212529!important;
+    border: 3px solid #212529!important;
   }
 
   .body-block {
@@ -546,7 +566,14 @@ Comment section
     #designed-post{
     width: 80%;
   }
-
+  .body-main{
+      align-items: center!important;
+      justify-content: center!important;
+      display: flex!important;
+  }
+  .article-outline{
+    width: 90%;
+  }
 
 }
 
@@ -637,6 +664,7 @@ Comment section
     #designed-post{
     width: 80%;
   }
+
 }
 
 @media (min-width: 1200px) and (max-width: 1399.98px) {

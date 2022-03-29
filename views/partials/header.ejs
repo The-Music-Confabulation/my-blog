@@ -25,41 +25,39 @@
 </head>
 
 
-
 <header>
-
   <div class="container-fluid head-block">
+    <div class="d-flex justify-content-center align-items-center">
+      <div class="col-8 head-main border border-dark border-3 rounded mt-3">
+        <div class="nav-b flex-md-row justify-content-between align-items-center mt-3 mb-3">
+          <a href="/home" class=" page-title d-flex align-items-center text-decoration-none">
+            <span class="com-name ps-3  ">Music Confabulation.</span>
+          </a>
+      
+          <nav id='head-nav'class="row mt-2 pb-1 pe-3 d-flex align-items-center">
+            <a href="" class="col nav-link mx-2 text-decoration-none nav-a badge" id="compose">Home</a>
+            <a href="" class="col nav-link mx-2 text-decoration-none nav-a badge" id="compose">About</a>
+            <div class="flex-shrink-0 dropdown col">
+            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="/images/colde.jpg" alt="mdo" width="32" height="32" class="rounded-circle">
+            </a>
+            <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+              
+              <li><a class="dropdown-item" href="/compose">Post</a></li>
+              <li><a class="dropdown-item" href="/profile">Profile</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <% if (!isLoggedIn) { %>
+              <li><a class="dropdown-item" href="/login">Log in</a></li>
+              <li><a class="dropdown-item" href="/signup">Sign up</a></li>
 
-    <div class="row">
-
-      <div class="col-lg-2 col-md-1"></div>
-      <div class="col-lg-8 col-md-10 head-main ">
-        <div class="nav-b flex-column flex-md-row align-items-end m-3">
-
-        <a href="/home" class="page-title d-flex align-items-center text-decoration-none">
-          <span class="com-name ps-3">Music Confabulation.</span>
-        </a>
-
-
-        <nav id='head-nav'class=" mt-2 mt-md-0 ms-md-auto pb-1">
-          <!-- <a href="/" class="nav-link px-2 link-secondary">home</a> -->
-          
-          <a href="/compose" class="nav-link mx-2 text-decoration-none nav-a badge" id="compose">Post</a>
-          <!-- <a href="/help" class="nav-link mx-2 text-decoration-none text-dark nav-a badge  ">help</a> -->
-
-          <% if (!isLoggedIn) { %>
-          <a href="/login" class="nav-link mx-2 text-decoration-none nav-a badge "id="logi">Log in</a>
-          <a href="/signup" class="nav-link mx-2 text-decoration-none nav-a badge "id="signu">Sign up</a>
-
-          <%} else { %>
-          <a href="/logout" class="nav-link mx-2 text-decoration-none nav-a badge "id="logout">Log out</a>
-          <% } %>
-          <a href="/profile" class="nav-link mx-2 text-decoration-none nav-a badge"id="profile">Profile</a>
-          <!-- <i class="fa-solid fa-dog"></i> -->
+              <%} else { %>
+              <li><a class="dropdown-item" href="/logout">Sign out</a></li>
+              <% } %>
+            </ul>
+        </div>
         </nav>
       </div>
       </div>
-      <div class="col-lg-2 col-md-1 col"></div>
       
     </div>
   </div>

@@ -1,31 +1,26 @@
 <%- include('partials/header'); -%>
 
 <body>
-
-
   <video autoplay loop muted playsinline id="myVideo">
     <source id="vid-source" src="/video/new.mp4" type="video/mp4">
   </video>
+
   <div class="container-fluid body-block">
     <div class="article-blog">
-      <div class="row d-flex">
-        <div class="col side">
-
-        </div>
+      <div class="d-flex justify-content-center align-items-center">
         <div class="col-8 main">
-
-          <div class="row body-main">
-            <div class="col-3 my-3 ps-5 p-3 side">
+          <div class="flex-row body-main d-flex ">
+            <div class="my-3 side me-3 p-3 border border-dark border-3 rounded ">
               <div class="position-sticky row" style="top: 2rem;">
-                <div class=" mb-3 rounded about-main">
-                  <h4 class="">About</h4>
+                <div class=" mb-3 rounded about-main mt-3">
+                  <h4 class="fw-bold">About</h4>
                   <p class="mb-0 ps-2" id="about-text">a music blog to share your stories and memories or simply to
                     introduce others about your favorite artists.</p>
                 </div>
 
 
                 <div class=" some-main">
-                  <h4 class="">Social media</h4>
+                  <h4 class="fw-bold">Social media</h4>
                   <ol class="list-unstyled">
                     <li><a class="text-decoration-none  ps-2 " href="https://discord.gg/gkmAGEbsAG">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -44,7 +39,7 @@
                 </div>
 
                 <div class="theme-settings">
-                  <h4 class="">Themes</h4>
+                  <h4 class="fw-bold">Themes</h4>
                   <div class="theme-switches">
                     <div data-theme="light" class="switch" id="switch-1"></div>
                     <!-- <div data-theme="dark" class="switch inline-block" id="switch-4"></div> -->
@@ -56,7 +51,7 @@
               </div>
             </div>
 
-            <div class="col-9  pb-3 "> <% for  (var a = 0; a < songs.length; a++) { %>
+            <div class="article-outline  pb-3 "> <% for  (var a = 0; a < songs.length; a++) { %>
               <article class="blog-post ">
               
                 <% if ( songs[a].url) { %>
@@ -243,33 +238,29 @@
               </article>
 
               <% } %>
-
-
-              <div class="btn-group" role="group" aria-label="Default button group">
-                <a class="btn " href="home/?page=1" aria-label="Previous">
-                  <span aria-hidden="true" class="fw-bold">&laquo;</span>
-                </a>
-
-                <% for  (var a = 1; a <= pages; a++) { %>
-                <a class="btn  border-end-0 border-start-0" href="home/?page=<%=a; %>" aria-label="Previous">
-                  <span aria-hidden="true" class="fw-bold"><%= a; %></span>
-                </a>
-                <% } %>
-
-                <a class="btn " href="home/?page=<%=pages%>" aria-label="Previous">
-                  <span aria-hidden="true" class="fw-bold">&raquo;</span>
-                </a>
-              </div>
             </div>
           </div>
-
         </div>
-
-        <div class="col side"></div>
-
-      </div>
     </div>
 
+  <div class=" d-flex justify-content-center align-items-center " >
+    <div class="btn-group" role="group" aria-label="Default button group">
+                    <a class="btn " href="home/?page=1" aria-label="Previous">
+                      <span aria-hidden="true" class="fw-bold">&laquo;</span>
+                    </a>
+
+                    <% for  (var a = 1; a <= pages; a++) { %>
+                    <a class="btn  border-end-0 border-start-0" href="home/?page=<%=a; %>" aria-label="Previous">
+                      <span aria-hidden="true" class="fw-bold"><%= a; %></span>
+                    </a>
+                    <% } %>
+
+                    <a class="btn " href="home/?page=<%=pages%>" aria-label="Previous">
+                      <span aria-hidden="true" class="fw-bold">&raquo;</span>
+                    </a>
+        </div>
+  </div>
+    
     <div class="theme-button">
       <button type="button" class="btn mt-1 fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal">
         settings <i class="fa-solid fa-gear"></i>
