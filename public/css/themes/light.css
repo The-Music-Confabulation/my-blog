@@ -1,24 +1,7 @@
 
-body {
-
-}
-
-header {
-
-
-}
-
-
 .page-link{
   background-color: white;
   border-color: black;
-}
-
-.main{
-
-}
-.head-main{
-
 }
 
 a{
@@ -28,7 +11,7 @@ a{
 span > a, li >a {
   color:#000000;
 }
-article, article > div> a, a > i, div > button, span > button, .card{
+article, article > div> a, a > i, div > button, span > button, .card, #compose-post{
   background-color: rgb(230, 230, 230);
   color: black;
 }
