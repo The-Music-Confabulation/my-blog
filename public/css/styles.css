@@ -8,12 +8,12 @@ body {
   line-height: 1.3;
 }
 
-article {
+article, .card {
   font-family: 'Roboto', sans-serif;
-     border-radius: 0.25rem;
-    border-width: 3px;
-    border-color: #212529;
-    border: 3px solid #212529;
+  border-radius: 0.25rem;
+  border-width: 3px;
+  border-color: #212529;
+  border: 3px solid #212529;
 }
 
 #blog-title {
@@ -62,8 +62,6 @@ article {
   font-size: 2.5rem;
 }
 
-.animate__fadeInUp{
-}
 .article-blog {
   margin-bottom: 3rem;
 
@@ -126,17 +124,6 @@ article {
 
 .blog-header-logo:hover {
   text-decoration: none;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {}
-
-.display-4 {
-  font-size: 2.5rem;
 }
 
 
@@ -408,7 +395,10 @@ Comment section
     margin-bottom: 4rem !important;
   }
 
-  .card-body {}
+  .card {
+    border: 0;
+    border-radius: 0;
+  }
 
   .profile-pic {}
 
@@ -449,6 +439,7 @@ Comment section
 
     
   }
+
 
   .footer-block {
     display: none;

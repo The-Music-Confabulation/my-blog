@@ -5,67 +5,64 @@
         <source src="/video/new.mp4" type="video/mp4">
     </video>
     <div class="login-block-sec ">
-        <div class="container">
-            <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="row d-flex justify-content-center align-items-center">
 
-                <div class="col-12 col-md-9 col-lg-7 col-xl-6 login-block">
+            <div class="col-12 col-md-9 col-lg-7 col-xl-6 login-block">
 
-                    <div class="card mb-3" style="border-radius: 15px;">
-                        <div class="card-body">
+                <div class="card login-block">
+                    <div class="card-body">
 
-                            <%- include('messages.ejs') %>
-                            <h2 class="text-uppercase text-center">Create an account</h2>
+                        <%- include('messages.ejs') %>
+                        <h2 class="text-uppercase text-center">Create an account</h2>
 
-                            <form action="/signup" method="post">
-
-
-
-                                <div class="form-outline">
-                                    <input type="text" id="floatingInput" name="username"
-                                        class="form-control form-control-lg border border-2 border-dark rounded-3" />
-                                    <label class="form-label" for="floatingInput">username</label>
-                                </div>
-
-
-                                <div class="form-outline">
-                                    <input type="text" id="floatingInput" name="email"
-                                        class="form-control form-control-lg border border-2 border-dark rounded-3" />
-                                    <label class="form-label" for="floatingInput">email (optional)</label>
-                                </div>
-
-
-                                <div class="form-outline">
-                                    <input type="password" id="floatingPassword" name="userpassword"
-                                        class="form-control form-control-lg border border-2 border-dark rounded-3" />
-                                    <label class="form-label" for="floatingPassword">passwords</label>
-                                </div>
-
-
-                                <div class="form-outline">
-                                    <input type="password" id="floatingPassword2" name="userpassword_2"
-                                        class="form-control form-control-lg border border-2 border-dark rounded-3" />
-                                    <label class="form-label" for="floatingPassword2">confirm passwords</label>
-                                </div>
-
-
-                                <div class="d-flex justify-content-center">
-                                    <button type="submit" class="btn btn-block btn-lg btn-dark me-3">register</button>
-
-                                </div>
-
-
-                                <p class="text-center mt-2 mb-0">already have an account? <a href="login"
-                                        class="text-dark"><u>login here</u></a></p>
+                        <form action="/signup" method="post">
 
 
 
-                            </form>
+                            <div class="form-outline">
+                                <input type="text" id="floatingInput" name="username"
+                                    class="form-control form-control-lg border border-2 border-dark rounded-3" />
+                                <label class="form-label" for="floatingInput">username</label>
+                            </div>
 
 
-                        </div>
+                            <div class="form-outline">
+                                <input type="text" id="floatingInput" name="email"
+                                    class="form-control form-control-lg border border-2 border-dark rounded-3" />
+                                <label class="form-label" for="floatingInput">email (optional)</label>
+                            </div>
+
+
+                            <div class="form-outline">
+                                <input type="password" id="floatingPassword" name="userpassword"
+                                    class="form-control form-control-lg border border-2 border-dark rounded-3" />
+                                <label class="form-label" for="floatingPassword">passwords</label>
+                            </div>
+
+
+                            <div class="form-outline">
+                                <input type="password" id="floatingPassword2" name="userpassword_2"
+                                    class="form-control form-control-lg border border-2 border-dark rounded-3" />
+                                <label class="form-label" for="floatingPassword2">confirm passwords</label>
+                            </div>
+
+
+                            <div class="d-flex justify-content-center">
+                                <button type="submit" class="btn btn-block btn-lg btn-dark me-3">register</button>
+
+                            </div>
+
+
+                            <p class="text-center mt-2 mb-0">already have an account? <a href="login"
+                                    class="text-dark"><u>login here</u></a></p>
+
+
+
+                        </form>
+
+
                     </div>
                 </div>
-
             </div>
 
         </div>

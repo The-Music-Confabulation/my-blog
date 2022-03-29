@@ -7,12 +7,11 @@
     <div class="login-block-sec ">
          <div class="row d-flex justify-content-center align-items-center  ">
                 <div class="col-12 col-md-9 col-lg-7 col-xl-6 mb-3">
-                    <div class="card  login-block" style="border-radius: 15px;">
-                        <div class="card-body">
+                    <div class="card login-block">
+                        <div class="card-body ">
                             <%- include('messages.ejs') %>
                             <h2 class="text-uppercase text-center">log in</h2>
                             <form action="/login" method="post">
-                                <!-- <img class="mb-4" src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
                                 <div class="form-floating">
                                     <input type="text" name="username"
                                         class="form-control border border-2 border-dark rounded-3 mb-3"
@@ -25,13 +24,6 @@
                                         placeholder="Password">
                                     <label for="floatingPassword">password</label>
                                 </div>
-
-                                <!-- <div class="checkbox mb-3">
-                                <label>
-                                    <input type="checkbox" value="remember-me"> Remember me
-                                </label>
-                            </div> -->
-
                                 <button class="w-100 btn btn-lg btn-dark my-3" type="submit">sign in</button>
 
 
