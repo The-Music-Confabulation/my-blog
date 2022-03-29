@@ -1,5 +1,5 @@
 .head-block {
-
+  margin-top: 1rem;
   font-family: 'Roboto Mono', monospace;
 }
 
@@ -264,20 +264,19 @@ Comment section
   padding-left: 1rem;
   padding-right: 1rem;
 }
-#designed-post{
-  width: 80%;
-
-}
 
 .form-check-input,
 .form-check-label {}
-
+#designed-post{
+  width: 80%;
+}
 
 /*----- RESPONSIVE ------*/
 @media (max-width: 575.98px) {
 
   .head-block {
-    display: none;
+    margin:0;
+    padding: 0;
   }
 
   #head-nav {
@@ -289,7 +288,8 @@ Comment section
   }
 
   .login-block {
-    margin-top: 0px;
+    margin-top: 0;
+   
   }
 
   .blog-post {
@@ -417,7 +417,7 @@ Comment section
   }
 
   #designed-post{
-    width: 80%;
+    width: 100%;
   }
  .body-main{
       align-items: center!important;
@@ -431,11 +431,11 @@ Comment section
 
 @media (min-width: 576px) and (max-width: 991.98px) {
 
-  .head-block {
-  
-    display: none;
+   .head-block {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 0;
   }
-
   #head-nav {
     display: none;
   }
@@ -446,7 +446,7 @@ Comment section
 
   .blog-post {
     margin-top: 1rem;
-    margin-top: 1rem;
+
     
   }
 
