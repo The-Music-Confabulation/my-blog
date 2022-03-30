@@ -1,0 +1,17 @@
+<div class=" d-flex justify-content-center align-items-center " >
+    <div class="btn-group" role="group" aria-label="Default button group">
+                    <a class="btn " href="home/?page=1" aria-label="Previous">
+                      <span aria-hidden="true" class="fw-bold">&laquo;</span>
+                    </a>
+
+                    <% for  (var a = 1; a <= pages; a++) { %>
+                    <a class="btn  border-end-0 border-start-0" href="home/?page=<%=a; %>" aria-label="Previous">
+                      <span aria-hidden="true" class="fw-bold"><%= a; %></span>
+                    </a>
+                    <% } %>
+
+                    <a class="btn " href="home/?page=<%=pages%>" aria-label="Previous">
+                      <span aria-hidden="true" class="fw-bold">&raquo;</span>
+                    </a>
+        </div>
+  </div>

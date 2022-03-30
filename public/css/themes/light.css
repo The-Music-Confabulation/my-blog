@@ -1,40 +1,22 @@
-
-.page-link{
-  background-color: white;
-  border-color: black;
-}
-
-a{
-  color: rgb(255, 255, 255);
-}
-
 span > a, li >a {
   color:#000000;
 }
-article, article > div> a, a > i, div > button, span > button, .card, #compose-post{
+article, article > div> a, a > i, div > button, span > button, .card, #compose-post, .side-main-block{
   background-color: rgb(230, 230, 230);
   color: black;
 }
 
-.side, .head-main {
-  background-color: rgb(230, 230, 230);
-}
 span > button:hover {
   color:#0d6efd;
 }
-.date{
-  font-size: 12px;
-}
+
 #compose, #logi, #signu, #logout, #profile, .com-name{
   color: rgb(0, 0, 0);
 }
 
 
 .card, .card-footer, .form-control{
-  /* background-color:rgb(192, 192, 192); */
   background-color: white;
-
-  
 }
 
 .nav-a {
