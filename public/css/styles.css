@@ -1,7 +1,8 @@
 body {
   font-family: 'Roboto', sans-serif;
 }
-header{
+
+header {
   font-family: 'Roboto Mono', monospace;
 }
 
@@ -13,7 +14,7 @@ header{
   border: 3px solid #212529;
 }
 
-#head-nav{
+#head-nav {
   font-size: 2rem;
 }
 
@@ -22,7 +23,7 @@ header{
   font-size: 2.5rem;
 }
 
-.main{
+.main {
   width: 66.66666667%;
   flex: 1;
   display: flex;
@@ -31,14 +32,14 @@ header{
   margin-left: auto;
   margin-right: auto;
 }
-.main-block{
 
-}
-.side-main-block{
+.main-block {}
+
+.side-main-block {
   width: 25%;
 }
 
-.article-main-block{
+.article-main-block {
   width: 75%;
 }
 
@@ -50,10 +51,19 @@ article, .card {
   border: 3px solid #212529;
 }
 
-.auth-page{
+.pagination {
+  border-radius: 0.25rem;
+  border-width: 3px;
+  border-color: #212529;
+  border: 3px solid #212529;
+  margin-top: 1rem;
+}
+
+.auth-page {
   height: 100vh;
 }
-.auth-form{
+
+.auth-form {
   width: 50%;
 }
 
@@ -73,7 +83,7 @@ article, .card {
   z-index: -1;
 }
 
-.fa-heart:hover, .fa-message:hover{
+.fa-heart:hover, .fa-message:hover {
   color: red;
   cursor: pointer;
 }
@@ -84,22 +94,16 @@ article, .card {
 
 }
 
+.blog-post {
+  margin-top: 1rem;
+  padding: 1rem;
+}
 
 .blog-header {
   line-height: 1;
   border-bottom: 1px solid #e5e5e5;
 }
 
-
-
-/* Pagination */
-.blog-pagination {
-  margin-bottom: 4rem;
-}
-
-.blog-pagination>.btn {
-  border-radius: 2rem;
-}
 
 /*
  * Footer
@@ -172,17 +176,32 @@ Comment section
   padding-right: 1rem;
 }
 
-
+.bottom-nav {
+  display: none;
+}
 
 /*----- RESPONSIVE ------*/
 @media (max-width: 575.98px) {
 
-  .header-block, .article-main-block {
+  .header-block {
+    width: 100%;
+    margin: 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+    border:0;
+  }
+
+  .article-main-block {
     width: 100%;
     margin: 0;
   }
 
-  .main{
+
+
+  .main {
     width: 100%;
   }
 
@@ -192,15 +211,15 @@ Comment section
 
   .login-block {
     margin-top: 0;
-   
+
   }
 
   .blog-post {
     margin: 0;
-    
+
   }
 
-  .footer-block,
+
   .side-main-block {
     display: none;
   }
@@ -246,7 +265,7 @@ Comment section
     justify-content: center !important;
   }
 
-  #head-nav{
+  #head-nav {
     font-size: 1rem;
   }
 
@@ -280,47 +299,49 @@ Comment section
     justify-content: center;
   }
 
-  .media {
-    display: flex;
-    justify-content: center;
 
-  }
-
-  .s-media {
-    display: flex;
-    justify-content: center;
-    padding-bottom: 4rem !important;
-    margin-bottom: 4rem !important;
-  }
-
-  .card {
+  .card, .pagination {
     border: 0;
     border-radius: 0;
   }
 
-  .profile-pic {}
 
   .profile-edit {
     font-size: 0.8rem;
   }
 
-  #designed-post{
-    width: 100%;
-  }
- .body-main{
-      align-items: center!important;
-      justify-content: center!important;
-      display: flex!important;
-  }
-  .article-outline{
+  #designed-post {
     width: 100%;
   }
 
-   .auth-page{
-  height: 80vh;
+  .body-main {
+    align-items: center !important;
+    justify-content: center !important;
+    display: flex !important;
   }
-  .auth-form{
+
+  .article-outline {
+    width: 100%;
+  }
+
+  .auth-page {
+    height: 80vh;
+  }
+
+  .auth-form {
     width: 75%;
+  }
+
+  .footer-block {
+    display: none;
+  }
+
+  .bottom-nav {
+    display: block;
+  }
+
+  .pagination {
+    margin-top: 0rem;
   }
 
 }
@@ -342,11 +363,9 @@ Comment section
 
   .blog-post {
     margin-top: 1rem;
-
-    
   }
 
- #head-nav{
+  #head-nav {
     font-size: 1.5rem;
   }
 
@@ -354,24 +373,23 @@ Comment section
     font-family: 'Pacifico', cursive;
     font-size: 1.8rem;
   }
-  .footer-block {
-    display: none;
-  }
+
+
   .side-main-block {
     display: none;
   }
+
   nav {
     display: flex;
     justify-content: center !important;
   }
 
   article {
-  
     line-height: 1.2;
-       border-radius: 0.25rem!important;
-    border-width: 3px!important;
-    border-color: #212529!important;
-    border: 3px solid #212529!important;
+    border-radius: 0.25rem !important;
+    border-width: 3px !important;
+    border-color: #212529 !important;
+    border: 3px solid #212529 !important;
   }
 
   .body-block {
@@ -439,40 +457,28 @@ Comment section
     justify-content: center;
   }
 
-  .media {
-    display: flex;
-    justify-content: center;
-
+  .body-main {
+    align-items: center !important;
+    justify-content: center !important;
+    display: flex !important;
   }
 
-  .s-media {
-    display: flex;
-    justify-content: center;
-    padding-bottom: 4rem !important;
-    margin-bottom: 4rem !important;
-
-  }
-
-
-
-  .body-main{
-      align-items: center!important;
-      justify-content: center!important;
-      display: flex!important;
-  }
-  .article-outline{
+  .article-outline {
     width: 90%;
   }
 
-  
-   .auth-page{
-  height: 80vh;
+
+  .auth-page {
+    height: 80vh;
   }
-  .auth-form{
+
+  .auth-form {
     width: 50%;
   }
 
-  
+  .bottom-nav {
+    display: block;
+  }
 
 
 }
@@ -484,7 +490,7 @@ Comment section
     margin: 0;
   }
 
-  #head-nav{
+  #head-nav {
     font-size: 1.5rem;
   }
 
@@ -492,9 +498,7 @@ Comment section
     font-family: 'Pacifico', cursive;
     font-size: 1.8rem;
   }
-  .footer-block {
-    display: none;
-  }
+
 
   .side-main-block {
     display: none;
@@ -505,10 +509,11 @@ Comment section
     text-align: justify;
   }
 
-   .auth-page{
-  height: 80vh;
+  .auth-page {
+    height: 80vh;
   }
-  .auth-form{
+
+  .auth-form {
     width: 50%;
   }
 
@@ -542,19 +547,19 @@ Comment section
   .s-media {
     display: none;
   }
-  
+
 
 }
 
 @media (min-width: 1200px) and (max-width: 1399.98px) {
 
-   .head-block, .article-main-block {
+  .head-block, .article-main-block {
     width: 100%;
     margin-left: 0px;
     margin-right: 0px;
   }
 
-  #head-nav{
+  #head-nav {
     font-size: 1.8rem;
   }
 
@@ -563,14 +568,13 @@ Comment section
     font-size: 2.1rem;
   }
 
-  .auth-page{
-  height: 80vh;
+  .auth-page {
+    height: 80vh;
   }
-  .auth-form{
+
+  .auth-form {
     width: 50%;
   }
-
-
 
   .footer-block {
     display: none;
@@ -613,8 +617,5 @@ Comment section
     display: none;
   }
 
-  .media {
-    display: none;
-  }
 
 }

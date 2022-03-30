@@ -1,27 +1,44 @@
-<div class="media fixed-bottom ">
-      <div class="nav-b flex-column flex-md-row align-items-end">
+<div class="bottom-nav fixed-bottom">
+  <div class="d-flex align-items-center justify-content-center bg-white">
+    <nav class="row pe-3 d-flex align-items-between">
+      <a
+        href="/home"
+        class="col nav-link mx-2 text-decoration-none"
+        id="compose"
+        ><i class="fa-solid fa-house"></i
+      ></a>
+      <a
+        href="/compose"
+        class="col nav-link mx-2 text-decoration-none"
+        id="compose"
+        ><i class="fa-solid fa-plus"></i
+      ></a>
+      <a
+        href="/profile"
+        class="col nav-link mx-2 text-decoration-none"
+        id="profile"
+        ><i class="fa-solid fa-cloud"></i
+      ></a>
 
-        <nav class=" mt-2 mt-md-0 ms-md-auto pb-1">
-          <a href="/home" class="nav-link mx-2 text-decoration-none nav-a" id="compose"><i
-              class="fa-solid fa-house"></i></a>
-          <a href="/compose" class="nav-link mx-2 text-decoration-none nav-a " id="compose"><i
-              class="fa-solid fa-plus"></i></a>
-          <a href="/profile" class="nav-link mx-2 text-decoration-none nav-a" id="profile"><i
-              class="fa-solid fa-cloud"></i></a>
+      <% if (!isLoggedIn) { %>
+      <a href="/login" class="col nav-link mx-2 text-decoration-none" id="logi"
+        ><i class="fa-solid fa-volume-high"></i
+      ></a>
+      <a
+        href="/signup"
+        class="col nav-link mx-2 text-decoration-none"
+        id="signu"
+        ><i class="fa-solid fa-circle-arrow-up"></i
+      ></a>
 
-
-          <% if (!isLoggedIn) { %>
-          <a href="/login" class="nav-link mx-2 text-decoration-none nav-a" id="logi"><i
-              class="fa-solid fa-volume-high"></i></a>
-          <a href="/signup" class="nav-link mx-2 text-decoration-none nav-a" id="signu"><i
-              class="fa-solid fa-circle-arrow-up"></i></a>
-
-          <%} else { %>
-          <a href="/logout" class="nav-link mx-2 text-decoration-none nav-a " id="logout">\<i
-              class="fa-solid fa-volume-xmark"></i></a>
-          <% } %>
-
-
-        </nav>
-      </div>
+      <%} else { %>
+      <a
+        href="/logout"
+        class="col nav-link mx-2 text-decoration-none"
+        id="logout"
+        ><i class="fa-solid fa-volume-xmark"></i
+      ></a>
+      <% } %>
+    </nav>
+  </div>
 </div>

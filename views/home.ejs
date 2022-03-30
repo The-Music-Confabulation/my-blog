@@ -10,7 +10,7 @@
   <%- include('partials/header'); -%>
 
   <div class="main-block flex-row d-flex">
-      <div class="side-main-block my-3 me-3 p-3 border border-dark border-3 rounded">
+      <div class="side-main-block mt-3 me-3 p-3 border border-dark border-3 rounded">
           <div class="position-sticky row" style="top: 2rem;">
             <div class=" mb-3 rounded about-main mt-3">
               <h4 class="fw-bold">About</h4>
@@ -51,7 +51,7 @@
           </div>
         </div>
 
-        <div class="article-main-block  pb-3 "> <% for  (var a = 0; a < songs.length; a++) { %>
+        <div class="article-main-block"> <% for  (var a = 0; a < songs.length; a++) { %>
           <article class="blog-post ">
 
             <% if ( songs[a].url) { %>
@@ -232,6 +232,10 @@
           <% } %>
         </div>
       </div>
+
+      <%- include('partials/pagination'); -%>
+      <%- include('partials/bottom_social_link'); -%>
+      <%- include('partials/bottom_nav'); -%>
   </div>
 
 
