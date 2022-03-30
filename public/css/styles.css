@@ -326,13 +326,13 @@ Comment section
     justify-content: center !important;
   }
 
-  .com-name {
+  #head-nav{
     font-size: 1rem;
-    text-align: justify;
   }
 
-  #head-nav {
-    font-size: 0.8rem;
+  .com-name {
+    font-family: 'Pacifico', cursive;
+    font-size: 1rem;
   }
 
   .comment_profile {
@@ -399,10 +399,9 @@ Comment section
 
 @media (min-width: 576px) and (max-width: 991.98px) {
 
-   .head-block, .article-main-block {
+  .header-block, .article-main-block {
     width: 100%;
-    margin-left: 0px;
-    margin-right: 0px;
+    margin: 0;
   }
 
   #head-nav {
@@ -419,7 +418,14 @@ Comment section
     
   }
 
+ #head-nav{
+    font-size: 1.5rem;
+  }
 
+  .com-name {
+    font-family: 'Pacifico', cursive;
+    font-size: 1.8rem;
+  }
   .footer-block {
     display: none;
   }
@@ -446,11 +452,6 @@ Comment section
     margin-right: 0px;
   }
 
-  .col-9,
-  .col-md-10 {
-    flex: 0 0 auto;
-    width: 100%;
-  }
 
   .article-blog {
     margin-bottom: 0;
@@ -462,15 +463,6 @@ Comment section
 
   .page-title {
     justify-content: center !important;
-  }
-
-  .com-name {
-    font-size: 2.3rem;
-    text-align: justify;
-  }
-
-  .nav-a {
-    font-size: 1.3rem;
   }
 
   .side {
@@ -551,13 +543,19 @@ Comment section
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
 
-  .head-block, .article-main-block {
+  .header-block, .article-main-block {
     width: 100%;
-    margin-left: 0px;
-    margin-right: 0px;
+    margin: 0;
   }
 
-  
+  #head-nav{
+    font-size: 1.5rem;
+  }
+
+  .com-name {
+    font-family: 'Pacifico', cursive;
+    font-size: 1.8rem;
+  }
   .footer-block {
     display: none;
   }
@@ -649,7 +647,14 @@ Comment section
     margin-right: 0px;
   }
 
- 
+  #head-nav{
+    font-size: 1.8rem;
+  }
+
+  .com-name {
+    font-family: 'Pacifico', cursive;
+    font-size: 2.1rem;
+  }
 
   .login-block {
     margin-top: 10%;
@@ -689,17 +694,6 @@ Comment section
   .page-title {
     justify-content: center !important;
   }
-
-  .com-name {
-    font-size: 2.5rem;
-    text-align: justify;
-  }
-
-  /* .nav-a {
-    font-size: 1.8rem;
-
-  } */
-
 
   .comment_profile {
     width: 20px;
