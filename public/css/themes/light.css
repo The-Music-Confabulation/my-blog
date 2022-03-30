@@ -1,7 +1,7 @@
 span > a, li >a {
   color:#000000;
 }
-article, article > div> a, a > i, div > button, span > button, .card, #compose-post, .side-main-block{
+article, article > div> a, a > i, div > button, span > button, .card, #compose-post, .side-main-block,.header-block{
   background-color: rgb(230, 230, 230);
   color: black;
 }
