@@ -1,5 +1,11 @@
 <%- include('partials/head'); -%>
 <body>
+    
+  <video autoplay loop muted playsinline id="myVideo">
+    <source id="vid-source" src="/video/new.mp4" type="video/mp4">
+  </video>
+
+  
   <div class="main">
   <%- include('partials/header'); -%>
 
@@ -227,14 +233,8 @@
         </div>
       </div>
   </div>
-  
-  <video autoplay loop muted playsinline id="myVideo">
-    <source id="vid-source" src="/video/new.mp4" type="video/mp4">
-  </video>
-
-  
 
 
+  <%- include('partials/footer'); -%>
   <script src="/scripts/scripts.js"></script>
 </body>
-<%- include('partials/footer'); -%>
