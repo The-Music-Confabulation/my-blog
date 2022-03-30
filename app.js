@@ -7,6 +7,14 @@ const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const expressLayouts = require("express-ejs-layouts");
 
+
+//for image file upload
+const fs = require("fs");
+const util = require("util");
+const unlinkFile = util.promisify(fs.unlink);
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
+
 //passport for auth
 const session = require("express-session");
 const passport = require("passport");
@@ -129,6 +137,8 @@ const userSchema = new mongoose.Schema({
   password: { type: String, require: true },
   email: { type: String },
   animal: { type: String },
+  profileImage: { type: String },
+  profileImageApprove: {type: Boolean},
   followers: [{ type: mongoose.Schema.Types.ObjectId, ref: "Follower" }],
   numberOfPosts: [{ type: mongoose.Schema.Types.ObjectId, ref: "Post" }],
   followings: [{ type: mongoose.Schema.Types.ObjectId, ref: "Following" }],
@@ -301,6 +311,8 @@ app.post(
               animal: "undecided",
               info: "Something about yourself",
               fullname: "Full Name",
+              profileImage: "",
+              profileImageApprove: true,
               dateJoin: now.format("dddd, MMMM D YYYY"),
             },
             req.body.userpassword,
@@ -836,6 +848,30 @@ app.post("/admin/dashboard/:id", (req, res) => {
     res.redirect("/login");
   }
 });
+
+const { uploadFile, getFileStream } = require("./s3");
+
+app.get("/images", (req, res) => {
+  res.render("image")
+});
+
+app.get("/images/:key", (req, res) => {
+  const key = req.params.key;
+  const readStream = getFileStream(key);
+  readStream.pipe(res);
+});
+
+app.post("/images", upload.single("avatar"), async function (req, res, next) {
+  console.log(req.body.example);
+  const file = req.file;
+  console.log(file);
+  const result = await uploadFile(file);
+  await unlinkFile(file.path);
+  console.log(result);
+  res.send({ imagePath: `/images/${result.Key}` });
+});
+
+
 
 let port = process.env.PORT;
 if (port == null || port == "") {
