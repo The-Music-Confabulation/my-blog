@@ -6,7 +6,7 @@
   </video>
   <div class="main">
     <%- include('partials/header'); -%>
-    <div class="text-white p-3 ">
+    <div class="auth-page d-flex flex-column justify-content-center align-items-centertext-white p-3 ">
       <div class="py-3 mb-5" id="compose-block">
         <h3 class="pb-2 border-bottom border-2 border-dark">
           Write up your post here <i class="fa-solid fa-arrow-down-long"></i>
@@ -65,8 +65,10 @@
         </form>
       </div>
     </div>
+    <%- include('partials/bottom_nav'); -%>
+    
+  <%- include('partials/footer'); -%>
   </div>
   <script src="/scripts/scripts.js"></script>
 </body>
 
-<%- include('partials/footer'); -%>
