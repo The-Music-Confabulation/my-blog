@@ -13,30 +13,34 @@
                             <h2 class="text-uppercase text-center">Profile</h2>
                             <div class="image d-flex flex-column justify-content-center">
                                 <div class="">
-                                    <div class="profile-edit">
+                                    <div class="profile-edit mt-3">
                                         <% if (current_user_id == id && isLoggedIn) { %>
-                                        <button type="button" class="border rounded-circle bg-white" style="padding:2rem"
+                                        <button class="border-0 rounded-circle" style="background:rgb(255, 255, 255)"
                                             data-bs-toggle="modal" data-bs-target="#editprofilePic">
                                             <img
-                                                src="/images/f5f7a9528df905d27e71c6fe291bc69d"
+                                                src="/images/82e33457adeb8774113c4ff127754185"
                                                 alt="mdo"
-                                                width="72"
-                                                height="72"
+                                        
+                                                style="vertical-align: middle;
+                                                    width: 108px;
+                                                    height: 108px;
+                                                    border-radius: 50%;"
                                                 />
                                         </button>
-
-                                        <button type="button  flex-fill" class="btn btn-dark mx-auto"
+                                        <span class="fw-bold fs-4 ms-3">@<%= username %> </span>
+                                        <button type="button  flex-fill" class="btn btn-outline-dark mx-auto"
                                         data-bs-toggle="modal" data-bs-target="#editprofile">
                                             Edit Profile
                                         </button>
 
                     
                                         <%} else {%>
+                                        <span class="fw-bold fs-4 ms-3">@<%= username %> </span>    
                                         <button type="button" class="btn btn-dark mx-auto profile-pic">
                                             <i class="fa-solid fa-cloud"></i>
                                         </button>
                                         <%}%>
-                                         <span class="fw-bold fs-4 ms-3">@<%= username %> </span>
+                                         
                                         <% if (current_user_id != id && current_user_id!=null) { %>
                                         <% if (!alreadyFollow) { %>
                                         <button id="follow-btn" class="btn"
