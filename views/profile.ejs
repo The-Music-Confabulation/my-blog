@@ -15,10 +15,22 @@
                                 <div class="">
                                     <div class="profile-edit">
                                         <% if (current_user_id == id && isLoggedIn) { %>
-                                        <button type="button  flex-fill" class="btn btn-dark mx-auto profile-pic"
-                                            data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                            <i class="fa-solid fa-cloud"></i>
+                                        <button type="button" class="border rounded-circle bg-white" style="padding:2rem"
+                                            data-bs-toggle="modal" data-bs-target="#editprofilePic">
+                                            <img
+                                                src="/images/f5f7a9528df905d27e71c6fe291bc69d"
+                                                alt="mdo"
+                                                width="72"
+                                                height="72"
+                                                />
                                         </button>
+
+                                        <button type="button  flex-fill" class="btn btn-dark mx-auto"
+                                        data-bs-toggle="modal" data-bs-target="#editprofile">
+                                            Edit Profile
+                                        </button>
+
+                    
                                         <%} else {%>
                                         <button type="button" class="btn btn-dark mx-auto profile-pic">
                                             <i class="fa-solid fa-cloud"></i>
@@ -120,7 +132,7 @@
                                     </div>
                                 </div>
 
-                                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+                                <div class="modal fade" id="editprofile" data-bs-backdrop="static"
                                     data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
                                     aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered">
@@ -144,10 +156,48 @@
                                                     </div>
 
                                                     <div class="form-outline">
-                                                        <label class="form-label" for="floatingInput">bio</label>
+                                                        <label class="form-label mt-3" for="floatingInput">bio</label>
                                                         <textarea
                                                             class="form-control border border-2 border-dark rounded-3"
                                                             rows="5" cols="30" name="bioEdit"><%=info %></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">
+                                                        close
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary">
+                                                        submit
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="modal fade" id="editprofilePic" data-bs-backdrop="static"
+                                    data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <form action="/profile" method="post">
+                                                <input type="hidden" name="username" value="<%= username %>" />
+
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="staticBackdropLabel">
+                                                        change profile photo 
+                                                    </h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="form-outline mt-3">
+                                                        <label class="form-label" for="floatingInput">full name</label>
+                                                        <input type="text" id="floatingInput" name="nameEdit"
+                                                            value="<%= userFullname %>"
+                                                            class="form-control form-control-lg border border-2 border-dark rounded-3" />
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">

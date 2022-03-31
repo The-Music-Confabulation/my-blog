@@ -14,6 +14,7 @@ const util = require("util");
 const unlinkFile = util.promisify(fs.unlink);
 const multer = require("multer");
 const upload = multer({ dest: "uploads/" });
+const { uploadFile, getFileStream } = require("./s3");
 
 //passport for auth
 const session = require("express-session");
@@ -849,7 +850,6 @@ app.post("/admin/dashboard/:id", (req, res) => {
   }
 });
 
-const { uploadFile, getFileStream } = require("./s3");
 
 app.get("/images", (req, res) => {
   res.render("image")

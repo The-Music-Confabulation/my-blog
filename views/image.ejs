@@ -10,19 +10,19 @@
     </head>
 
     <body>
-        <img class="vh-100 container col-md-6">
+        <img class="container col-md-6">
             <div class="mb-5">
                 <form action="/images" method="POST" enctype="multipart/form-data">
                 
                 <label for="Image" class="form-label">Bootstrap 5 image Upload with Preview</label>
                 <input type="text" name="example" id="" value="test">
-                <input class="form-control" type="file" name="avatar" id="formFile" onchange="preview()">
+                <input class="form-control" type="file" name="avatar" id="formFile">
                 <!-- <button type="submit" onclick="clearImage()" class="btn btn-primary mt-3">Click me</button> -->
                 <button type="submit" class="btn btn-primary mt-3">Click me</button>
                 </form>
                 
             </div>
-            <img id="frame" src="" class="img-fluid" />
+        
         
             <img id="frame" src="/images/f5f7a9528df905d27e71c6fe291bc69d" class="img-fluid" alt="">
         </div>
