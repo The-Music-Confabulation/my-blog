@@ -862,13 +862,41 @@ app.get("/images/:key", (req, res) => {
 });
 
 app.post("/images", upload.single("avatar"), async function (req, res, next) {
-  console.log(req.body.example);
   const file = req.file;
-  console.log(file);
+  var ObjectId = require("mongodb").ObjectId;
+
+  console.log(file)
+  if (file == undefined || file == null){
+    res.redirect("/home");
+  }
+  
   const result = await uploadFile(file);
   await unlinkFile(file.path);
-  console.log(result);
-  res.send({ imagePath: `/images/${result.Key}` });
+
+
+  User.updateOne(
+    {
+      _id: ObjectId(req.user._id),
+    },
+    {
+      $set: {
+        profileImage : file.filename.toString(),
+      },
+    },
+    async function (err, done) {
+      if (err) {
+        console.log(err);
+      } else {
+          
+        
+        console.log("Profile pic updated");
+        res.redirect("/profile");
+      }
+    }
+  );
+
+
+
 });
 
 

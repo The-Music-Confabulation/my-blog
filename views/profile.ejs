@@ -18,7 +18,7 @@
                                         <button class="border-0 rounded-circle" style="background:rgb(255, 255, 255)"
                                             data-bs-toggle="modal" data-bs-target="#editprofilePic">
                                             <img
-                                                src="/images/82e33457adeb8774113c4ff127754185"
+                                                src="/images/60df8fff120ed6252f35bd96955a2cb5"
                                                 alt="mdo"
                                         
                                                 style="vertical-align: middle;
@@ -27,7 +27,7 @@
                                                     border-radius: 50%;"
                                                 />
                                         </button>
-                                        <span class="fw-bold fs-4 ms-3">@<%= username %> </span>
+                                        <span class="fw-bold fs-4 me-3">@<%= username %> </span>
                                         <button type="button  flex-fill" class="btn btn-outline-dark mx-auto"
                                         data-bs-toggle="modal" data-bs-target="#editprofile">
                                             Edit Profile
@@ -35,7 +35,7 @@
 
                     
                                         <%} else {%>
-                                        <span class="fw-bold fs-4 ms-3">@<%= username %> </span>    
+                                        <span class="fw-bold fs-4 me-3">@<%= username %> </span>    
                                         <button type="button" class="btn btn-dark mx-auto profile-pic">
                                             <i class="fa-solid fa-cloud"></i>
                                         </button>
@@ -186,8 +186,8 @@
                                     aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
-                                            <form action="/profile" method="post">
-                                                <input type="hidden" name="username" value="<%= username %>" />
+                                            <form action="/images" method="POST" enctype="multipart/form-data">
+                                                <input type="hidden" name="username" value="<%= current_user_id %>" />
 
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="staticBackdropLabel">
@@ -198,10 +198,10 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="form-outline mt-3">
-                                                        <label class="form-label" for="floatingInput">full name</label>
-                                                        <input type="text" id="floatingInput" name="nameEdit"
-                                                            value="<%= userFullname %>"
-                                                            class="form-control form-control-lg border border-2 border-dark rounded-3" />
+                                                        <label class="form-label" for="floatingInput">upload a photo</label>
+                                                        <input class="form-control" type="file" name="avatar" id="formFile">
+                                                      
+
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
@@ -214,6 +214,13 @@
                                                     </button>
                                                 </div>
                                             </form>
+                                            <!-- <script>
+                                                function clearImage() {
+                                                    document.getElementById('formFile').value = null;
+                                                    document.getElementById('formFile').onclick = null;
+                                                    frame.src = "";
+                                                }
+                                            </script> -->
                                         </div>
                                     </div>
                                 </div>
