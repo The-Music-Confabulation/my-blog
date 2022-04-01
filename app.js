@@ -578,6 +578,12 @@ app.get("/profile", (req, res) => {
       .populate("followers")
       .populate("numberOfPosts")
       .exec(function (err, results) {
+
+        let imagepath = "893269f772429058a3c0d277256b1625";
+        if (results.profileImage != "") {
+          imagepath = results.profileImage;
+        }
+
         res.render("profile", {
           alreadyFollow: false,
           current_user_id: req.user._id.valueOf(),
@@ -590,6 +596,7 @@ app.get("/profile", (req, res) => {
           following: results.followings,
           animal: results.animal,
           info: results.info,
+          profileImage: imagepath,
           isLoggedIn: isLoggedIn,
         });
       });
@@ -624,7 +631,7 @@ app.post("/profile", (req, res, next) => {
 
 app.get("/profile/:name", async function (req, res) {
   let alreadyFollow = false;
-
+  let imagepath = "893269f772429058a3c0d277256b1625";
   current_user_info = null;
   //Post.findById(req.params.postId).populate("comments").exec(function (err, post)
   await User.findOne({
@@ -656,6 +663,10 @@ app.get("/profile/:name", async function (req, res) {
         if (current_user_info != null) {
           current_user_info = current_user_info.valueOf();
         }
+        
+        if (results.profileImage != ''){
+          imagepath = results.profileImage;
+        }
         console.log(alreadyFollow);
         res.render("profile", {
           //along with variables here
@@ -670,6 +681,7 @@ app.get("/profile/:name", async function (req, res) {
           following: results.followings,
           animal: results.animal,
           info: results.info,
+          profileImage: imagepath,
           isLoggedIn: isLoggedIn,
         });
       }
@@ -866,8 +878,9 @@ app.post("/images", upload.single("avatar"), async function (req, res, next) {
   var ObjectId = require("mongodb").ObjectId;
 
   console.log(file)
-  if (file == undefined || file == null){
-    res.redirect("/home");
+  if (file === undefined || file === null){
+    console.log("Here");
+    res.render("/profile");
   }
   
   const result = await uploadFile(file);
