@@ -193,8 +193,11 @@ var getYouTubeID = require("get-youtube-id");
 
 app.get("/home", async function (req, res) {
   current_user_info = "";
+  let imagepath = "893269f772429058a3c0d277256b1625";
   if (req.isAuthenticated()) {
     current_user_info = req.user.username;
+    let curUser = await User.findOne({username: current_user_info});
+    imagepath = curUser.profileImage;
   }
 
   //--Pagination && Load songs in homepage--//
@@ -216,6 +219,7 @@ app.get("/home", async function (req, res) {
         res.render("home", {
           pages: pages,
           songs: songs,
+          profileImage: imagepath,
           isLoggedIn: isLoggedIn,
           current_user_info: current_user_info,
         });
