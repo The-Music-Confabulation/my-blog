@@ -208,7 +208,7 @@
                                                         aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <div class="form-outline mt-3">
+                                                    <div class="form-outline mt-1">
                                                         <div class="p-3 d-flex flex-column justify-content-center align-items-center ">
                                                              <img id="frame" src="/images/<%= profileImage %>" class="img-fluid" style="vertical-align: middle;
                                                                 width: 108px;
@@ -217,18 +217,22 @@
                                                                 border: 2px solid black"/>
                                                         </div>
                                                         <label class="form-label" for="floatingInput">Insert/drag a picture here:</label>
+                                                        <p id="feedback"></p>
                                                         <ul>
                                                             <li>Do not upload inappropriate picutre</li>
                                                             <li>Do not upload images that contain sensitive information such as credit cards, driver license, etc..</li>
-                                                            <li>Image must not exceed 1 MB. Sorry.</li>
+                                                            <li>Image must not exceed 2 MB. Sorry.</li>
+                                                             
                                                         </ul>
                                                         <input class="form-control" type="file" name="avatar" id="formFile" onchange="preview()"  accept="image/png, image/jpeg" required>
                                                         
                                                         <script>
                                                         function preview() {
-                                                            if (document.getElementById('formFile').files[0].size >= 1000000){
+                                                            if (document.getElementById('formFile').files[0].size >= 1000){
                                                                 alert("File is " + document.getElementById('formFile').files[0].size+ " bytes more than 1 M.B. Please select a different photo.")
                                                                 document.getElementById('formFile').value = null;
+                                                                document.getElementById('feedback').innerHTML = "Please select a different photo.";
+                                                                document.getElementById('feedback').style.color="#f42828";
                                                                 frame.src = "/images/<%= profileImage %>";
                                                             }
                                                             else{

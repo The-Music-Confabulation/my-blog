@@ -295,6 +295,7 @@ app.post(
 
     if (errors.length > 0) {
       res.render("signup", {
+        curUserImage: "893269f772429058a3c0d277256b1625",
         errors,
         isLoggedIn,
       });
@@ -308,6 +309,7 @@ app.post(
             msg: "A user with this username already exists",
           });
           res.render("signup", {
+            curUserImage: "893269f772429058a3c0d277256b1625",
             errors,
             isLoggedIn,
           });
@@ -381,6 +383,7 @@ app.post("/login", function (req, res) {
                 msg: "Incorrect username or password.",
               });
               res.render("login", {
+                curUserImage: "893269f772429058a3c0d277256b1625",
                 errors,
                 isLoggedIn,
               });
@@ -394,6 +397,7 @@ app.post("/login", function (req, res) {
           msg: "The username that you've entered doesn't match any account. Sign up for an account.",
         });
         res.render("login", {
+          curUserImage: "893269f772429058a3c0d277256b1625",
           errors,
           isLoggedIn,
         });
