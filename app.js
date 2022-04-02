@@ -219,7 +219,7 @@ app.get("/home", async function (req, res) {
         res.render("home", {
           pages: pages,
           songs: songs,
-          profileImage: imagepath,
+          curUserImage: imagepath,
           isLoggedIn: isLoggedIn,
           current_user_info: current_user_info,
         });
@@ -234,14 +234,19 @@ app.get("/help", function (req, res) {
 });
 
 app.get("/signup", function (req, res) {
+  let imagepath = "893269f772429058a3c0d277256b1625";
+
   res.render("signup", {
     isLoggedIn: isLoggedIn,
+    curUserImage: imagepath,
   });
 });
 
 app.get("/login", (req, res) => {
+  let imagepath = "893269f772429058a3c0d277256b1625";
   res.render("login", {
     isLoggedIn: isLoggedIn,
+    curUserImage: imagepath,
   });
 });
 
@@ -316,7 +321,7 @@ app.post(
               animal: "undecided",
               info: "Something about yourself",
               fullname: "Full Name",
-              profileImage: "",
+              profileImage: "893269f772429058a3c0d277256b1625",
               profileImageApprove: true,
               dateJoin: now.format("dddd, MMMM D YYYY"),
             },
@@ -397,10 +402,18 @@ app.post("/login", function (req, res) {
   );
 });
 
-app.get("/compose", function (req, res) {
+app.get("/compose", async function (req, res) {
+  let imagepath = "893269f772429058a3c0d277256b1625";
   if (req.isAuthenticated()) {
+    
+    current_user_info = req.user.username;
+    let curUser = await User.findOne({username: current_user_info});
+    imagepath = curUser.profileImage;
+
+
     res.render("compose", {
       isLoggedIn: isLoggedIn,
+      curUserImage: imagepath,
     });
   } else {
     req.flash("error_msg", "You need to login to post.");
@@ -444,7 +457,14 @@ app.get("/logout", (req, res) => {
   res.redirect("/home");
 });
 
-app.get("/posts/:postId", (req, res) => {
+app.get("/posts/:postId", async (req, res) => {
+  let imagepath = "893269f772429058a3c0d277256b1625";
+
+  if (req.isAuthenticated()) {
+    current_user_info = req.user.username;
+    let curUser = await User.findOne({username: current_user_info});
+    imagepath = curUser.profileImage;
+  }
   Post.findById(req.params.postId)
     .populate("comments")
     .exec(function (err, post) {
@@ -459,6 +479,7 @@ app.get("/posts/:postId", (req, res) => {
           author: post.author,
           date: post.date,
           like: post.like,
+          curUserImage: imagepath,
           content: post.content,
           isLoggedIn: isLoggedIn,
         });
@@ -601,6 +622,7 @@ app.get("/profile", (req, res) => {
           animal: results.animal,
           info: results.info,
           profileImage: imagepath,
+          curUserImage: imagepath,
           isLoggedIn: isLoggedIn,
         });
       });
@@ -636,6 +658,7 @@ app.post("/profile", (req, res, next) => {
 app.get("/profile/:name", async function (req, res) {
   let alreadyFollow = false;
   let imagepath = "893269f772429058a3c0d277256b1625";
+  let curUserImage = "893269f772429058a3c0d277256b1625";
   current_user_info = null;
   //Post.findById(req.params.postId).populate("comments").exec(function (err, post)
   await User.findOne({
@@ -653,9 +676,11 @@ app.get("/profile/:name", async function (req, res) {
         console.log(results);
         if (req.isAuthenticated()) {
           current_user_info = req.user._id;
-          console.log(req.params.name);
-          console.log(req.user._id.valueOf());
+          current_user_name = req.user.username;
 
+          let curUser = await User.findOne({ username: current_user_name });
+          curUserImage = curUser.profileImage;
+          
           let result = await Following.findOne({
             following_username: results.username,
             following_id: req.user._id.valueOf(),
@@ -685,6 +710,7 @@ app.get("/profile/:name", async function (req, res) {
           following: results.followings,
           animal: results.animal,
           info: results.info,
+          curUserImage: curUserImage,
           profileImage: imagepath,
           isLoggedIn: isLoggedIn,
         });
