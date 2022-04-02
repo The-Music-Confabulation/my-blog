@@ -16,20 +16,13 @@
                                 <div class="">
                                     <div class="profile-edit mt-3">
                                         <% if (current_user_id == id && isLoggedIn) { %>
-                                        <button class="border-0 rounded-circle" style="background:rgb(255, 255, 255)"
-                                            data-bs-toggle="modal" data-bs-target="#editprofilePic">
-                                            <img
-                                                src="/images/<%= profileImage %>"
-                                                alt="mdo"
+                                            <!-- class="border-0 rounded-circle" style="background:rgb(255, 255, 255)" -->
+                                        <div class="avatar"
+                                            data-bs-toggle="modal" data-bs-target="#editprofilePic" 
+                                            style="background-image: url('/images/<%= profileImage %>')">
+                                        </div>
                                         
-                                                style="vertical-align: middle;
-                                                    width: 108px;
-                                                    height: 108px;
-                                                    border-radius: 50%;"
-                                                />
-                                        </button>
-                                        
-                                        <span class="fw-bold fs-4 me-3">@<%= username %> </span>
+                                        <span class="fw-bold fs-4 me-3 d-block">@<%= username %> </span>
                                         <button type="button  flex-fill" class="btn btn-outline-dark mx-auto"
                                         data-bs-toggle="modal" data-bs-target="#editprofile">
                                             Edit Profile
