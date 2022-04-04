@@ -6,15 +6,12 @@
   </video>
   <div class="main">
     <%- include('partials/header'); -%>
-    <div class="auth-page d-flex flex-column justify-content-center align-items-centertext-white p-3 ">
-      <div class="py-3 mb-5" id="compose-block">
-        <h3 class="pb-2 border-bottom border-2 border-dark">
-          Write up your post here <i class="fa-solid fa-arrow-down-long"></i>
-        </h3>
+    <div class="auth-page d-flex flex-column justify-content-center align-items-center ">
+      <div class="" id="compose-block">
         <form class="" action="/compose" method="post">
-          <div class="py-3 mb-3" style="letter-spacing: 5px;">
-            <div class="form-group row m-0">
-              <label class="form-label p-0 fs-4 fw-bold">title</label>
+          <div class="py-3">
+            <div class="form-group m-0">
+              <label class="fw-bold">title</label>
               <input
                 class="form-control border border-2 border-dark rounded-3"
                 type="text"
@@ -22,19 +19,16 @@
                 required
               />
 
-              <div class="col-md-7 ps-0 mt-3 fs-4 fw-bold">
+              <div class="fw-bold">
                 <label class="form-label">youtube url</label>
                 <input
                   class="form-control border border-2 border-dark rounded-3"
                   type="text"
                   name="postURL"
                 />
-                <!-- <div class="invalid-feedback">
-              Please select a valid country.
-            </div> -->
               </div>
 
-              <div class="col-md-5 px-0 mt-3 fs-4 fw-bold">
+              <div class="fw-bold">
                 <label for="tag" class="form-label">tag</label>
                 <div class="input-group has-validation">
                   <!-- <span class="input-group-text">#</span> -->
@@ -43,16 +37,15 @@
                     class="form-control border border-2 border-dark rounded-3"
                     name="postTag"
                     required
-                  />
-                  <div class="invalid-feedback">Your username is required.</div>
+                  /> 
                 </div>
               </div>
 
-              <label class="form-label p-0 mt-3 fs-4 fw-bold">content</label>
+              <label class="fw-bold">content</label>
               <textarea
                 class="form-control border border-2 border-dark rounded-3"
-                rows="5"
-                cols="30"
+                rows="2"
+        
                 name="postBody"
               ></textarea>
             </div>
