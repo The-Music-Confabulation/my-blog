@@ -3,42 +3,18 @@
     <nav class="row pe-3 d-flex align-items-between">
       <a
         href="/home"
-        class="col nav-link mx-2 text-decoration-none"
+        class="col nav-link mx-2 text-decoration-none bg-white"
         id="compose"
         ><i class="fa-solid fa-house"></i
       ></a>
       <a
         href="/compose"
-        class="col nav-link mx-2 text-decoration-none"
+        class="col nav-link mx-2 text-decoration-none bg-white"
         id="compose"
+        
         ><i class="fa-solid fa-plus"></i
       ></a>
-      <a
-        href="/profile"
-        class="col nav-link mx-2 text-decoration-none"
-        id="profile"
-        ><i class="fa-solid fa-cloud"></i
-      ></a>
 
-      <% if (!isLoggedIn) { %>
-      <a href="/login" class="col nav-link mx-2 text-decoration-none" id="logi"
-        ><i class="fa-solid fa-volume-high"></i
-      ></a>
-      <a
-        href="/signup"
-        class="col nav-link mx-2 text-decoration-none"
-        id="signu"
-        ><i class="fa-solid fa-circle-arrow-up"></i
-      ></a>
-
-      <%} else { %>
-      <a
-        href="/logout"
-        class="col nav-link mx-2 text-decoration-none"
-        id="logout"
-        ><i class="fa-solid fa-volume-xmark"></i
-      ></a>
-      <% } %>
     </nav>
   </div>
 </div>
