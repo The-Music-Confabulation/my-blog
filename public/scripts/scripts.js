@@ -35,30 +35,16 @@ function setTheme(theme) {
 function updateLike(id, title, numberLikes, post_number, user){
   let ajax = new XMLHttpRequest(); 
 
-  numberLikes = parseInt(numberLikes)
+  numberLikes = parseInt(numberLikes);
+  numberLikes+=1;
   text_id = post_number.toString() + 'other-likes'
 
-  //if 0, add 
-  if (numberLikes === 0){
-    let output = "liked by " + user.toString()
-    document.getElementById(text_id).textContent = output
-    document.getElementById(post_number.toString()+"heart-icon").style.color= "#EB0000";
-    document.getElementById(post_number.toString()+"heart-icon").onclick = null;
-  } 
-  else if ( numberLikes >= 2){
-    let output = parseInt(document.getElementById(text_id).textContent);
-    output+=1; 
-    document.getElementById(text_id).textContent = output.toString()
-    document.getElementById(post_number.toString()+"heart-icon").style.color= "#EB0000";
-    document.getElementById(post_number.toString()+"heart-icon").onclick = null;
-  }
-  else {
-    let output = document.getElementById(text_id).textContent; //like by <user>
-    output += " and " + user
-    document.getElementById(text_id).textContent = output.toString()
-    document.getElementById(post_number.toString()+"heart-icon").style.color= "#EB0000";
-    document.getElementById(post_number.toString()+"heart-icon").onclick = null;
-  }
+  
+  document.getElementById(text_id).textContent = numberLikes.toString();
+  document.getElementById(post_number.toString()+"heart-icon").style.color= "#EB0000";
+  document.getElementById(post_number.toString()+"heart-icon").onclick = null;
+  document.getElementById(post_number.toString() + "heart-icon").className = "fa-solid fa-heart";
+
   
   
   post_url = '/'+id+'/like'

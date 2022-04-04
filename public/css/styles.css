@@ -101,6 +101,33 @@ article, .card {
   border-radius: 50%;
 }
 
+.headerAvatar {
+  cursor: pointer;
+
+  /* make a square container */
+  width: 100px;
+  height: 100px;
+  border: 2px solid rgb(200, 200, 200);
+  /* fill the container, preserving aspect ratio, and cropping to fit */
+  background-size: cover;
+
+  /* center the image vertically and horizontally */
+  background-position: top center;
+
+  /* round the edges to a circle with border radius 1/2 container size */
+  border-radius: 50%;
+}
+
+.fa-heart, .fa-message {
+  font-size: 1.8rem;
+}
+
+
+.date {
+  font-size: 12px;
+}
+
+
 .fa-heart:hover, .fa-message:hover {
   color: red;
   cursor: pointer;
@@ -114,7 +141,7 @@ article, .card {
 
 .blog-post {
   margin-top: 1rem;
-  padding: 1rem;
+  /* padding: 1rem; */
 }
 
 .blog-header {
@@ -210,11 +237,16 @@ Comment section
     left: 0;
     z-index: 1030;
     border: 0;
+    border-radius: 0;
+    background-color: white;
   }
 
   .article-main-block {
     width: 100%;
-    margin: 0;
+    margin-top: 3rem;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
   }
 
 
