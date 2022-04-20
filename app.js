@@ -436,7 +436,7 @@ app.post("/compose", (req, res) => {
     author: req.user.username,
     url: getYouTubeID(req.body.postURL),
     tag: req.body.postTag,
-    approved: false,
+    approved: true,
     date: now.format("dddd, MMMM D YYYY"),
   });
 
@@ -880,11 +880,11 @@ app.post("/admin/dashboard/:id", (req, res) => {
     todo = req.body.act;
     if (todo === "delete") {
       res.redirect("/admin/dashboard");
-    } else if (todo === "approve") {
+    } else if (todo === "notapprove") {
       console.log("Updating");
       Post.updateOne(
         { _id: req.params.id },
-        { $set: { approved: "true" } },
+        { $set: { approved: "false" } },
         function (err) {
           if (err) return handleError(err);
         }
