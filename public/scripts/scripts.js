@@ -15,18 +15,28 @@ for (let i of switches) {
 }
 
 function setTheme(theme) {
-  //if (theme == 'light') {
+  var video = document.getElementById('myVideo');
+  if (theme == 'light') {
     document.getElementById('switcher-id').href = '/css/themes/light.css';
-    // document.getElementById('vid-source').src="/video/new.mp4";
-  //} 
+    video.pause();
+
+    document.getElementById('vid-source').src="/video/new.mp4";
+    video.load();
+    video.play();
+    
+  } 
   // else if (theme == 'cadetblue') {
   //   document.getElementById('switcher-id').href = '/css/themes/cadetblue.css';
   // } else if (theme == 'coral') {
   //   document.getElementById('switcher-id').href = '/css/themes/coral.css';
-  // } else if (theme == 'dark') {
-  //   document.getElementById('switcher-id').href = '/css/themes/dark.css';
-  //   // document.getElementById('vid-source').src="/video/dark2.mp4";
-  // }
+  else if (theme == 'dark') {
+      document.getElementById('switcher-id').href = '/css/themes/dark.css';
+      video.pause();
+      document.getElementById('vid-source').src=('/video/city.mp4');
+      video.load();
+      video.play();
+      
+  }
   localStorage.setItem('style', theme);
 }
 
