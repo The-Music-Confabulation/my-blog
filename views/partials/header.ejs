@@ -29,8 +29,13 @@
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
+          <!-- <a target="_blank" href="https://icons8.com/icon/7NrjGVZoyASu/avatar">Avatar icon by Icons8</a> -->
             <img
+              <% if (!isLoggedIn) { %>
+                src="https://img.icons8.com/external-emojis-because-i-love-you-royyan-wijaya/64/000000/external-avatar-hana-emojis-general-ii-emojis-because-i-love-you-royyan-wijaya-21.png"
+              <% } else { %> 
               src="/images/<%= curUserImage %>"
+              <% } %>
               alt="mdo"
               style="
                 vertical-align: middle;
