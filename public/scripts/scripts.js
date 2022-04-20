@@ -15,28 +15,28 @@ for (let i of switches) {
 }
 
 function setTheme(theme) {
-  var video = document.getElementById('myVideo');
+  // var video = document.getElementById('myVideo');
   if (theme == 'light') {
     document.getElementById('switcher-id').href = '/css/themes/light.css';
-    video.pause();
+    // video.pause();
 
-    document.getElementById('vid-source').src="/video/new.mp4";
-    video.load();
-    video.play();
+    // document.getElementById('vid-source').src="/video/new.mp4";
+    // video.load();
+    // video.play();
     
   } 
   // else if (theme == 'cadetblue') {
   //   document.getElementById('switcher-id').href = '/css/themes/cadetblue.css';
   // } else if (theme == 'coral') {
   //   document.getElementById('switcher-id').href = '/css/themes/coral.css';
-  else if (theme == 'dark') {
-      document.getElementById('switcher-id').href = '/css/themes/dark.css';
-      video.pause();
-      document.getElementById('vid-source').src=('/video/city.mp4');
-      video.load();
-      video.play();
+  // else if (theme == 'dark') {
+  //     document.getElementById('switcher-id').href = '/css/themes/dark.css';
+  //     video.pause();
+  //     document.getElementById('vid-source').src=('/video/city.mp4');
+  //     video.load();
+  //     video.play();
       
-  }
+  // }
   localStorage.setItem('style', theme);
 }
 
